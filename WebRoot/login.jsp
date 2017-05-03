@@ -16,10 +16,8 @@
 	text-align: center;
 	margin: 100px auto;
 	padding: 0 250px;
-	background-image: url('image/background.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
-	color: white;
 }
 　　
 </style>
@@ -42,14 +40,17 @@
 		<s:form action="LogAction" method="post" namespace="/" theme="simple">
 			<br>
 			<br>
-		用户名：<s:textfield name="userName" size="15" value="admin" />
+		用户名：<s:textfield name="user.userName" size="15" value="admin" />
 			<br>
 			<br>
-		密&nbsp;&nbsp;码：<s:password name="password" size="15" />
+		密&nbsp;&nbsp;码：<s:password name="user.password" size="15" />
 			<br>
 			<br>
+		<s:if test="hasFieldError"></s:if>
+			<s:fielderror/>
 			<s:submit value="登录" theme="simple" />&nbsp;
-		<input type=button value="注册" onclick="window.location='*.jsp'" />
+		<input type=button value="注册" onclick="window.location='register.jsp'" />
+		
 		</s:form>
 	</div>
 </body>

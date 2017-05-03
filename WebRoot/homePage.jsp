@@ -86,7 +86,6 @@
 	height: 200px;
 	padding: 20px;
 	padding-bottom: 0;
-
 }
 
 #act_list {
@@ -111,7 +110,8 @@
 }
 
 .act_headpic {
-	float: left; position : relative;
+	float: left;
+	position: relative;
 	left: 20px;
 	top: -25px;
 	height: 45px;
@@ -121,7 +121,8 @@
 }
 
 .act_petname {
-	float: left; position : relative;
+	float: left;
+	position: relative;
 	left: 55px;
 	top: -25px;
 	height: 35px;
@@ -130,8 +131,13 @@
 	position: relative;
 }
 </style>
-</head>
+<script type="text/javascript">
+function show(){
+document.getElementById("right").lo
+}
 
+</script>
+</head>
 <body>
 	<div id="contain">
 		<!-- Top部分 -->
@@ -141,8 +147,8 @@
 			<div id="menu">
 				<table>
 					<tr>
-						<td><a>主页</a></td>
-						<td><a>博文</a></td>
+						<td><a onclick="">主页</a></td>
+						<td><a onclick="show()">博文</a></td>
 						<td><a>个人动态</a></td>
 						<td><a>留言板</a></td>
 						<td><a>收藏</a></td>
@@ -159,43 +165,11 @@
 			<!-- Left部分 -->
 			<div id="left">left</div>
 			<!-- Right部分 -->
-			<div id="right">
-				<div id="textarea">
-					<s:form>
-						<s:textarea rows="10" cols="100"></s:textarea>
-						<s:submit value="发表"></s:submit>
-					</s:form>
-				</div>
-
-				<div id="act_list">
-					<table style="background-color:gray;">
-						<tr>
-							<td>
-								<div class="act_headpic">头像</div>
-								<div class="act_petname">昵称</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="act_headpic">头像</div>
-								<div class="act_petname">昵称</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="act_headpic">头像</div>
-								<div class="act_petname">昵称</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="act_headpic">头像</div>
-								<div class="act_petname">昵称</div>
-							</td>
-						</tr>
-					</table>
-				</div>
-
+			<div id="right" >
+			<%
+	String pages = "main";
+%>
+			<jsp:include page="${pages}.jsp"></jsp:include>
 			</div>
 		</div>
 

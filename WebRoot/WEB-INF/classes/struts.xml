@@ -3,7 +3,7 @@
 <struts>
 	<package name="default" extends="struts-default" namespace="/">
 		<action name="LogAction" class="com.action.LoginAction">
-			<result name="success">/index.jsp</result>
+			<result name="success">/homePage.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
 	</package>
