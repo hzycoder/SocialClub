@@ -115,12 +115,11 @@ public class RegisterAction extends ActionSupport {
 	}
 
 	public void validateAdd() {
+		this.clearErrorsAndMessages();
 		Pattern numPatt = Pattern.compile("[0-9]*");
 		Pattern emailPatt = Pattern.compile("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-		if (!year.equals("") || !month.equals("") || !day.equals("")) {
-			if(year.equals("") || month.equals("") || day.equals("")){
-				this.addFieldError("birthdayError", "请填写完整生日日期");				
-			}
+		if (year.equals("")||month.equals("")||day.equals("")) {
+			this.addFieldError("birthday", "请正确生日日期");
 		}
 		if (!email.equals("")&&!emailPatt.matcher(email).matches()) {
 			this.addFieldError("emailError", "请正确填写邮箱格式");
@@ -130,19 +129,20 @@ public class RegisterAction extends ActionSupport {
 			this.addFieldError("usernameError", "用户名长度过长");
 		}
 		byte[] bytes1 = password.getBytes();
-		if(bytes1.length>20){
-			this.addFieldError("passwordError", "密码长度过长");
+		if(bytes1.length>20||bytes1.length<6){
+			this.addFieldError("passwordError", "密码长度不完善");
 		}
-		if (phone.length() != 11) {
+		if (!phone.equals("")&&phone.length() != 11) {
 			this.addFieldError("phoneError", "请填写正确的联系电话");
 		}
-		if (!numPatt.matcher(phone).matches()) {
+		if (!phone.equals("")&&!numPatt.matcher(phone).matches()) {
 			this.addFieldError("phoneError", "请填写正确的联系电话");
 		}
 
 	}
 
 	public String add() throws Exception {
+		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
 
 		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,
@@ -159,7 +159,7 @@ public class RegisterAction extends ActionSupport {
 
 		Integer id = regSrv.insertUser(user);
 		if (id > 0) {
-			ac.getSession().put("RegSUCCESS", "注册成功");
+			ac.getSession().put("RegSUCCESS", "注册成功11");
 			return SUCCESS;
 		} else if (id == -1) {
 			this.addFieldError(ERROR, "该用户名已注册");

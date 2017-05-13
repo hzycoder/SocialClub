@@ -38,7 +38,7 @@
             <column name="phone" length="20" />
         </property>
         <property name="registerTime" type="java.sql.Timestamp">
-        	<column name="register"/>
+        	<column name="registerTime"/>
         </property>
         <set name="actLists" inverse="true">
             <key>

@@ -19,7 +19,7 @@ public class LoginDaoImpl implements LoginDao{
 	@Override
 	public List searchUser(TUser user) {
 		try {
-			userList = sessionFactory.getCurrentSession().createQuery("from User where userName=? and password=?")
+			userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=? and password=?")
 					.setParameter(0, user.getUsername()).setParameter(1, user.getPassword()).list();
 		} catch (Exception e) {
 			e.printStackTrace();
