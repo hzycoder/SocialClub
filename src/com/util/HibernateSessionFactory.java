@@ -7,6 +7,16 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSessionFactory {
 
 	private static SessionFactory factory;
+	
+	
+
+	public static SessionFactory getFactory() {
+		return factory;
+	}
+
+	public static void setFactory(SessionFactory factory) {
+		HibernateSessionFactory.factory = factory;
+	}
 
 	static {
 		try {

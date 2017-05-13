@@ -2,12 +2,8 @@ package com.dao;
 
 import javax.annotation.Resource;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.domain.TUser;
-import com.util.HibernateSessionFactory;
 
 public class RegisterDaoImpl implements RegisterDao {
 	@Resource
