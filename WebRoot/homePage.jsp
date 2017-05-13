@@ -169,7 +169,6 @@ document.getElementById("right").lo
 			<%
 	String pages = "main";
 			%>
-			<jsp:include page="${pages}.jsp"></jsp:include>
 			</div>
 		</div>
 

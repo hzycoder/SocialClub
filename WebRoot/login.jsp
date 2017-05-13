@@ -37,10 +37,10 @@
 	<div id="index1">
 		<s:property value="#session.RegSUCCESS"></s:property>
 		<s:property value="#session.LOGFAILE"></s:property>
-		<s:form action="LogAction" method="post" namespace="/" theme="simple">
+		<s:form action="logAction" method="post" namespace="/" theme="simple">
 			<br>
 			<br>
-		用户名：<s:textfield name="user.userName" size="15" value="admin" />
+		用户名：<s:textfield name="user.username" size="15" value="admin" />
 			<br>
 			<br>
 		密&nbsp;&nbsp;码：<s:password name="user.password" size="15" />
