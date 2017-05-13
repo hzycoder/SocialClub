@@ -40,16 +40,16 @@
 				<s:property value="#session.RegSUCCESS"></s:property>
 				<br>
 				<br>
-				真&nbsp;&nbsp;名：<s:textfield name="user.petname"></s:textfield>
+				真&nbsp;&nbsp;名：<s:textfield name="user.petname" value="狗子"></s:textfield>
 				<br>
 				<br>
-				所在大学：<s:textfield name="user.college"></s:textfield>
+				所在大学：<s:textfield name="user.college" value="社会大学"></s:textfield>
 				<br>
 				<br>
-				email:<s:textfield name="user.email"></s:textfield>
+				email:<s:textfield name="user.email" value="123@abc.com"></s:textfield>
 				<br>
 				<br>
-				联系电话:<s:textfield name="user.phone"></s:textfield>
+				联系电话:<s:textfield name="user.phone" value="888555"></s:textfield>
 				<br>
 				<br>
 				<s:submit value="注册" />

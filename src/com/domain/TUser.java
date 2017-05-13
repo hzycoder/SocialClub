@@ -36,6 +36,20 @@ public class TUser  implements java.io.Serializable {
     /** default constructor */
     public TUser() {
     }
+    //** 注册用的构造方法 */
+	public TUser(String username, String password, Date birthday, String bacakground, String uPicture, String petname,
+			String college, String email, String phone) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.birthday = birthday;
+		this.bacakground = bacakground;
+		UPicture = uPicture;
+		this.petname = petname;
+		this.college = college;
+		this.email = email;
+		this.phone = phone;
+	}
 
 	/** minimal constructor */
     public TUser(Integer userId, String username, String password) {
@@ -185,13 +199,14 @@ public class TUser  implements java.io.Serializable {
     public void setBlogLists(Set blogLists) {
         this.blogLists = blogLists;
     }
+
+	@Override
+	public String toString() {
+		return "TUser [userId=" + userId + ", username=" + username + ", password=" + password + ", birthday="
+				+ birthday + ", bacakground=" + bacakground + ", UPicture=" + UPicture + ", petname=" + petname
+				+ ", college=" + college + ", email=" + email + ", phone=" + phone + ", actLists=" + actLists
+				+ ", actComments=" + actComments + ", blogComments=" + blogComments + ", TFriendses=" + TFriendses
+				+ ", blogLists=" + blogLists + "]";
+	}
    
-
-
-
-
-
-
-
-
 }
