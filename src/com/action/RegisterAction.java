@@ -131,7 +131,7 @@ public class RegisterAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,registerTime);
-		
+		//整合生日日期
 		String birthdayString = year+month+day;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date date = sdf.parse(birthdayString);

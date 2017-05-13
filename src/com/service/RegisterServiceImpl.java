@@ -15,9 +15,11 @@ public class RegisterServiceImpl implements RegisterService {
 	RegisterDao regDao;
 	@Override
 	public boolean insertUser(TUser user) {
+		//生成注册日期
 		Date date = new Date();   
 		Timestamp timestamp = new Timestamp(date.getTime()); 
 		user.setRegisterTime(timestamp);
+		
 		Integer id =  regDao.insertUser(user);
 		if (id==1) {
 			return true;
