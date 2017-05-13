@@ -1,6 +1,7 @@
 package com.action;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -13,16 +14,49 @@ public class RegisterAction extends ActionSupport{
 	@Resource
 	RegisterService regSrv;
 	
-	String username;
-	String password;
-	Date birthday = null;
-	String background = null;
-	String uPicture = null;
-	String petname = null;
-	String college = null;
-	String email = null;
-	String phone = null;
-	Timestamp registerTime = null;
+	private String username;
+	private String password;
+	private Date birthday = null;
+	private String background = null;
+	private String uPicture = null;
+	private String petname = null;
+	private String college = null;
+	private String email = null;
+	private String phone = null;
+	private Timestamp registerTime = null;
+	private String year;
+	private String month;
+	private String day;
+
+	public String getYear() {
+		return year;
+	}
+
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+
+	public String getMonth() {
+		return month;
+	}
+
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+
+	public String getDay() {
+		return day;
+	}
+
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -53,27 +87,7 @@ public class RegisterAction extends ActionSupport{
 		this.birthday = birthday;
 	}
 
-
-	public String getbackground() {
-		return background;
-	}
-
-
-	public void setbackground(String background) {
-		this.background = background;
-	}
-
-
-	public String getuPicture() {
-		return uPicture;
-	}
-
-
-	public void setuPicture(String uPicture) {
-		this.uPicture = uPicture;
-	}
-
-
+	
 	public String getPetname() {
 		return petname;
 	}
@@ -117,7 +131,13 @@ public class RegisterAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,registerTime);
-		user.setBirthday(new Date(year+month+day));
+		
+		String birthdayString = year+month+day;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date date = sdf.parse(birthdayString);
+		user.setBirthday(date);
+		
+		System.out.println("dateÈÕÆÚ:::"+user.getBirthday().toString());
 		System.out.println("user==!!!!!!!==="+user.toString());
 		System.out.println("×¢²áEXECUTE");
 		if(regSrv.insertUser(user))
