@@ -2,6 +2,8 @@ package com.domain;
 
 import java.util.Date;
 
+import com.blog.domain.BlogList;
+
 
 /**
  * BlogComment entity. @author MyEclipse Persistence Tools

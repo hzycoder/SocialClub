@@ -147,7 +147,7 @@
 				<table>
 					<tr>
 						<td><a href="mainFrame.jsp" target="right_frame">主页</a></td>
-						<td><a href="blog.jsp" target="right_frame">博文</a></td>
+						<td><a href="blogEdit.jsp" target="right_frame">博文</a></td>
 						<td><a>个人动态</a></td>
 						<td><a>留言板</a></td>
 						<td><a>收藏</a></td>

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'blog.jsp' starting page</title>
+    <title>My JSP 'blogEdit.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,10 +20,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+<style type="text/css">
+#blogEdit{
+width:870px;
+height:inherit;
+background-color: #FFFFFF;
 
+}
+</style>
   </head>
   
   <body>
-    This is my JSP page. <br>
+    <div id="blogEdit">
+    <s:form>
+<s:textfield label="标题" size="50"></s:textfield>
+   <br>
+<s:textarea label="内容" cols="100" rows="20"></s:textarea>
+    <s:submit value="提交"></s:submit>
+    </s:form>
+    </div>
   </body>
 </html>
