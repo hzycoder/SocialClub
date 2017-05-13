@@ -6,7 +6,10 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.components.Else;
+
 import com.domain.TUser;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.RegisterService;
 
@@ -130,6 +133,8 @@ public class RegisterAction extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
+		ActionContext ac = ActionContext.getContext();
+
 		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,registerTime);
 		//整合生日日期
 		String birthdayString = year+month+day;
@@ -140,9 +145,18 @@ public class RegisterAction extends ActionSupport{
 		System.out.println("date日期:::"+user.getBirthday().toString());
 		System.out.println("user==!!!!!!!==="+user.toString());
 		System.out.println("注册EXECUTE");
-		if(regSrv.insertUser(user))
+		
+		Integer id = regSrv.insertUser(user);
+		if(id>0){
+			ac.getSession().put("RegSUCCESS", "注册成功");
 			return SUCCESS;
-		else return INPUT;
+		}else if(id==-1){
+			this.addFieldError(ERROR, "该用户名已注册");
+			return INPUT;
+		}else
+			this.addFieldError(ERROR, "网站繁忙");
+			return INPUT;
+		
 	}
 	
 

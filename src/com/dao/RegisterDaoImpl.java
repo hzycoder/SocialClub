@@ -26,6 +26,7 @@ public class RegisterDaoImpl implements RegisterDao {
 			return id;
 			
 		}else{
+			//用户名重复
 			return -1;
 		}
 		

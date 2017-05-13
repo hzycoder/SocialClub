@@ -28,6 +28,7 @@ public class LoginAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		this.clearFieldErrors();
 		ActionContext ac = ActionContext.getContext();
 		this.clearErrorsAndMessages();
 		ac.getSession().remove("LOGFAILE");
