@@ -19,8 +19,8 @@
         <property name="birthday" type="java.util.Date">
             <column name="birthday" length="10" />
         </property>
-        <property name="bacakground" type="java.lang.String">
-            <column name="bacakground" length="100" />
+        <property name="background" type="java.lang.String">
+            <column name="background" length="100" />
         </property>
         <property name="UPicture" type="java.lang.String">
             <column name="u_picture" length="100" />
@@ -36,6 +36,9 @@
         </property>
         <property name="phone" type="java.lang.String">
             <column name="phone" length="20" />
+        </property>
+        <property name="registerTime" type="java.sql.Timestamp">
+        	<column name="register"/>
         </property>
         <set name="actLists" inverse="true">
             <key>

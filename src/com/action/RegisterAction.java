@@ -1,5 +1,6 @@
 package com.action;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -15,13 +16,13 @@ public class RegisterAction extends ActionSupport{
 	String username;
 	String password;
 	Date birthday = null;
-	String bacakground = null;
+	String background = null;
 	String uPicture = null;
 	String petname = null;
 	String college = null;
 	String email = null;
 	String phone = null;
-	
+	Timestamp registerTime = null;
 
 	public String getUsername() {
 		return username;
@@ -53,13 +54,13 @@ public class RegisterAction extends ActionSupport{
 	}
 
 
-	public String getBacakground() {
-		return bacakground;
+	public String getbackground() {
+		return background;
 	}
 
 
-	public void setBacakground(String bacakground) {
-		this.bacakground = bacakground;
+	public void setbackground(String background) {
+		this.background = background;
 	}
 
 
@@ -115,7 +116,8 @@ public class RegisterAction extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		TUser user = new TUser(username, password, birthday, bacakground, uPicture, petname, college, email, phone);
+		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,registerTime);
+		user.setBirthday(new Date(year+month+day));
 		System.out.println("user==!!!!!!!==="+user.toString());
 		System.out.println("×¢²áEXECUTE");
 		if(regSrv.insertUser(user))
