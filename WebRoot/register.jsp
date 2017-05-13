@@ -23,10 +23,10 @@
 			<s:fielderror />
 			<s:form action="regAction" method="post" namespace="/" theme="simple">
 				<br>
-				用户名：<s:textfield name="user.username" value="123" label="用户名" />
+				用户名：<s:textfield name="username" value="123" label="用户名" />
 				<br>
 				<br>
-				密&nbsp;&nbsp;码：<s:password name="user.password" value="123"
+				密&nbsp;&nbsp;码：<s:password name="password" value="123"
 					label="密码" />
 				<br>
 				<br>
@@ -40,16 +40,16 @@
 				<s:property value="#session.RegSUCCESS"></s:property>
 				<br>
 				<br>
-				真&nbsp;&nbsp;名：<s:textfield name="user.petname" value="狗子"></s:textfield>
+				真&nbsp;&nbsp;名：<s:textfield name="petname" value="狗子"></s:textfield>
 				<br>
 				<br>
-				所在大学：<s:textfield name="user.college" value="社会大学"></s:textfield>
+				所在大学：<s:textfield name="college" value="社会大学"></s:textfield>
 				<br>
 				<br>
-				email:<s:textfield name="user.email" value="123@abc.com"></s:textfield>
+				email:<s:textfield name="email" value="123@abc.com"></s:textfield>
 				<br>
 				<br>
-				联系电话:<s:textfield name="user.phone" value="888555"></s:textfield>
+				联系电话:<s:textfield name="phone" value="888555"></s:textfield>
 				<br>
 				<br>
 				<s:submit value="注册" />

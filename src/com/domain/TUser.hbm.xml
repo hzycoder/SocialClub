@@ -8,7 +8,7 @@
     <class name="com.domain.TUser" table="t_user" schema="dbo" catalog="social">
         <id name="userId" type="java.lang.Integer">
             <column name="userID" />
-            <generator class="identity" />
+            <generator class="increment" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" not-null="true" />
