@@ -73,32 +73,24 @@
 	background-color: #FFEEFF;
 }
 
+#left_frame {
+	border: #000000 0px solid;
+	float: left;
+	width: 240px;
+	height: inherit;
+}
+
 #right {
 	float: right;
 	width: 870px;
 	height: inherit;
 	background-color: #FFFFEE;
 }
-
-#textarea {
-	width: 820px;
-	margin: 0 auto;
-	height: 200px;
-	padding: 20px;
-	padding-bottom: 0;
-}
-
-#act_list {
-	width: 820px;
-	margin: 0 auto;
+#right_frame {
+	border: #000000 0px solid;
+	float: right;
+	width: 870px;
 	height: inherit;
-	padding: 20px;
-	padding-top: 0;
-}
-
-#act_list table {
-	margin: 10px;
-	width: 800px;
 }
 
 #act_list td {
@@ -130,12 +122,19 @@
 	background-color: orange;
 	position: relative;
 }
-</style>
-<script type="text/javascript">
-function show(){
-document.getElementById("right").lo
+
+#frm {
+	
 }
 
+#frm iframe {
+	
+}
+</style>
+<script type="text/javascript">
+	function show() {
+		document.getElementById("right").lo
+	}
 </script>
 </head>
 <body>
@@ -147,8 +146,8 @@ document.getElementById("right").lo
 			<div id="menu">
 				<table>
 					<tr>
-						<td><a onclick="">主页</a></td>
-						<td><a onclick="show()">博文</a></td>
+						<td><a href="mainFrame.jsp" target="right_frame">主页</a></td>
+						<td><a href="blog.jsp" target="right_frame">博文</a></td>
 						<td><a>个人动态</a></td>
 						<td><a>留言板</a></td>
 						<td><a>收藏</a></td>
@@ -163,15 +162,14 @@ document.getElementById("right").lo
 		<!-- Bottom部分 -->
 		<div id="bottom">
 			<!-- Left部分 -->
-			<div id="left">left</div>
+			<div id="left">
+				<iframe id="left_frame" name="left_frame" src="left.jsp"></iframe>
+			</div>
 			<!-- Right部分 -->
-			<div id="right" >
-			<%
-	String pages = "main";
-			%>
+			<div id="right">
+				<iframe id="right_frame" name="right_frame" src="right.jsp"></iframe> 
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>
