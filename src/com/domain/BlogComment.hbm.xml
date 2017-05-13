@@ -10,7 +10,7 @@
             <column name="blogcommentID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="blogList" class="com.domain.BlogList" fetch="select">
+        <many-to-one name="blogList" class="com.blog.domain.BlogList" fetch="select">
             <column name="blogID" />
         </many-to-one>
         <many-to-one name="TUser" class="com.domain.TUser" fetch="select">

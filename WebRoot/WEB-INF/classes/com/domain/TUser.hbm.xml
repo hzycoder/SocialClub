@@ -68,7 +68,7 @@
             <key>
                 <column name="userID" />
             </key>
-            <one-to-many class="com.domain.BlogList" />
+            <one-to-many class="com.blog.domain.BlogList" />
         </set>
     </class>
 </hibernate-mapping>

@@ -10,7 +10,7 @@
             <column name="blogID" />
             <generator class="increment" />
         </id>
-        <many-to-one name="TUser" class="com.blog.domain.TUser" fetch="select">
+        <many-to-one name="TUser" class="com.domain.TUser" fetch="select">
             <column name="userID" />
         </many-to-one>
         <property name="blogTime" type="java.util.Date">
@@ -26,7 +26,7 @@
             <key>
                 <column name="blogID" />
             </key>
-            <one-to-many class="com.blog.domain.BlogComment" />
+            <one-to-many class="com.domain.BlogComment" />
         </set>
     </class>
 </hibernate-mapping>
