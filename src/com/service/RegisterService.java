@@ -1,5 +1,7 @@
 package com.service;
 
-public interface RegisterService {
+import com.domain.TUser;
 
+public interface RegisterService {
+	public boolean insertUser(TUser user);
 }

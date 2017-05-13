@@ -2,9 +2,14 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="default" extends="struts-default" namespace="/">
-		<action name="LogAction" class="com.action.LoginAction">
+		<action name="logAction" class="loginAction">
 			<result name="success">/homePage.jsp</result>
 			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="regAction" class="regAction">
+			<result name="success">/registerSuccess.jsp</result>
+			<result name="input">/register.jsp</result>
 		</action>
 	</package>
 </struts>    
