@@ -25,9 +25,9 @@
 #research {
 	background-color: #FFFFFF;
 }
-#blogList{
-	
 
+#blogList {
+	
 }
 </style>
 </head>
@@ -40,11 +40,17 @@
 		<s:form>
  	 搜索我的博文:<s:textfield name="key" />
 		</s:form>
-		 <a href="blogEdit.jsp">写新的文章</a>
+		<a href="blogEdit.jsp">写新的文章</a>
 	</div>
-	<div>
 	
-	
+	<div id="blogList">
+	<a>博文列表</a>
+		<s:action name="showBlogAction" namespace="/" ></s:action>
+		<ul>
+			<s:iterator value="#session.blogLists">
+				<li><s:property value="content" /></li>
+			</s:iterator>
+		</ul>
 	</div>
 </body>
 </html>

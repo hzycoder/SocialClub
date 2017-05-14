@@ -15,7 +15,7 @@ public class SubmitBlogAction extends ActionSupport {
 	@Resource
 	BlogList blogList;
 	@Resource
-	BlogService subBlogSrv;
+	BlogService blogSrv;
 
 	public String getTitle() {
 		return title;
@@ -40,8 +40,8 @@ public class SubmitBlogAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		
 		blogList.setContent(title+"\n"+content);
-
-		Integer id = subBlogSrv.insertBlog(blogList);
+		
+		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");
 			return SUCCESS;

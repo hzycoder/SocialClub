@@ -20,5 +20,9 @@
 		<action name="logOffAction" class="logOffAction">
 			<result name="login">/login.jsp</result>
 		</action>
+		
+		<!-- 查询博文Action -->
+		<action name="showBlogAction" class="showBlogAction">
+		</action>
 	</package>
 </struts>    

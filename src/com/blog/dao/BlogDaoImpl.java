@@ -1,12 +1,17 @@
 package com.blog.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.blog.domain.BlogList;
 
 public class BlogDaoImpl implements BlogDao {
+	@Resource
+	List<BlogList> blogLists;
 	@Resource
 	private SessionFactory SessionFactory;
 
@@ -23,6 +28,24 @@ public class BlogDaoImpl implements BlogDao {
 		}
 		SessionFactory.close();
 		return id;
+	}
+
+	@Override
+	public List researchBlog(Integer userID,int maxResult,int firstResult) {
+		try {
+			Query q = SessionFactory.getCurrentSession().createQuery("from BlogList where userID=?").setParameter(0, userID);
+			q.setFirstResult(firstResult);
+			q.setMaxResults(maxResult);
+			blogLists = q.list();
+			System.out.println("^^^^^^^^^^^^^^^^^^^");
+			System.out.println("blogList__query"+blogLists);
+			System.out.println("^^^^^^^^^^^^^^^^^^^");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			SessionFactory.close();
+		}
+		return blogLists;
 	}
 
 }
