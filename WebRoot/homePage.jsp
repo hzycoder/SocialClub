@@ -142,7 +142,7 @@
 		<!-- Top部分 -->
 		<div id="top">
 			<div id="head_pic">无图无真相</div>
-			<div id="petName">昵称</div>
+			<div id="petName">昵称<s:property value="#session.user"></s:property>s</div>
 			<div id="menu">
 				<table>
 					<tr>

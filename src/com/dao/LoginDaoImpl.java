@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 
 import com.domain.TUser;
 
-public class LoginDaoImpl implements LoginDao{
+public class LoginDaoImpl implements LoginDao {
 	@Resource
 	List<TUser> userList;
 	@Resource
@@ -21,6 +21,7 @@ public class LoginDaoImpl implements LoginDao{
 		try {
 			userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=? and password=?")
 					.setParameter(0, user.getUsername()).setParameter(1, user.getPassword()).list();
+			System.out.println("userList"+userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

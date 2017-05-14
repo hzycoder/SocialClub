@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.components.Else;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.RegisterDao;

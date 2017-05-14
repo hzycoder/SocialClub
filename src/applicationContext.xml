@@ -26,17 +26,22 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager" />
 	<!-- 配置domain层 -->
+	<bean id="blogList" class="com.blog.domain.BlogList">
+
+	</bean>
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
+	<bean id="subBlogDao" class="com.blog.dao.SubmitBlogDaoImpl"></bean>
 
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
 	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
-
+	<bean id="subBlogSrv" class="com.blog.service.SubmitBlogServiceImpl"></bean>
 	<!-- 配置Action层 -->
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
 	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
+	<bean id="subBlogAction" class="com.blog.action.SubmitBlogAction"></bean>
 
 	<bean id="userList" class="java.util.ArrayList"></bean>
 

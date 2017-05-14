@@ -10,7 +10,7 @@
             <column name="blogID" />
             <generator class="increment" />
         </id>
-        <many-to-one name="TUser" class="com.domain.TUser" fetch="select">
+        <many-to-one name="TUser"  class="com.domain.TUser" fetch="select">
             <column name="userID" />
         </many-to-one>
         <property name="blogTime" type="java.util.Date">

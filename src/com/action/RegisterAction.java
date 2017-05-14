@@ -165,7 +165,7 @@ public class RegisterAction extends ActionSupport {
 			this.addFieldError(ERROR, "该用户名已注册");
 			return INPUT;
 		} else {
-			this.addFieldError(ERROR, "网站繁忙");
+			this.addFieldError(ERROR, "系统繁忙");
 			return INPUT;
 		}
 

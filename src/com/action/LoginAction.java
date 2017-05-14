@@ -28,14 +28,15 @@ public class LoginAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		this.clearFieldErrors();
-		ActionContext ac = ActionContext.getContext();
 		this.clearErrorsAndMessages();
+		ActionContext ac = ActionContext.getContext();
 		ac.getSession().remove("LOGFAILE");
 		userList = logSrv.searchUser(user);
 		System.out.println("---------DDDDD");
 		if (userList != null && !userList.isEmpty()) {
-			ac.getSession().put("userName", user.getUsername());
+			user = userList.get(0);
+			System.out.println("userrrr"+user);
+			ac.getSession().put("user",user);
 			return SUCCESS;
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");

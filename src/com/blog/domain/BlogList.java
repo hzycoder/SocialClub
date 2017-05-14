@@ -3,6 +3,7 @@ package com.blog.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import com.domain.TUser;
 
 /**
@@ -46,7 +47,7 @@ public class BlogList implements java.io.Serializable {
 	}
 
 	public TUser getTUser() {
-		return this.TUser;
+		return TUser;
 	}
 
 	public void setTUser(TUser TUser) {
@@ -84,5 +85,23 @@ public class BlogList implements java.io.Serializable {
 	public void setBlogComments(Set blogComments) {
 		this.blogComments = blogComments;
 	}
+
+	public BlogList(Integer blogId, TUser TUser, Date blogTime, String content, Integer blogcommentId,
+			Set blogComments) {
+		super();
+		this.blogId = blogId;
+		this.TUser = TUser;
+		this.blogTime = blogTime;
+		this.content = content;
+		this.blogcommentId = blogcommentId;
+		this.blogComments = blogComments;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogList [blogId=" + blogId + ", TUser=" + TUser + ", blogTime=" + blogTime + ", content=" + content
+				+ ", blogcommentId=" + blogcommentId + ", blogComments=" + blogComments + "]";
+	}
+	
 
 }
