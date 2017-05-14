@@ -25,6 +25,10 @@
 #research {
 	background-color: #FFFFFF;
 }
+#blogList{
+	
+
+}
 </style>
 </head>
 
@@ -36,7 +40,11 @@
 		<s:form>
  	 搜索我的博文:<s:textfield name="key" />
 		</s:form>
+		 <a href="blogEdit.jsp">写新的文章</a>
 	</div>
-
+	<div>
+	
+	
+	</div>
 </body>
 </html>

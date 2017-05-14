@@ -42,6 +42,7 @@
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
 	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
 	<bean id="subBlogAction" class="com.blog.action.SubmitBlogAction"></bean>
+	<bean id="logOffAction" class="com.action.LogOffAction"></bean>
 
 	<bean id="userList" class="java.util.ArrayList"></bean>
 

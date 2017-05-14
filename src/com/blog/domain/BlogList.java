@@ -97,11 +97,11 @@ public class BlogList implements java.io.Serializable {
 		this.blogComments = blogComments;
 	}
 
-	@Override
-	public String toString() {
-		return "BlogList [blogId=" + blogId + ", userID=" + TUser.getUserId() + ", blogTime=" + blogTime + ", content=" + content
-				+ ", blogcommentId=" + blogcommentId + ", blogComments=" + blogComments + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "BlogList [blogId=" + blogId + ", userID=" + TUser.getUserId() + ", blogTime=" + blogTime + ", content=" + content
+//				+ ", blogcommentId=" + blogcommentId + ", blogComments=" + blogComments + "]";
+//	}
 	
 
 }
