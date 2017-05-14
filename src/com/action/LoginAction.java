@@ -34,9 +34,9 @@ public class LoginAction extends ActionSupport {
 		userList = logSrv.searchUser(user);
 		System.out.println("---------DDDDD");
 		if (userList != null && !userList.isEmpty()) {
-			user = userList.get(0);
+//			user = userList.get(0);
 			System.out.println("userrrr"+user);
-			ac.getSession().put("user",user);
+//			ac.getSession().put("user",user);
 			return SUCCESS;
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");
