@@ -12,10 +12,10 @@ public class SubmitBlogDaoImpl implements SubmitBlogDao {
 
 	@Override
 	public Integer insertBlog(BlogList blogList) {
-		
 		Integer id = null;
 		try {
-			System.out.println("blogList1111" + blogList.toString());
+			System.out.println("blogList_UserId" + blogList.getTUser().toString());
+			System.out.println("-----------------88");
 			id = (Integer) SessionFactory.getCurrentSession().save(blogList);
 			System.out.println("id===="+id);
 		} catch (Exception e) {

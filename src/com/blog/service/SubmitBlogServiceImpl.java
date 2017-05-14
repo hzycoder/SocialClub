@@ -26,7 +26,6 @@ public class SubmitBlogServiceImpl implements SubmitBlogService {
 		//为Blog添加用户ID
 		TUser user1 = (TUser)ac.getSession().get("user");
 		blogList.setTUser(user1);
-		// TODO Auto-generated method stub
 		return subBlogDao.insertBlog(blogList);
 	}
 

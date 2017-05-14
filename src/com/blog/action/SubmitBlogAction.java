@@ -39,9 +39,8 @@ public class SubmitBlogAction extends ActionSupport {
 		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
 		
-
 		blogList.setContent(title+"\n"+content);
-		System.out.println(blogList.getContent());
+
 		Integer id = subBlogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");
