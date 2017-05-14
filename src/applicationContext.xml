@@ -32,12 +32,12 @@
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
-	<bean id="subBlogDao" class="com.blog.dao.SubmitBlogDaoImpl"></bean>
+	<bean id="BlogDao" class="com.blog.dao.BlogDaoImpl"></bean>
 
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
 	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
-	<bean id="subBlogSrv" class="com.blog.service.SubmitBlogServiceImpl"></bean>
+	<bean id="BlogSrv" class="com.blog.service.BlogServiceImpl"></bean>
 	<!-- 配置Action层 -->
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
 	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
@@ -47,13 +47,3 @@
 	<bean id="userList" class="java.util.ArrayList"></bean>
 
 </beans>
-
-<!-- <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
-	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx.xsd"
-	xmlns:tx="http://www.springframework.org/schema/tx"> -->

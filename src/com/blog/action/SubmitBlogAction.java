@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.apache.struts2.components.Else;
 
 import com.blog.domain.BlogList;
-import com.blog.service.SubmitBlogService;
+import com.blog.service.BlogService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -15,7 +15,7 @@ public class SubmitBlogAction extends ActionSupport {
 	@Resource
 	BlogList blogList;
 	@Resource
-	SubmitBlogService subBlogSrv;
+	BlogService subBlogSrv;
 
 	public String getTitle() {
 		return title;

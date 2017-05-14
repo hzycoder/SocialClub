@@ -4,6 +4,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.blog.domain.BlogList;
 @Transactional
-public interface SubmitBlogService {
+public interface BlogService {
 	public Integer insertBlog(BlogList blogList);
 }

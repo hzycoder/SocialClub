@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 
 import com.blog.domain.BlogList;
 
-public class SubmitBlogDaoImpl implements SubmitBlogDao {
+public class BlogDaoImpl implements BlogDao {
 	@Resource
 	private SessionFactory SessionFactory;
 

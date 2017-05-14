@@ -7,14 +7,14 @@ import javax.annotation.Resource;
 
 import org.apache.catalina.User;
 
-import com.blog.dao.SubmitBlogDao;
+import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
 
-public class SubmitBlogServiceImpl implements SubmitBlogService {
+public class BlogServiceImpl implements BlogService {
 	@Resource
-	SubmitBlogDao subBlogDao;
+	BlogDao subBlogDao;
 	@Override
 	public Integer insertBlog(BlogList blogList) {
 		Date date = new Date();
