@@ -22,7 +22,7 @@ public class BlogDaoImpl implements BlogDao {
 			System.out.println("blogList_UserId" + blogList.getTUser().toString());
 			System.out.println("-----------------88");
 			id = (Integer) SessionFactory.getCurrentSession().save(blogList);
-			System.out.println("id===="+id);
+			System.out.println("id====" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,21 +31,29 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
-	public List researchBlog(Integer userID,int maxResult,int firstResult) {
+	public List researchBlog(Integer userID, int maxResult, int firstResult) {
 		try {
-			Query q = SessionFactory.getCurrentSession().createQuery("from BlogList where userID=?").setParameter(0, userID);
+			Query q = SessionFactory.getCurrentSession().createQuery("from BlogList where userID=?").setParameter(0,
+					userID);
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);
 			blogLists = q.list();
-			System.out.println("^^^^^^^^^^^^^^^^^^^");
-			System.out.println("blogList__query"+blogLists);
-			System.out.println("^^^^^^^^^^^^^^^^^^^");
+			System.out.println("blogList__query" + blogLists);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			SessionFactory.close();
 		}
 		return blogLists;
 	}
 
+	@Override
+	// 查询博文总记录数
+	public int blogRows() {
+		System.out.println("blogRows*------");
+		long temp = (Long) SessionFactory.getCurrentSession().createQuery("select count(*) from  BlogList")
+				.uniqueResult();
+		int rows = (int) temp;
+		return rows;
+	}
 }

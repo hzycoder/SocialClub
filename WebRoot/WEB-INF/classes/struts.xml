@@ -6,7 +6,6 @@
 			<result name="success">/homePage.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
-
 		<action name="regAction" class="regAction">
 			<result name="success">/registerSuccess.jsp</result>
 			<result name="input">/register.jsp</result>
@@ -20,9 +19,11 @@
 		<action name="logOffAction" class="logOffAction">
 			<result name="login">/login.jsp</result>
 		</action>
-		
 		<!-- 查询博文Action -->
 		<action name="showBlogAction" class="showBlogAction">
+			<result name="success">/blogList.jsp</result>
+			<result name="input">/blogList.jsp</result>
 		</action>
 	</package>
+	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
 </struts>    

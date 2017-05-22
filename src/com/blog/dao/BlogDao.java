@@ -7,6 +7,7 @@ import com.blog.domain.BlogList;
 public interface BlogDao {
 	public Integer insertBlog(BlogList blogList);
 	public List researchBlog(Integer userID,int maxResult,int firstResult);
+	public int blogRows();
 	
 
 }

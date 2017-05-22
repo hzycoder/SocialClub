@@ -7,12 +7,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.catalina.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
-
+@Transactional
 public class BlogServiceImpl implements BlogService {
 	@Resource
 	List<BlogList> blogLists;
@@ -35,6 +36,10 @@ public class BlogServiceImpl implements BlogService {
 	public List researchBlog(Integer userID,int maxResult,int firstResult) {
 		blogLists = blogDao.researchBlog(userID,maxResult,firstResult);
 		return blogLists;
+	}
+	@Override
+	public int blogRows() {
+			return blogDao.blogRows();
 	}
 
 }

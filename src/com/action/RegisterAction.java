@@ -30,33 +30,6 @@ public class RegisterAction extends ActionSupport {
 	private String email = null;
 	private String phone = null;
 	private Timestamp registerTime = null;
-	private String year;
-	private String month;
-	private String day;
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
-	}
-
-	public String getDay() {
-		return day;
-	}
-
-	public void setDay(String day) {
-		this.day = day;
-	}
 
 	public String getUsername() {
 		return username;
@@ -118,9 +91,6 @@ public class RegisterAction extends ActionSupport {
 		this.clearErrorsAndMessages();
 		Pattern numPatt = Pattern.compile("[0-9]*");
 		Pattern emailPatt = Pattern.compile("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-		if (year.equals("")||month.equals("")||day.equals("")) {
-			this.addFieldError("birthday", "请正确生日日期");
-		}
 		if (!email.equals("")&&!emailPatt.matcher(email).matches()) {
 			this.addFieldError("emailError", "请正确填写邮箱格式");
 		}
@@ -148,10 +118,10 @@ public class RegisterAction extends ActionSupport {
 		TUser user = new TUser(username, password, birthday, background, uPicture, petname, college, email, phone,
 				registerTime);
 		// 整合生日日期
-		String birthdayString = year + month + day;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date date = sdf.parse(birthdayString);
-		user.setBirthday(date);
+//		String birthdayString = year + month + day;
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//		Date date = sdf.parse(birthdayString);
+//		user.setBirthday(date);
 
 		System.out.println("date日期:::" + user.getBirthday().toString());
 		System.out.println("user==!!!!!!!===" + user.toString());
