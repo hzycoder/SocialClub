@@ -151,9 +151,9 @@
 						<td><a>个人动态</a></td>
 						<td><a>留言板</a></td>
 						<td><a>收藏</a></td>
-						<td><a>我的好友</a></td>
+						<td><a href="friends.jsp" target="right_frame">我的好友</a></td>
 						<td><a>个人档案</a></td>
-						<td><s:a action="logOffAction" target="_parent">注销</s:a></td></tr>
+						<td><s:a action="logOffAction" target="_parent">注销</s:a></td>
 					</tr>
 				</table>
 			</div>

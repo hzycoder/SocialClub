@@ -19,6 +19,7 @@ public class ShowBlogAction extends ActionSupport {
 	private int pageCount;
 	private int maxResult = 5;// 一页最大显示行数
 
+	
 	public int getPageIndex() {
 		return pageIndex;
 	}

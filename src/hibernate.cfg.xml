@@ -25,9 +25,10 @@
 	<mapping resource="com/domain/ActList.hbm.xml" />
 	<mapping resource="com/domain/TUser.hbm.xml" />
 	<mapping resource="com/domain/BlogComment.hbm.xml" />
-	<mapping resource="com/domain/TFriends.hbm.xml" />
+	<mapping resource="com/friend/domain/TFriends.hbm.xml" />
 	<mapping resource="com/domain/ActComment.hbm.xml" />
 	<mapping resource="com/blog/domain/BlogList.hbm.xml" />
+	<mapping resource="com/domain/Notice.hbm.xml" />
 
 </session-factory>
 

@@ -62,7 +62,7 @@
             <key>
                 <column name="userID" not-null="true" unique="true" />
             </key>
-            <one-to-many class="com.domain.TFriends" />
+            <one-to-many class="com.friend.domain.TFriends" />
         </set>
         <set name="blogLists" inverse="true">
             <key>

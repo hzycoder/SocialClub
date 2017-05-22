@@ -22,8 +22,8 @@
 		<property name="sessionFactory">
 			<ref local="sessionFactory" />
 		</property>
-
 	</bean>
+	
 	<tx:annotation-driven transaction-manager="txManager" />
 	<!-- 配置domain层 -->
 	<bean id="blogList" class="com.blog.domain.BlogList">
@@ -33,6 +33,7 @@
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
 	<bean id="blogDao" class="com.blog.dao.BlogDaoImpl"></bean>
+	<bean id="friendDao" class="com.friend.dao.FriendDaoImpl"></bean>
 
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
@@ -49,4 +50,4 @@
 	<!-- 用户获取blog列表的list 注意和上面的blogList不同-->
 	<bean id="blogLists" class="java.util.ArrayList"></bean>
 
-</beans>
+	</beans>
