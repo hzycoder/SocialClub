@@ -45,7 +45,8 @@
 	<bean id="subBlogAction" class="com.blog.action.SubmitBlogAction" scope="prototype"></bean>
 	<bean id="logOffAction" class="com.action.LogOffAction" scope="prototype"></bean>
 	<bean id="showBlogAction" class="com.blog.action.ShowBlogAction" scope="prototype"></bean>
-
+	<bean id="beFriendAction" class="com.friend.action.BeFriendAction"></bean>
+	
 	<bean id="userList" class="java.util.ArrayList"></bean>
 	<!-- 用户获取blog列表的list 注意和上面的blogList不同-->
 	<bean id="blogLists" class="java.util.ArrayList"></bean>

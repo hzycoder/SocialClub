@@ -55,12 +55,12 @@ public class LoginAction extends ActionSupport {
 	}
 
 	public String findFriend() throws Exception {
-		System.out.println("--------LOGINFINDFRIEND");
+//		System.out.println("--------LOGINFINDFRIEND");
 		ActionContext ac = ActionContext.getContext();
 		userList = logSrv.searchFriend(friendString);
 		if (userList != null && !userList.isEmpty()) {
 			user = userList.get(0);
-			System.out.println("findFFFFFFFFFF" + user);
+//			System.out.println("findFFFFFFFFFF" + user);
 			ac.getSession().put("user", user);
 			return NONE;
 		} else {

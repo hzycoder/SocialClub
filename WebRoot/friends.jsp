@@ -104,21 +104,22 @@
 			namespace="/">
 		添加新的用户：<s:textfield name="friendString" value="100"></s:textfield>
 			<s:submit value="搜索"></s:submit>
- 		</s:form>
+		</s:form>
 	</div>
 	<s:a onclick="showFri()">返回好友列表</s:a>
-	
+
 	<div id="find">
 		<div class="headpic">find头像</div>
 		<div class="name">
 			<s:property value="user.username"></s:property>
 		</div>
 		<div class="act">最近动态</div>
-		<div><s:a href="">添加为好友</s:a></div>
+		
+<a href="beFriendAction?username=$('#name').text();">添加为好友</a>
 	</div>
 
 	<div id="friends">
-	<h1>123ddd</h1>
+		<h1>123ddd</h1>
 		<ul>
 			<s:iterator value="#session.userList">
 				<li>
@@ -134,6 +135,5 @@
 			</s:iterator>
 		</ul>
 	</div>
-	
 </body>
 </html>

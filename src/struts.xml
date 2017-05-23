@@ -26,7 +26,10 @@
 			<result name="input">/blogList.jsp</result>
 		</action>
 		
-
+		<action name="beFriendAction" class="beFriendAction">
+			<result name="success">/friends.jsp</result>
+			<result name="input">/friends.jsp</result>
+		</action>
 		
 	</package>
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
