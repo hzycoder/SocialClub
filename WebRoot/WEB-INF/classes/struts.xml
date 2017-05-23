@@ -28,7 +28,7 @@
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/friends.jsp</result>
 			<result name="input">/friends.jsp</result>
-			<result name="none">/friends.jsp</result>
+			<result name="none">/findFriend.jsp</result>
 		</action>
 		
 	</package>
