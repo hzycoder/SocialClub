@@ -16,7 +16,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BeFriendAction extends ActionSupport {
 	private TUser user; // 自己
 	private TUser friendUser;// 朋友
-	private String friendName;
 	private String friendString;
 	private List<FriendsInfo> friInfoList;//存放朋友列表
 	@Resource
@@ -42,14 +41,6 @@ public class BeFriendAction extends ActionSupport {
 		this.friendString = friendString;
 	}
 
-	public String getFriendName() {
-		return friendName;
-	}
-
-	public void setFriendName(String friendName) {
-		this.friendName = friendName;
-	}
-
 	public String execute() throws Exception {//默认方法用于显示好友列表
 		System.out.println("EXECVUTTTTTTT");
 		ActionContext ac = ActionContext.getContext();
@@ -65,7 +56,7 @@ public class BeFriendAction extends ActionSupport {
 	public String beFriend() throws Exception { // 添加好友
 		System.out.println("BeFriendEXECUTE---");
 		System.out.println("username==now==" + friendUser.getUsername());
-		friendSrv.beFriend(friendName);
+		friendSrv.beFriend(friendUser.getUsername());
 		// ActionContext ac = ActionContext.getContext();
 		// user = (TUser) ac.getSession().get("user");
 		// System.out.println("ME::::::::"+user.getUsername());

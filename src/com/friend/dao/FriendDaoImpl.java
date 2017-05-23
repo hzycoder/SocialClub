@@ -44,6 +44,7 @@ public class FriendDaoImpl implements FriendDao {
 				System.out.println("i   "+i);
 				String name = sessionFactory.getCurrentSession().createQuery("select username from TUser where userID=?")
 						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
+				
 				long mm = (date.getTime())-(friendList.get(i).getFriendsAddTime().getTime());
 				System.out.println("mmmmm"+mm);
 				int day = (int)(mm / (1000 * 60 * 60 * 24));
@@ -76,11 +77,11 @@ public class FriendDaoImpl implements FriendDao {
 
 	@Override
 	public Integer beFriend(String friendName) { // 添加朋友
+		System.out.println("friendName11119988654"+friendName);
 		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
 		user = (TUser) ac.getSession().get("user");
-		userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
-				.setParameter(0, friendName).list();
-		friendUser = userList.get(0);
+		friendUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
+				.setParameter(0, friendName).uniqueResult();
 		fFriendsID.setFriendId(friendUser.getUserId());// 设置friends主键
 		fFriendsID.setUserId(user.getUserId()); //
 		Date date = new Date();

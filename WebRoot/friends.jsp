@@ -55,7 +55,7 @@
 
 .name {
 	float: left;
-	width: 40px;
+	width: 50px;
 	height: 45px;
 	margin-left: 20px;
 	background-color: orange;
@@ -81,8 +81,9 @@
 	height: 90px;
 	background-color: orange;
 }
-li{
-margin :50px;
+
+li {
+	margin: 50px;
 }
 </style>
 <script type="text/javascript">
@@ -129,14 +130,14 @@ margin :50px;
 		<ul>
 			<s:iterator value="#session.friInfoList">
 				<li>
-					<div class="headpic">
-						头像
-					</div>
+					<div class="headpic">头像</div>
 					<div class="name">
 						<s:property value="username"></s:property>
 					</div>
 					<div class="day">
-						成为好友已经：<s:property value="friendTime"></s:property>天
+						成为好友已经：
+						<s:property value="friendTime"></s:property>
+						天
 					</div>
 				</li>
 			</s:iterator>
