@@ -19,17 +19,35 @@ public class LoginDaoImpl implements LoginDao {
 	@Override
 	public List searchUser(TUser user) {
 		System.out.println("eeeeeeeeee3.eeeee");
-		
+
 		try {
 			userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=? and password=?")
 					.setParameter(0, user.getUsername()).setParameter(1, user.getPassword()).list();
-			System.out.println("userList"+userList);
+			// System.out.println("userList"+userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sessionFactory.close();
 		}
 		return userList;
+	}
+
+	public List searchFriend(String friendString) {
+		try {
+			userList = sessionFactory.getCurrentSession().createQuery("from TUser where userID=?")
+					.setParameter(0, friendString).list();
+			if (userList != null && userList.isEmpty()){
+				userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
+						.setParameter(0, friendString).list();
+			}
+				System.out.println("userListOffriends" + userList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sessionFactory.close();
+		}
+		return userList;
+
 	}
 
 }

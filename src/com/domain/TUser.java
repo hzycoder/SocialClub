@@ -213,13 +213,13 @@ public class TUser implements java.io.Serializable {
 		this.blogLists = blogLists;
 	}
 
-	@Override
-	public String toString() {
-		return "TUser [userId=" + userId + ", username=" + username + ", password=" + password + ", birthday="
-				+ birthday + ", background=" + background + ", UPicture=" + UPicture + ", petname=" + petname
-				+ ", college=" + college + ", email=" + email + ", phone=" + phone + ", actLists=" + actLists
-				+ ", actComments=" + actComments + ", blogComments=" + blogComments + ", TFriendses=" + TFriendses
-				+ ", blogLists=" + blogLists + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "TUser [userId=" + userId + ", username=" + username + ", password=" + password + ", birthday="
+//				+ birthday + ", background=" + background + ", UPicture=" + UPicture + ", petname=" + petname
+//				+ ", college=" + college + ", email=" + email + ", phone=" + phone + ", actLists=" + actLists
+//				+ ", actComments=" + actComments + ", blogComments=" + blogComments + ", TFriendses=" + TFriendses
+//				+ ", blogLists=" + blogLists + "]";
+//	}
 
 }

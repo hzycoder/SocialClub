@@ -5,6 +5,7 @@
 		<action name="logAction" class="loginAction">
 			<result name="success">/homePage.jsp</result>
 			<result name="input">/login.jsp</result>
+			<result name="none">/friends.jsp</result>
 		</action>
 		<action name="regAction" class="regAction">
 			<result name="success">/registerSuccess.jsp</result>
@@ -24,6 +25,9 @@
 			<result name="success">/blogList.jsp</result>
 			<result name="input">/blogList.jsp</result>
 		</action>
+		
+
+		
 	</package>
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
 </struts>    

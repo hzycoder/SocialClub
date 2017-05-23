@@ -22,12 +22,28 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
-.friedns {
+.friend {
 	width: 800px;
 	height: 45px;
 	background-color: #CCDDCC;
 	text-align: center;
 	padding: 22.5px;
+}
+
+#friends {
+	width: 800px;
+	height: auto;
+	backround-color: pink;
+	display: block;
+}
+
+#find {
+	width: 800px;
+	height: 45px;
+	background-color: #CCDDCC;
+	text-align: center;
+	padding: 22.5px;
+	display: block;
 }
 
 .headpic {
@@ -37,12 +53,19 @@
 	background-color: orange;
 }
 
+.name {
+	float: left;
+	width: 40px;
+	height: 45px;
+	margin-left: 20px;
+	background-color: orange;
+}
+
 .act {
 	float: left;
-	width: 500px;
+	width: 400px;
 	height: 45px;
 	background-color: orange;
-	margin-left: 20px;
 }
 
 .day {
@@ -60,21 +83,57 @@
 }
 </style>
 <script type="text/javascript">
-
+	function showFind() {
+		var findObj = document.getElementById("find");
+		var friObj = document.getElementById("friends");
+		findObj.style.display = 'block';
+		friObj.style.display = 'none';
+	}
+	function showFri() {
+		var findObj = document.getElementById("find");
+		var friObj = document.getElementById("friends");
+		findObj.style.display = 'none';
+		friObj.style.display = 'block';
+	}
 </script>
 </head>
 
 <body>
 	<div id="search">
-		<s:form>
-		添加新的用户：<s:textfield value="输入用户ID或用户名"></s:textfield>
-		<s:submit value="搜索"></s:submit>
-		</s:form>
+		<s:form action="logAction!findFriend.action" method="post"
+			namespace="/">
+		添加新的用户：<s:textfield name="friendString" value="100"></s:textfield>
+			<s:submit value="搜索"></s:submit>
+ 		</s:form>
 	</div>
-	<div class="friedns">
-		<div class="headpic"></div>
-		<div class="act"></div>
-		<div class="day"></div>
+	<s:a onclick="showFri()">返回好友列表</s:a>
+	
+	<div id="find">
+		<div class="headpic">find头像</div>
+		<div class="name">
+			<s:property value="user.username"></s:property>
+		</div>
+		<div class="act">最近动态</div>
+		<div><s:a href="">添加为好友</s:a></div>
 	</div>
+
+	<div id="friends">
+	<h1>123ddd</h1>
+		<ul>
+			<s:iterator value="#session.userList">
+				<li>
+					<div class="friend">
+						<div class="headpic">friend头像</div>
+						<div class="name">
+							<s:property value="user.username"></s:property>
+						</div>
+						<div class="act">最近动态</div>
+						<div class="day">交友时长</div>
+					</div>
+				</li>
+			</s:iterator>
+		</ul>
+	</div>
+	
 </body>
 </html>

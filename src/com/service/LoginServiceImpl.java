@@ -15,4 +15,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginDao.searchUser(user);
 	}
 
+	@Override
+	public List searchFriend(String friendString) {
+		return loginDao.searchFriend(friendString);
+	}
+
 }

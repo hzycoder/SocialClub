@@ -2,15 +2,21 @@ package com.friend.dao;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.hibernate.SessionFactory;
+
 import com.domain.TUser;
 
 public class FriendDaoImpl implements FriendDao {
-	
-	
-	@Override
-	public Integer beFriend(TUser user) {//t添加好友
+	@Resource
+	private SessionFactory SessionFactory;
 
-		return null;
+	@Override
+	public Integer beFriend(TUser user) {// t添加好友
+		Integer id = null;
+//		SessionFactory.getCurrentSession().createQuery("from ")
+		return id;
 	}
 
 }
