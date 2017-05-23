@@ -17,9 +17,8 @@ public class LoginAction extends ActionSupport {
 	List<TUser> userList;
 	@Resource
 	LoginService logSrv;
-	String friendString;//用于查询用户的名称或ID
-	
-	
+	String friendString;// 用于查询用户的名称或ID
+
 	public String getFriendString() {
 		return friendString;
 	}
@@ -51,21 +50,6 @@ public class LoginAction extends ActionSupport {
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");
 			return INPUT;
-		}
-	}
-
-	public String findFriend() throws Exception {
-//		System.out.println("--------LOGINFINDFRIEND");
-		ActionContext ac = ActionContext.getContext();
-		userList = logSrv.searchFriend(friendString);
-		if (userList != null && !userList.isEmpty()) {
-			user = userList.get(0);
-//			System.out.println("findFFFFFFFFFF" + user);
-			ac.getSession().put("user", user);
-			return NONE;
-		} else {
-			ac.getSession().put("LOGFAILE", "用户名或密码错误");
-			return NONE;
 		}
 	}
 

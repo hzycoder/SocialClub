@@ -5,6 +5,7 @@ import java.util.List;
 import com.domain.TUser;
 
 public interface FriendDao {
-	public Integer beFriend(TUser user);//t添加好友
-
+	public List searchFriend(String friendString);
+	public Integer beFriend(String friendName);//t添加好友
+	public List searchFriendList();
 }

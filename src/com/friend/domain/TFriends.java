@@ -1,8 +1,6 @@
 package com.friend.domain;
 
-import java.util.Date;
-
-import com.domain.TUser;
+import java.sql.Timestamp;
 
 /**
  * TFriends entity. @author MyEclipse Persistence Tools
@@ -12,10 +10,8 @@ public class TFriends implements java.io.Serializable {
 
 	// Fields
 
-	private Integer userId;
-	private TUser TUserByFriendId;
-	private TUser TUserByUserId;
-	private Date friendsAddTime;
+	private TFriendsId id;
+	private Timestamp friendsAddTime;
 
 	// Constructors
 
@@ -24,48 +20,31 @@ public class TFriends implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TFriends(TUser TUserByUserId) {
-		this.TUserByUserId = TUserByUserId;
+	public TFriends(TFriendsId id) {
+		this.id = id;
 	}
 
 	/** full constructor */
-	public TFriends(TUser TUserByFriendId, TUser TUserByUserId, Date friendsAddTime) {
-		this.TUserByFriendId = TUserByFriendId;
-		this.TUserByUserId = TUserByUserId;
+	public TFriends(TFriendsId id, Timestamp friendsAddTime) {
+		this.id = id;
 		this.friendsAddTime = friendsAddTime;
 	}
 
 	// Property accessors
 
-	public Integer getUserId() {
-		return this.userId;
+	public TFriendsId getId() {
+		return this.id;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setId(TFriendsId id) {
+		this.id = id;
 	}
 
-	public TUser getTUserByFriendId() {
-		return this.TUserByFriendId;
-	}
-
-	public void setTUserByFriendId(TUser TUserByFriendId) {
-		this.TUserByFriendId = TUserByFriendId;
-	}
-
-	public TUser getTUserByUserId() {
-		return this.TUserByUserId;
-	}
-
-	public void setTUserByUserId(TUser TUserByUserId) {
-		this.TUserByUserId = TUserByUserId;
-	}
-
-	public Date getFriendsAddTime() {
+	public Timestamp getFriendsAddTime() {
 		return this.friendsAddTime;
 	}
 
-	public void setFriendsAddTime(Date friendsAddTime) {
+	public void setFriendsAddTime(Timestamp friendsAddTime) {
 		this.friendsAddTime = friendsAddTime;
 	}
 

@@ -5,7 +5,6 @@
 		<action name="logAction" class="loginAction">
 			<result name="success">/homePage.jsp</result>
 			<result name="input">/login.jsp</result>
-			<result name="none">/friends.jsp</result>
 		</action>
 		<action name="regAction" class="regAction">
 			<result name="success">/registerSuccess.jsp</result>
@@ -29,6 +28,7 @@
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/friends.jsp</result>
 			<result name="input">/friends.jsp</result>
+			<result name="none">/friends.jsp</result>
 		</action>
 		
 	</package>

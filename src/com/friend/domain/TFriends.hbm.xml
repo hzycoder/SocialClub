@@ -6,18 +6,16 @@
 -->
 <hibernate-mapping>
     <class name="com.friend.domain.TFriends" table="t_friends" schema="dbo" catalog="social">
-        <id name="userId" type="java.lang.Integer">
-            <column name="userID" />
-            <generator class="increment" />
-        </id>
-        <many-to-one name="TUserByFriendId" class="com.domain.TUser" fetch="select">
-            <column name="friendID" />
-        </many-to-one>
-        <many-to-one name="TUserByUserId" class="com.domain.TUser" update="false" insert="false" fetch="select">
-            <column name="userID" not-null="true" unique="true" />
-        </many-to-one>
-        <property name="friendsAddTime" type="java.util.Date">
-            <column name="friends_add_time" length="10" />
+        <composite-id name="id" class="com.friend.domain.TFriendsId">
+            <key-property name="userId" type="java.lang.Integer">
+                <column name="userID" />
+            </key-property>
+            <key-property name="friendId" type="java.lang.Integer">
+                <column name="friendID" />
+            </key-property>
+        </composite-id>
+        <property name="friendsAddTime" type="java.sql.Timestamp">
+            <column name="friends_add_time" length="23" />
         </property>
     </class>
 </hibernate-mapping>

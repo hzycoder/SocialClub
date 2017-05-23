@@ -32,8 +32,8 @@
 
 #friends {
 	width: 800px;
-	height: auto;
-	backround-color: pink;
+	height: 400px;
+	background-color: pink;
 	display: block;
 }
 
@@ -81,6 +81,9 @@
 	height: 90px;
 	background-color: orange;
 }
+li{
+margin :50px;
+}
 </style>
 <script type="text/javascript">
 	function showFind() {
@@ -100,36 +103,40 @@
 
 <body>
 	<div id="search">
-		<s:form action="logAction!findFriend.action" method="post"
+		<s:form action="beFriendAction!findFriend.action" method="post"
 			namespace="/">
-		添加新的用户：<s:textfield name="friendString" value="100"></s:textfield>
+		添加新的用户：<s:textfield name="friendString" value="sara"></s:textfield>
 			<s:submit value="搜索"></s:submit>
 		</s:form>
 	</div>
 	<s:a onclick="showFri()">返回好友列表</s:a>
 
 	<div id="find">
+		<!-- 查找的好友 -->
 		<div class="headpic">find头像</div>
 		<div class="name">
-			<s:property value="user.username"></s:property>
+			<s:property value="friendUser.username"></s:property>
 		</div>
 		<div class="act">最近动态</div>
-		
-<a href="beFriendAction?username=$('#name').text();">添加为好友</a>
+
+		<a
+			href="beFriendAction!beFriend.action?username=<s:property value='friendUser.username'/>">添加为好友</a>
 	</div>
 
 	<div id="friends">
-		<h1>123ddd</h1>
+		<!-- 好友列表 -->
+		<s:action name="beFriendAction" namespace="/"></s:action>
 		<ul>
-			<s:iterator value="#session.userList">
+			<s:iterator value="#session.friInfoList">
 				<li>
-					<div class="friend">
-						<div class="headpic">friend头像</div>
-						<div class="name">
-							<s:property value="user.username"></s:property>
-						</div>
-						<div class="act">最近动态</div>
-						<div class="day">交友时长</div>
+					<div class="headpic">
+						头像
+					</div>
+					<div class="name">
+						<s:property value="username"></s:property>
+					</div>
+					<div class="day">
+						成为好友已经：<s:property value="friendTime"></s:property>天
 					</div>
 				</li>
 			</s:iterator>
