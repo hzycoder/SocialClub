@@ -82,7 +82,7 @@ li {
 				<li>
 					<div class="headpic">头像</div>
 					<div class="name">
-						<s:property value="username"></s:property>
+						<a href="homePage.jsp" target="_blank"><s:property value="username"></s:property></a>
 					</div>
 					<div class="day">
 						成为好友已经：
