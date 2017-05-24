@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+<context:annotation-config />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
+	<!-- 配置domain层 -->
+	<bean id="blogList" class="com.blog.domain.BlogList"></bean>
+	<bean id="tdaily" class="com.daily.domain.TDaily"></bean>
+	<!-- 配置Dao层 -->
+	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
+	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
+	<bean id="blogDao" class="com.blog.dao.BlogDaoImpl"></bean>
+	<bean id="dailyDao" class="com.daily.dao.DailyDaoImpl"></bean>
+
+	<!-- 配置Service层 -->
+	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
+	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
+	<bean id="blogSrv" class="com.blog.service.BlogServiceImpl"></bean>
+	<bean id="dailySrv" class="com.daily.service.DailyServiceImpl"></bean>
+	
+	<!-- 配置Action层 -->
+	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
+	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
+	<bean id="subBlogAction" class="com.blog.action.SubmitBlogAction"></bean>
+	<bean id="logOffAction" class="com.action.LogOffAction"></bean>
+	<bean id="showBlogAction" class="com.blog.action.ShowBlogAction"></bean>
+
+	<bean id="userList" class="java.util.ArrayList"></bean>
+	<!-- 用户获取blog列表的list 注意和上面的blogList不同-->
+	<bean id="blogLists" class="java.util.ArrayList"></bean>
+
+</beans>

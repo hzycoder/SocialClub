@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="logAction" class="loginAction">
+			<result name="success">/homePage.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="regAction" class="regAction">
+			<result name="success">/registerSuccess.jsp</result>
+			<result name="input">/register.jsp</result>
+		</action>
+
+		<action name="subBlogAction" class="subBlogAction">
+			<result name="success">/blogList.jsp</result>
+			<result name="input">/blogList.jsp</result>
+		</action>
+
+		<action name="logOffAction" class="logOffAction">
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<action name="subDailyAction" class="com.daily.action.SubmitDailyAction">
+			<result name="success">/daily.jsp</result>
+			<result name="input">/daily.jsp</result>
+		</action>
+		
+		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
+		</action>
+		
+		
+		<!-- 查询博文Action -->
+		<action name="showBlogAction" class="showBlogAction">
+		</action>
+	</package>
+</struts>    
