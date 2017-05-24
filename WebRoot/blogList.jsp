@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
 	<div id="research">
 		<s:property value="#session.SUBSUCCESS" />
 		<s:if test="hasFieldError"></s:if>

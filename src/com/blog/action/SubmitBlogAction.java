@@ -35,8 +35,6 @@ public class SubmitBlogAction extends ActionSupport {
 
 	@Override
 	public String execute() {
-		
-		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
 		
 		blogList.setContent(title+"\n"+content);

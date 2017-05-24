@@ -40,8 +40,8 @@ public class ShowBlogAction extends ActionSupport {
 		} else {
 			pageCount = rows / maxResult + 1;
 		}
-		System.out.println("pageCount"+pageCount);
-		System.out.println("pageIndex" + pageIndex);
+//		System.out.println("pageCount"+pageCount);
+//		System.out.println("pageIndex" + pageIndex);
 
 		if (pageIndex < 1) {
 			pageIndex = 1;
@@ -49,11 +49,18 @@ public class ShowBlogAction extends ActionSupport {
 			pageIndex = pageCount;
 		}
 
+		if(ac.getSession().get("friend")!=null){//判断当前是否浏览其他用户主页
+			TUser user = (TUser) ac.getSession().get("friend");
+			Integer userID = user.getUserId();
+			blogLists = blogSrv.researchBlog(userID, maxResult, (pageIndex - 1) * maxResult);
+			ac.getSession().put("blogLists", blogLists);
+		}else{
 		TUser user = (TUser) ac.getSession().get("user");
 		Integer userID = user.getUserId();
 		blogLists = blogSrv.researchBlog(userID, maxResult, (pageIndex - 1) * maxResult);
-
+		
 		ac.getSession().put("blogLists", blogLists);
+		}
 		return SUCCESS;
 
 	}

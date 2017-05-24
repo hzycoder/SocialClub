@@ -30,7 +30,13 @@
 			<result name="input">/friends.jsp</result>
 			<result name="none">/findFriend.jsp</result>
 		</action>
-		
+		<action name="friAction" class="friAction">
+			<result name="success">/friendPage.jsp</result>
+		</action>
+		<action name="clearFriAction" class="clearFriAction">
+			<result name="success">/homePage.jsp</result>
+			<result name="blog">/blogList.jsp</result>
+		</action>
 	</package>
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
 </struts>    

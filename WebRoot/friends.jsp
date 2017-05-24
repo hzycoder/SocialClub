@@ -81,8 +81,8 @@ li {
 			<s:iterator value="#session.friInfoList">
 				<li>
 					<div class="headpic">头像</div>
-					<div class="name">
-						<a href="homePage.jsp" target="_blank"><s:property value="username"></s:property></a>
+					<div class="name" id="friendName">
+						<a href="friAction?friendName=<s:property value='username'/>" target="_top"><s:property value="username"></s:property></a>
 					</div>
 					<div class="day">
 						成为好友已经：

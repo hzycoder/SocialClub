@@ -142,16 +142,16 @@
 		<!-- Top部分 -->
 		<div id="top">
 			<div id="head_pic">无图无真相</div>
-			<div id="petName">昵称<s:property value="#session.user.username"></s:property>s</div>
+			<div id="petName">昵称<s:property value="#session.friend.username"></s:property>s</div>
 			<div id="menu">
 				<table>
 					<tr>
-						<td><a href="mainFrame.jsp" target="right_frame">他的主页</a></td>
-						<td><a href="blogList.jsp" target="right_frame">博文</a></td>
-						<td><a>个人动态</a></td>
+						<td><a href="mainFrame.jsp" target="right_frame"><s:property value="#session.friend.username"/>的主页</a></td>
+						<td><a href="blogList.jsp" target="right_frame"><s:property value="#session.friend.username"/>的博文</a></td>
+						<td><a><s:property value="#session.friend.username"/>的动态</a></td>
 						<td><a>留言板</a></td>
-						<td><a>个人档案</a></td>
-						<td><s:a action="logOffAction" target="_parent">注销</s:a></td>
+						<td><a><s:property value="#session.friend.username"/>的档案</a></td>
+						<td><s:a href="clearFriAction?type=2">返回我的主页</s:a></td>
 					</tr>
 				</table>
 			</div>
