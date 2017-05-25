@@ -93,7 +93,7 @@ namespace="/">
 		<div class="act">最近动态</div>
 
 		<a
-			href="beFriendAction!beFriend.action?username=<s:property value='friendUser.username'/>">添加为好友</a>
+			href="beFriendAction!beFriend.action?friendUser.username=<s:property value='friendUser.username'/>">添加为好友</a>
 	</div>
 </body>
 </html>

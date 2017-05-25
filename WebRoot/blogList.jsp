@@ -52,7 +52,7 @@
 						href="">收藏</s:a></li>
 			</s:iterator>
 		</ul>
-		<s:a href="showBlogAction?pageIndex=1>">首页</s:a>
+		<a href="showBlogAction?pageIndex=1">首页</a>
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
 	</div>

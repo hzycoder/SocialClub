@@ -23,6 +23,11 @@ public class ClearFriendAction extends ActionSupport{//返回个人主页 清空friendse
 			ActionContext ac = ActionContext.getContext();
 			ac.getSession().remove("friend");
 			return SUCCESS;
+		}else if(type==3){
+			ActionContext ac = ActionContext.getContext();
+			ac.getSession().remove("LEAVEMESSAGESUCCESS");
+			ac.getSession().remove("friend");
+			return "board";
 		}
 		return SUCCESS;
 	}

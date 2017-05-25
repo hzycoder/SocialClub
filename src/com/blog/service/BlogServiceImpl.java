@@ -49,8 +49,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public int blogRows() {
-		return blogDao.blogRows();
+	public int blogRows(int id) {
+		return blogDao.blogRows(id);
 	}
 
 }

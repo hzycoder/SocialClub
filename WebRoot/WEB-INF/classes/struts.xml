@@ -33,9 +33,14 @@
 		<action name="friAction" class="friAction">
 			<result name="success">/friendPage.jsp</result>
 		</action>
-		<action name="clearFriAction" class="clearFriAction">
+		<action name="clearFriAction" class="clearFriAction">	<!-- 用于清除已访问完好友的session -->
 			<result name="success">/homePage.jsp</result>
 			<result name="blog">/blogList.jsp</result>
+			<result name="board">/board.jsp</result>
+		</action>
+		<action name="boardAction" class="boardAction">
+			<result name="success">/board.jsp</result>	
+			<result name="input">/board.jsp</result>	
 		</action>
 	</package>
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>

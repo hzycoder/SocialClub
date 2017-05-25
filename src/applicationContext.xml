@@ -33,12 +33,14 @@
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
 	<bean id="blogDao" class="com.blog.dao.BlogDaoImpl"></bean>
 	<bean id="friendDao" class="com.friend.dao.FriendDaoImpl"></bean>
+	<bean id="boardDao" class="com.board.dao.BoardDaoImpl"></bean>
 
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
 	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
 	<bean id="blogSrv" class="com.blog.service.BlogServiceImpl"></bean>
 	<bean id="friendSrv" class="com.friend.service.FriendServiceImpl"></bean>
+	<bean id="boardSrv" class="com.board.service.BoardServiceImpl"></bean>
 
 	<!-- 配置Action层 -->
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
@@ -48,9 +50,10 @@
 	<bean id="logOffAction" class="com.action.LogOffAction" scope="prototype"></bean>
 	<bean id="showBlogAction" class="com.blog.action.ShowBlogAction"
 		scope="prototype"></bean>
-	<bean id="beFriendAction" class="com.friend.action.BeFriendAction"></bean>
-	<bean id="friAction" class="com.friend.action.friendAction"></bean>
-	<bean id="clearFriAction" class="com.friend.action.ClearFriendAction"></bean>
+	<bean id="beFriendAction" class="com.friend.action.BeFriendAction" scope="prototype"></bean>
+	<bean id="friAction" class="com.friend.action.friendAction" scope="prototype"></bean>
+	<bean id="clearFriAction" class="com.friend.action.ClearFriendAction" scope="prototype"></bean>
+	<bean id="boardAction" class="com.board.action.BoardAction" scope="prototype"></bean>
 
 	<bean id="userList" class="java.util.ArrayList"></bean>
 	<!-- 用户获取blog列表的list 注意和上面的blogList不同 -->

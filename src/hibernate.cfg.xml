@@ -20,6 +20,9 @@
 	<property name="connection.driver_class">
 		com.microsoft.sqlserver.jdbc.SQLServerDriver
 	</property>
+	<!-- 分页时 防止结果为空 -->
+	<property name="jdbc.use_scrollable_resultset">false</property>  
+	
 	<property name="hibernate.show_sql">true</property>
 	<property name="hibernate.hbm2ddl.auto">update</property>
 	<mapping resource="com/domain/ActList.hbm.xml" />
@@ -29,6 +32,8 @@
 	<mapping resource="com/domain/ActComment.hbm.xml" />
 	<mapping resource="com/blog/domain/BlogList.hbm.xml" />
 	<mapping resource="com/domain/Notice.hbm.xml" />
+	<mapping resource="com/board/domain/Board.hbm.xml"/>
+	<mapping resource="com/board/domain/MessageShow.hbm.xml"/>
 
 </session-factory>
 

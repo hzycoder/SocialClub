@@ -130,6 +130,7 @@
 #frm iframe {
 	
 }
+
 </style>
 <script type="text/javascript">
 	function show() {
@@ -138,10 +139,12 @@
 </script>
 </head>
 <body>
+
 <s:action name="clearFriAction" namespace="/" ></s:action>
 	<div id="contain">
 		<!-- Top部分 -->
 		<div id="top">
+		欢迎你！<s:property value="#session.user.username"/>
 			<div id="head_pic">无图无真相</div>
 			<div id="petName">昵称<s:property value="#session.user.username"></s:property></div>
 			<div id="menu">
@@ -150,7 +153,7 @@
 						<td><a href="main.jsp" target="right_frame">主页</a></td>
 						<td><a href="clearFriAction?type=1" target="right_frame">博文</a></td>
 						<td><a>个人动态</a></td>
-						<td><a>留言板</a></td>
+						<td><a href="clearFriAction?type=3" target="right_frame">留言板</a></td>
 						<td><a>收藏</a></td>
 						<td><a href="friends.jsp" target="right_frame">我的好友</a></td>
 						<td><a>个人档案</a></td>

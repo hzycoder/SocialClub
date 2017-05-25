@@ -19,7 +19,6 @@ public class ShowBlogAction extends ActionSupport {
 	private int pageCount;
 	private int maxResult = 5;// 一页最大显示行数
 
-	
 	public int getPageIndex() {
 		return pageIndex;
 	}
@@ -30,36 +29,40 @@ public class ShowBlogAction extends ActionSupport {
 
 	@Override
 	public String execute() {
+		int rows;
+		// -----分页显示----
 		ActionContext ac = ActionContext.getContext();
 		// 获取最大记录数
-		int rows = blogSrv.blogRows();
-		ac.getSession().put("pageIndex", pageIndex);
+
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			TUser friend = (TUser) ac.getSession().get("friend");
+			rows = blogSrv.blogRows(friend.getUserId());
+		} else {
+			TUser user = (TUser) ac.getSession().get("user");
+			rows = blogSrv.blogRows(user.getUserId());
+		}
+		
+//		ac.getSession().put("pageIndex", pageIndex);
 		System.out.println("rows===" + rows);
 		if (rows % maxResult == 0) {// 算出总页数
 			pageCount = rows / maxResult;
 		} else {
 			pageCount = rows / maxResult + 1;
 		}
-//		System.out.println("pageCount"+pageCount);
-//		System.out.println("pageIndex" + pageIndex);
-
 		if (pageIndex < 1) {
 			pageIndex = 1;
 		} else if (pageIndex > pageCount) {
 			pageIndex = pageCount;
 		}
 
-		if(ac.getSession().get("friend")!=null){//判断当前是否浏览其他用户主页
-			TUser user = (TUser) ac.getSession().get("friend");
-			Integer userID = user.getUserId();
-			blogLists = blogSrv.researchBlog(userID, maxResult, (pageIndex - 1) * maxResult);
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			TUser friend = (TUser) ac.getSession().get("friend");
+			blogLists = blogSrv.researchBlog(friend.getUserId(), maxResult, (pageIndex - 1) * maxResult);
 			ac.getSession().put("blogLists", blogLists);
-		}else{
-		TUser user = (TUser) ac.getSession().get("user");
-		Integer userID = user.getUserId();
-		blogLists = blogSrv.researchBlog(userID, maxResult, (pageIndex - 1) * maxResult);
-		
-		ac.getSession().put("blogLists", blogLists);
+		} else {
+			TUser user = (TUser) ac.getSession().get("user");
+			blogLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
+			ac.getSession().put("blogLists", blogLists);
 		}
 		return SUCCESS;
 

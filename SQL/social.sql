@@ -60,6 +60,13 @@ insert blog_list values(100,8,'2017-05-015','article8 article8',null)
 insert blog_list values(100,9,'2017-05-015','article9 article9',null)
 insert blog_list values(100,10,'2017-05-015','article10 article10',null)
 
+
+
+insert blog_list values(101,15,'2017-05-015','jackarticle1 article1',null)
+insert blog_list values(101,16,'2017-05-015','jackrticle2 article2',null)
+insert blog_list values(101,13,'2017-05-015','jackarticle3 article3',null)
+insert blog_list values(101,14,'2017-05-015','jackarticle4 article4',null)
+
 --博文列表
 create table blog_list(
 userID int ,	--博文作者
@@ -88,6 +95,7 @@ act_time date primary key(actID),
 url varchar(100),
 constraint cs_act foreign key(userID) references t_user(userID)
 )
+
 select *from act_list
 create table act_comment(
 actcommentID int primary key,
@@ -115,6 +123,17 @@ constraint cs_noticeuserid foreign key(senderID) references t_user(userID),
 constraint cs_noticeuser foreign key(recipientID) references t_user(userID),
 )
 
+create table board(
+messageID int primary key,--留言信息ID
+userID int,	--被留言人
+speakID int,			--留言人ID
+message_detail varchar(500),--留言内容
+message_time datetime,		--留言时间
+constraint cs_board foreign key(userID) references t_user(userID),
+)
+
+select * from board
+
 
 drop table t_user
 drop table t_friends
@@ -123,5 +142,22 @@ drop table act_list
 
 drop table blog_list
 drop table blog_comment
-
+drop table board
 drop table notice
+drop table messageShow
+
+create table messageShow(
+messageID int primary key,--留言信息ID
+u_picture varchar(100),	--留言人头像
+username  varchar(20) not null unique, 
+speakID int,			--留言人ID
+message_detail varchar(500),--留言内容
+message_time datetime,		--留言时间
+constraint cs_message foreign key(speakID) references t_user(userID),
+)
+
+
+
+select messageID u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID='100' and speakID=a.userID
+select messageID,u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID='100' and speakID=a.userID
+select * from board

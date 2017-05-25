@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BeFriendAction extends ActionSupport {
 	private TUser user; // 自己
 	private TUser friendUser;// 朋友
-	private String friendString;
+	private String friendString;		//用于查找用户的username
 	private List<FriendsInfo> friInfoList;//存放朋友列表
 	@Resource
 	private List<TUser> userList;//存放通过搜索找到的用户
