@@ -41,10 +41,10 @@ public class LoginAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		ac.getSession().remove("LOGFAILE");
 		userList = logSrv.searchUser(user);
-		System.out.println("---------LOGINEXECUTE");
+//		System.out.println("---------LOGINEXECUTE");
 		if (userList != null && !userList.isEmpty()) {
 			user = userList.get(0);
-			System.out.println("userrrr" + user);
+//			System.out.println("userrrr" + user);
 			ac.getSession().put("user", user);
 			return SUCCESS;
 		} else {

@@ -29,6 +29,25 @@
 #blogList {
 	
 }
+
+#blogTitle {
+	
+}
+
+#blogContent {
+	
+}
+
+#blogTime {
+	float: right;
+	width: 250px;
+	text-align: right;
+	font-size: 14px;
+}
+
+li {
+	margin: 5px;
+}
 </style>
 </head>
 
@@ -46,19 +65,21 @@
 
 	<div id="blogList">
 		<a>博文列表</a>
-		<s:action name="showBlogAction" namespace="/" ></s:action>
+		<s:action name="showBlogAction" namespace="/"></s:action>
 		<ul>
 			<s:iterator value="#session.blogShowLists">
-				<li id="blogTitle">标题<s:property value="title" /></li>
+				<li id="blogTitle"><a href="showBlogAction!showContent?titltString=<s:property value='title'/>">标题:<s:property value="title" /></a></li>
 				<li id="blogContent"><s:property value="content" /></li>
-
-				<li id="blogTime">博文时间<s:property value="blogTime" /></li>
+				<li id="blogTime">博文时间<s:date name="blogTime" /></li>
+				<hr size="3px" width="80%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>
-		<a href="showBlogAction?pageIndex=1">首页</a> 
-		<a href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+		<a href="showBlogAction?pageIndex=1">首页</a> <a
+			href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-		<s:property value="pageIndex" />/<s:property value="pageCount" />
+		<s:property value="pageIndex" />
+		/
+		<s:property value="pageCount" />
 	</div>
 </body>
 </html>

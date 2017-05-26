@@ -100,9 +100,9 @@ width:250px;
 		<ul>
 			<s:iterator value="#session.boardList">
 				<li id="mesPic"><s:property value="UPicture" /></li>
-				<li id="mesContent">内容：<s:property value="messageDetail" /></li>
+				<li id="mesContent">：<s:property value="messageDetail" /></li>
 				<li id="mesName"><s:property value="username" /></li>
-				<li id="mesTime">留言时间：<s:property value="messageTime" /></li>
+				<li id="mesTime">留言时间：<s:date name="messageTime" /></li>
 				<hr size="3px" width="80%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>

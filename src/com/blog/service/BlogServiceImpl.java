@@ -1,6 +1,8 @@
 package com.blog.service;
 
 import java.sql.Timestamp;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -51,11 +53,12 @@ public class BlogServiceImpl implements BlogService {
 		System.out.println("-*---------------");
 		System.out.println("changing");
 		System.out.println("-*---------------");
-		//把从数据库提取的blogLists转换为用于展示界面的blogShowList
-		List<BlogShow> blogShowList = new ArrayList<BlogShow>();		//一个用于展示于界面的blog对象List
-		BlogShow blogShow = new BlogShow();
+		// 把从数据库提取的blogLists转换为用于展示界面的blogShowList
+		List<BlogShow> blogShowList = new ArrayList<BlogShow>(); // 一个用于展示于界面的blog对象List
+		
 		Iterator it = blogLists.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
+			BlogShow blogShow = new BlogShow();
 			BlogList blogList = (BlogList) it.next();
 			blogShow.setBlogcommentId(blogList.getBlogcommentId());
 			blogShow.setBlogComments(blogList.getBlogComments());
@@ -64,14 +67,17 @@ public class BlogServiceImpl implements BlogService {
 			blogShow.setTUser(blogList.getTUser());
 			String content = blogList.getContent();
 			int index = content.indexOf("|_z!5)");
-			blogShow.setTitle(content.substring(0,index));
-			System.out.println(content.indexOf("|_z!5)"));
-			blogShow.setContent(content.substring(index+6));
-			System.out.println(blogShow.toString());
+			blogShow.setTitle(content.substring(0, index));
+//			System.out.println(content.indexOf("|_z!5)"));
+			blogShow.setContent(content.substring(index + 6));
+//			System.out.println(blogShow.toString());
 			blogShowList.add(blogShow);
 		}
 		System.out.println("-*---------------");
 		System.out.println(blogShowList.get(0).toString());
+		System.out.println(blogShowList.get(1).toString());
+		System.out.println(blogShowList.get(2).toString());
+		System.out.println(blogShowList.get(3).toString());
 		System.out.println("-*---------------");
 		return blogShowList;
 	}

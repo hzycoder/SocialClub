@@ -1,5 +1,6 @@
 package com.blog.action;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +19,32 @@ public class ShowBlogAction extends ActionSupport {
 	private int pageIndex = 1;// 页码
 	private int pageCount;
 	private int maxResult = 5;// 一页最大显示行数
+	private String titleString;
+	private String contentString;
+	
+	public String getContentString() {
+		return contentString;
+	}
+
+	public void setContentString(String contentString) {
+		this.contentString = contentString;
+	}
+
+	public String getTitleString() {
+		return titleString;
+	}
+
+	public void setTitleString(String titleString) {
+		this.titleString = titleString;
+	}
+
+	public List<BlogShow> getBlogShowLists() {
+		return blogShowLists;
+	}
+
+	public void setBlogShowLists(List<BlogShow> blogShowLists) {
+		this.blogShowLists = blogShowLists;
+	}
 
 	public int getPageIndex() {
 		return pageIndex;
@@ -25,6 +52,22 @@ public class ShowBlogAction extends ActionSupport {
 
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
+	}
+
+	public String showContent() {
+		System.out.println("-*---------------");
+		System.out.println(blogShowLists.toString());
+		System.out.println(titleString);
+		System.out.println("-*---------------");
+		Iterator it = blogShowLists.iterator();
+		while(it.hasNext()){
+			BlogShow blogShow = (BlogShow) it.next();
+			if(blogShow.getTitle()==titleString){
+				contentString = blogShow.getContent();
+			}
+			
+		}
+		return "blogCotent";
 	}
 
 	@Override
@@ -41,8 +84,8 @@ public class ShowBlogAction extends ActionSupport {
 			TUser user = (TUser) ac.getSession().get("user");
 			rows = blogSrv.blogRows(user.getUserId());
 		}
-		
-//		ac.getSession().put("pageIndex", pageIndex);
+
+		// ac.getSession().put("pageIndex", pageIndex);
 		System.out.println("rows===" + rows);
 		if (rows % maxResult == 0) {// 算出总页数
 			pageCount = rows / maxResult;
@@ -58,7 +101,7 @@ public class ShowBlogAction extends ActionSupport {
 		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
 			TUser friend = (TUser) ac.getSession().get("friend");
 			blogShowLists = blogSrv.researchBlog(friend.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			ac.getSession().put("blogLists", blogShowLists);
+			ac.getSession().put("blogShowLists", blogShowLists);
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
 			blogShowLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
