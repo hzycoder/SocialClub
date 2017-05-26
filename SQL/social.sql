@@ -42,7 +42,7 @@ constraint cs_friendfriendid foreign key(friendID)references t_user(userID)
 
 
 select * from t_user  
-
+delete  from t_user where username=''
 select * from t_friends
 
 select * from blog_list
@@ -131,6 +131,16 @@ message_detail varchar(500),--留言内容
 message_time datetime,		--留言时间
 constraint cs_board foreign key(userID) references t_user(userID),
 )
+create table messageShow(
+messageID int primary key,--留言信息ID
+u_picture varchar(100),	--留言人头像
+username  varchar(20) not null unique, 
+speakID int,			--留言人ID
+message_detail varchar(500),--留言内容
+message_time datetime,		--留言时间
+constraint cs_message foreign key(speakID) references t_user(userID),
+)
+
 
 select * from board
 
@@ -146,15 +156,9 @@ drop table board
 drop table notice
 drop table messageShow
 
-create table messageShow(
-messageID int primary key,--留言信息ID
-u_picture varchar(100),	--留言人头像
-username  varchar(20) not null unique, 
-speakID int,			--留言人ID
-message_detail varchar(500),--留言内容
-message_time datetime,		--留言时间
-constraint cs_message foreign key(speakID) references t_user(userID),
-)
+delete from  blog_list
+
+
 
 
 

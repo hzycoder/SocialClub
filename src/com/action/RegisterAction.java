@@ -95,8 +95,8 @@ public class RegisterAction extends ActionSupport {
 			this.addFieldError("emailError", "请正确填写邮箱格式");
 		}
 		byte[] bytes = username.getBytes();
-		if(bytes.length>20){
-			this.addFieldError("usernameError", "用户名长度过长");
+		if(bytes.length>20&&bytes.length<=0){
+			this.addFieldError("usernameError", "非法用户名长度");
 		}
 		byte[] bytes1 = password.getBytes();
 		if(bytes1.length>20||bytes1.length<6){
@@ -123,9 +123,9 @@ public class RegisterAction extends ActionSupport {
 //		Date date = sdf.parse(birthdayString);
 //		user.setBirthday(date);
 
-		System.out.println("date日期:::" + user.getBirthday().toString());
-		System.out.println("user==!!!!!!!===" + user.toString());
-		System.out.println("注册EXECUTE");
+//		System.out.println("date日期:::" + user.getBirthday().toString());
+//		System.out.println("user==!!!!!!!===" + user.toString());
+//		System.out.println("注册EXECUTE");
 
 		Integer id = regSrv.insertUser(user);
 		if (id > 0) {

@@ -25,7 +25,6 @@ public class ClearFriendAction extends ActionSupport{//返回个人主页 清空friendse
 			return SUCCESS;
 		}else if(type==3){
 			ActionContext ac = ActionContext.getContext();
-			ac.getSession().remove("LEAVEMESSAGESUCCESS");
 			ac.getSession().remove("friend");
 			return "board";
 		}

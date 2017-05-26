@@ -5,14 +5,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.blog.domain.BlogList;
+import com.blog.domain.BlogShow;
 import com.blog.service.BlogService;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ShowBlogAction extends ActionSupport {
-	@Resource
-	List<BlogList> blogLists;
+	List<BlogShow> blogShowLists;
 	@Resource
 	BlogService blogSrv;
 	private int pageIndex = 1;// 页码
@@ -57,12 +57,12 @@ public class ShowBlogAction extends ActionSupport {
 
 		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
 			TUser friend = (TUser) ac.getSession().get("friend");
-			blogLists = blogSrv.researchBlog(friend.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			ac.getSession().put("blogLists", blogLists);
+			blogShowLists = blogSrv.researchBlog(friend.getUserId(), maxResult, (pageIndex - 1) * maxResult);
+			ac.getSession().put("blogLists", blogShowLists);
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
-			blogLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			ac.getSession().put("blogLists", blogLists);
+			blogShowLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
+			ac.getSession().put("blogShowLists", blogShowLists);
 		}
 		return SUCCESS;
 

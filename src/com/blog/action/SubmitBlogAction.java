@@ -37,7 +37,7 @@ public class SubmitBlogAction extends ActionSupport {
 	public String execute() {
 		ActionContext ac = ActionContext.getContext();
 		
-		blogList.setContent(title+"\n"+content);
+		blogList.setContent(title+"|_z!5)"+content);
 		
 		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {

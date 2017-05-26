@@ -33,6 +33,7 @@
 </head>
 
 <body>
+
 	<div id="research">
 		<s:property value="#session.SUBSUCCESS" />
 		<s:if test="hasFieldError"></s:if>
@@ -45,16 +46,19 @@
 
 	<div id="blogList">
 		<a>博文列表</a>
-		<s:action name="showBlogAction" namespace="/"></s:action>
+		<s:action name="showBlogAction" namespace="/" ></s:action>
 		<ul>
-			<s:iterator value="#session.blogLists">
-				<li><s:property value="content" />&nbsp;&nbsp;&nbsp;&nbsp;<s:a
-						href="">收藏</s:a></li>
+			<s:iterator value="#session.blogShowLists">
+				<li id="blogTitle">标题<s:property value="title" /></li>
+				<li id="blogContent"><s:property value="content" /></li>
+
+				<li id="blogTime">博文时间<s:property value="blogTime" /></li>
 			</s:iterator>
 		</ul>
-		<a href="showBlogAction?pageIndex=1">首页</a>
+		<a href="showBlogAction?pageIndex=1">首页</a> 
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+		<s:property value="pageIndex" />/<s:property value="pageCount" />
 	</div>
 </body>
 </html>

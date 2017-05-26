@@ -1,7 +1,9 @@
 package com.blog.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
+import com.blog.domain.BlogShow;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -45,7 +48,32 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List researchBlog(Integer userID, int maxResult, int firstResult) {
 		blogLists = blogDao.researchBlog(userID, maxResult, firstResult);
-		return blogLists;
+		System.out.println("-*---------------");
+		System.out.println("changing");
+		System.out.println("-*---------------");
+		//把从数据库提取的blogLists转换为用于展示界面的blogShowList
+		List<BlogShow> blogShowList = new ArrayList<BlogShow>();		//一个用于展示于界面的blog对象List
+		BlogShow blogShow = new BlogShow();
+		Iterator it = blogLists.iterator();
+		while(it.hasNext()){
+			BlogList blogList = (BlogList) it.next();
+			blogShow.setBlogcommentId(blogList.getBlogcommentId());
+			blogShow.setBlogComments(blogList.getBlogComments());
+			blogShow.setBlogId(blogList.getBlogId());
+			blogShow.setBlogTime(blogList.getBlogTime());
+			blogShow.setTUser(blogList.getTUser());
+			String content = blogList.getContent();
+			int index = content.indexOf("|_z!5)");
+			blogShow.setTitle(content.substring(0,index));
+			System.out.println(content.indexOf("|_z!5)"));
+			blogShow.setContent(content.substring(index+6));
+			System.out.println(blogShow.toString());
+			blogShowList.add(blogShow);
+		}
+		System.out.println("-*---------------");
+		System.out.println(blogShowList.get(0).toString());
+		System.out.println("-*---------------");
+		return blogShowList;
 	}
 
 	@Override
