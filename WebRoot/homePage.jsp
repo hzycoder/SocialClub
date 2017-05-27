@@ -86,6 +86,7 @@
 	height: inherit;
 	background-color: #FFFFEE;
 }
+
 #right_frame {
 	border: #000000 0px solid;
 	float: right;
@@ -131,22 +132,62 @@
 	
 }
 
+#nav {
+	vertical-align: middle;
+	margin: 0 auto;
+	width: 100%;
+	height: 40px;
+	border: #000000 0px solid;
+	background-color: gray;
+	margin: 0 auto;
+}
+
+#nav_logo {width：auto;
+	
+}
+
+#nav_name {
+	font-size: 18px;
+	padding: 10px;
+}
+#logOff{
+float: right;
+width: 16px;
+height: 16px;
+background-image:url("image/icon.png");
+background-position: -562px -52px;
+}
+li {
+	float: left;
+}
 </style>
-<script type="text/javascript">
-	function show() {
-		document.getElementById("right").lo
-	}
-</script>
 </head>
 <body>
-
-<s:action name="clearFriAction" namespace="/" ></s:action>
+	<div id="nav">
+		<ul>
+			<li id="nav_logo"><img alt="logo" src="image/nav_logo.png"
+				height="40px"></li>
+			<li id="nav_name">
+				<div>
+					欢迎你！
+					<s:property value="#session.user.username" />
+				</div>
+			</li>
+			<li id="logOff"><s:a action="logOffAction" target="_parent"></s:a></li>
+	</div>
+	</ul>
+	<s:action name="clearFriAction" namespace="/"></s:action>
 	<div id="contain">
 		<!-- Top部分 -->
 		<div id="top">
-		欢迎你！<s:property value="#session.user.username"/>
-			<div id="head_pic">无图无真相</div>
-			<div id="petName">昵称<s:property value="#session.user.username"></s:property></div>
+
+			<div id="head_pic">
+				<s:property value="#session.user.UPicture" />
+			</div>
+			<div id="petName">
+				昵称
+				<s:property value="#session.user.username"></s:property>
+			</div>
 			<div id="menu">
 				<table>
 					<tr>
@@ -156,7 +197,6 @@
 						<td><a href="clearFriAction?type=3" target="right_frame">留言板</a></td>
 						<td><a href="friends.jsp" target="right_frame">我的好友</a></td>
 						<td><a>个人档案</a></td>
-						<td><s:a action="logOffAction" target="_parent">注销</s:a></td>
 					</tr>
 				</table>
 			</div>
@@ -171,7 +211,7 @@
 			</div>
 			<!-- Right部分 -->
 			<div id="right">
-				<iframe id="right_frame" name="right_frame" src="right.jsp"></iframe> 
+				<iframe id="right_frame" name="right_frame" src="right.jsp"></iframe>
 			</div>
 		</div>
 	</div>
