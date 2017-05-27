@@ -1,6 +1,8 @@
 package com.friend.domain;
 
-public class FriendsInfo {	//用于显示好友列表
+import java.io.Serializable;
+
+public class FriendsInfo implements Serializable{	//用于显示好友列表
 	private String UPicture;
 	private String username;
 	private int friendTime;

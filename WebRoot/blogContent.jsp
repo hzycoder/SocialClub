@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
@@ -21,9 +21,26 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+<style type="text/css">
+#title{
+border-width: 1px;
+border-color: black;
+border-style: solid;
+margin:20px;
+padding:5px;
+}
+#content{
+margin:20px;
+height:80px;
+border-width: 1px;
+border-color: black;
+border-style: solid;
+}
+</style>
 </head>
-<s:property value="contentString" />
+<div id="title">标题：<s:property value="titleString"/></div>
+<div id="content">正文：<br><s:property value="contentString"/></div>
+<input type="button" value="返回" onclick="location='blogList.jsp'">
 <body>
 
 </body>

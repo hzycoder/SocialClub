@@ -1,5 +1,6 @@
 package com.blog.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,18 +56,6 @@ public class ShowBlogAction extends ActionSupport {
 	}
 
 	public String showContent() {
-		System.out.println("-*---------------");
-		System.out.println(blogShowLists.toString());
-		System.out.println(titleString);
-		System.out.println("-*---------------");
-		Iterator it = blogShowLists.iterator();
-		while(it.hasNext()){
-			BlogShow blogShow = (BlogShow) it.next();
-			if(blogShow.getTitle()==titleString){
-				contentString = blogShow.getContent();
-			}
-			
-		}
 		return "blogCotent";
 	}
 

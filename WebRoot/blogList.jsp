@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
@@ -13,6 +14,7 @@
 
 <title>My JSP 'blog.jsp' starting page</title>
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -65,12 +67,12 @@ li {
 
 	<div id="blogList">
 		<a>博文列表</a>
-		<s:action name="showBlogAction" namespace="/"></s:action>
+		<s:action name="showBlogAction?pageIndex=1" namespace="/"></s:action>
 		<ul>
 			<s:iterator value="#session.blogShowLists">
-				<li id="blogTitle"><a href="showBlogAction!showContent?titltString=<s:property value='title'/>">标题:<s:property value="title" /></a></li>
-				<li id="blogContent"><s:property value="content" /></li>
-				<li id="blogTime">博文时间<s:date name="blogTime" /></li>
+				<div id="blogTitle"><a href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">标题:<s:property value="title" /></a></li></div>
+				<div id="blogContent"><s:property value="content" /></div>
+				<div id="blogTime">博文时间<s:date name="blogTime" /></div>
 				<hr size="3px" width="80%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>

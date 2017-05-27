@@ -15,16 +15,16 @@ public class ClearFriendAction extends ActionSupport{//返回个人主页 清空friendse
 	}
 
 	public String execute(){
+		ActionContext ac = ActionContext.getContext();
 		if(type==1){//type等于1打开博文列表
-			ActionContext ac = ActionContext.getContext();
 			ac.getSession().remove("friend");
 			return "blog";
 		}else if(type==2){	//返回主页
-			ActionContext ac = ActionContext.getContext();
+//			ActionContext ac = ActionContext.getContext();
 			ac.getSession().remove("friend");
 			return SUCCESS;
 		}else if(type==3){
-			ActionContext ac = ActionContext.getContext();
+//			ActionContext ac = ActionContext.getContext();
 			ac.getSession().remove("friend");
 			return "board";
 		}

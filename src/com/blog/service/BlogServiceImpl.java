@@ -55,7 +55,7 @@ public class BlogServiceImpl implements BlogService {
 		System.out.println("-*---------------");
 		// 把从数据库提取的blogLists转换为用于展示界面的blogShowList
 		List<BlogShow> blogShowList = new ArrayList<BlogShow>(); // 一个用于展示于界面的blog对象List
-		
+
 		Iterator it = blogLists.iterator();
 		while (it.hasNext()) {
 			BlogShow blogShow = new BlogShow();
@@ -68,16 +68,15 @@ public class BlogServiceImpl implements BlogService {
 			String content = blogList.getContent();
 			int index = content.indexOf("|_z!5)");
 			blogShow.setTitle(content.substring(0, index));
-//			System.out.println(content.indexOf("|_z!5)"));
+			// System.out.println(content.indexOf("|_z!5)"));
 			blogShow.setContent(content.substring(index + 6));
-//			System.out.println(blogShow.toString());
+			// System.out.println(blogShow.toString());
 			blogShowList.add(blogShow);
 		}
 		System.out.println("-*---------------");
-		System.out.println(blogShowList.get(0).toString());
-		System.out.println(blogShowList.get(1).toString());
-		System.out.println(blogShowList.get(2).toString());
-		System.out.println(blogShowList.get(3).toString());
+		for (int i = 0; i < blogShowList.size(); i++) {
+			System.out.println(blogShowList.toString());
+		}
 		System.out.println("-*---------------");
 		return blogShowList;
 	}

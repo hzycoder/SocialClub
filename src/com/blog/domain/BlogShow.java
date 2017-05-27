@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.domain.TUser;
 
-public class BlogShow {
+public class BlogShow implements java.io.Serializable{
 	private Integer blogId;
 	private TUser TUser;
 	private Date blogTime;
