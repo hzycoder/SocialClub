@@ -66,13 +66,23 @@
 	margin-left: 20px;
 	background-color: orange;
 }
+
 li {
 	margin: 50px;
 }
 </style>
+<script type="text/javascript">
+	function deleteConfirm(userName) {
+		if (confirm("你确定要删除该好友"+userName+"吗？")) {
+		    document.getElementById("deleteFriendFrom").action="beFriendAction!deleteFriend?friendString="+userName;
+			document.getElementById("deleteFriendFrom").submit();
+		}
+	}
+</script>
 </head>
 
 <body>
+
 	<a href="findFriend.jsp" target="right_frame">查询用户</a>
 	<div id="friends">
 		<!-- 好友列表 -->
@@ -82,12 +92,17 @@ li {
 				<li>
 					<div class="headpic">头像</div>
 					<div class="name" id="friendName">
-						<a href="friAction?friendName=<s:property value='username'/>" target="_top"><s:property value="username"></s:property></a>
+						<a href="friAction?friendName=<s:property value='username'/>"
+							target="_top"><s:property value="username"></s:property></a>
 					</div>
 					<div class="day">
-						成为好友已经：
+						关注好友已经：
 						<s:property value="friendTime"></s:property>
 						天
+					</div>
+					<div>
+					<form id="deleteFriendFrom"	action="" method="post"></form>
+						<input type="button" value="删除好友" onclick="deleteConfirm('<s:property value='username'/>')">
 					</div>
 				</li>
 			</s:iterator>

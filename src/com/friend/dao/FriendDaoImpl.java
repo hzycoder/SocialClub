@@ -46,17 +46,17 @@ public class FriendDaoImpl implements FriendDao {
 						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
 				
 				long mm = (date.getTime())-(friendList.get(i).getFriendsAddTime().getTime());
-				System.out.println("mmmmm"+mm);
+//				System.out.println("mmmmm"+mm);
 				int day = (int)(mm / (1000 * 60 * 60 * 24));
 				friInfo.setFriendTime(day);
 				friInfo.setUsername(name);
 				friInfo.setUPicture(null);
-				System.out.println("friInfo"+friInfo.toString());
+//				System.out.println("friInfo"+friInfo.toString());
 				
 				friInfoList.add(friInfo);
 			}
 		}
-		System.out.println("friInfoList888888"+friInfoList.toString());
+//		System.out.println("friInfoList888888"+friInfoList.toString());
 		return friInfoList;
 	}
 
@@ -67,11 +67,12 @@ public class FriendDaoImpl implements FriendDao {
 					.setParameter(0, friendString).list();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			sessionFactory.close();
-		}
-
-		System.out.println("ssssssssssss" + userList);
+		} 
+//		finally {
+//			sessionFactory.close();		//getCurrentSession不用closeSession
+//		}
+//
+//		System.out.println("ssssssssssss" + userList);
 		return userList;
 	}
 
@@ -80,8 +81,12 @@ public class FriendDaoImpl implements FriendDao {
 		System.out.println("friendName11119988654"+friendName);
 		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
 		user = (TUser) ac.getSession().get("user");
-		friendUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
-				.setParameter(0, friendName).uniqueResult();
+		try {
+			friendUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
+					.setParameter(0, friendName).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 		fFriendsID.setFriendId(friendUser.getUserId());// 设置friends主键
 		fFriendsID.setUserId(user.getUserId()); //
 		Date date = new Date();
@@ -89,8 +94,42 @@ public class FriendDaoImpl implements FriendDao {
 		tFriends.setFriendsAddTime(timestamp);// 设置添加好友时间
 		tFriends.setId(fFriendsID);
 		System.out.println("tfrienddd:" + tFriends.toString());
-		sessionFactory.getCurrentSession().save(tFriends);
+		try {
+			sessionFactory.getCurrentSession().save(tFriends);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return 1;
+	}
+
+	@Override
+	public TUser findUser(String username) {
+		TUser resultUser = null;
+		try {
+			resultUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
+					.setParameter(0, username).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultUser;
+	}
+
+	@Override
+	public Integer deleteFriend(String friendName) {
+		System.out.println(friendName);
+		ActionContext ac = ActionContext.getContext();
+		TUser user = (TUser) ac.getSession().get("user");
+		TUser friendUser = findUser(friendName);
+		Integer id = null;
+		try {
+			id = sessionFactory.getCurrentSession().createQuery("delete from TFriends where userID=? and friendID=?")
+			.setParameter(0, user.getUserId())
+			.setParameter(1, friendUser.getUserId()).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 }

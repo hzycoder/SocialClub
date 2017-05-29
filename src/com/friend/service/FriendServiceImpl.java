@@ -29,4 +29,10 @@ public class FriendServiceImpl implements FriendService {
 		return friendDao.searchFriendList();
 	}
 
+	@Override
+	public Integer deleteFriend(String friendName) {
+		friendDao.deleteFriend(friendName);
+		return null;
+	}
+
 }

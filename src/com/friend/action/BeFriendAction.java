@@ -16,10 +16,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BeFriendAction extends ActionSupport {
 	private TUser user; // 自己
 	private TUser friendUser;// 朋友
-	private String friendString;		//用于查找用户的username
-	private List<FriendsInfo> friInfoList;//存放朋友列表
+	private String friendString; // 用于查找用户的username
+	private List<FriendsInfo> friInfoList;// 存放朋友列表
 	@Resource
-	private List<TUser> userList;//存放通过搜索找到的用户
+	private List<TUser> userList;// 存放通过搜索找到的用户
 	@Resource
 	private FriendService friendSrv;
 	@Resource
@@ -41,7 +41,7 @@ public class BeFriendAction extends ActionSupport {
 		this.friendString = friendString;
 	}
 
-	public String execute() throws Exception {//默认方法用于显示好友列表
+	public String execute() throws Exception {// 默认方法用于显示好友列表
 		System.out.println("EXECVUTTTTTTT");
 		ActionContext ac = ActionContext.getContext();
 		friInfoList = friendSrv.searchFriendList();
@@ -57,11 +57,13 @@ public class BeFriendAction extends ActionSupport {
 		System.out.println("BeFriendEXECUTE---");
 		System.out.println("username==now==" + friendUser.getUsername());
 		friendSrv.beFriend(friendUser.getUsername());
-		// ActionContext ac = ActionContext.getContext();
-		// user = (TUser) ac.getSession().get("user");
-		// System.out.println("ME::::::::"+user.getUsername());
 		return SUCCESS;
 
+	}
+
+	public String deleteFriend() throws Exception{		//删除好友
+		friendSrv.deleteFriend(friendString);
+		return SUCCESS;
 	}
 
 	public String findFriend() throws Exception { // 查找好友
