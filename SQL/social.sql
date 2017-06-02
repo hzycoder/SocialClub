@@ -15,6 +15,8 @@ email varchar(100),
 phone varchar(20),
 registerTime datetime
 )
+
+
 insert t_user values(100,'admin','123','2017-10-01',null,null,'狗子','社会大学','123@qq.com','888888','2016-10-01')
 
 insert t_user values(101,'jack','123','2017-10-02',null,null,'杰克','社会大学','123@qq.com','222222','2016-10-02')
@@ -41,13 +43,11 @@ constraint cs_friendfriendid foreign key(friendID)references t_user(userID)
 )
 
 
-select * from t_user  
-delete  from t_user where username=''
+select u_picture from t_user where userID=102
 
+select * from t_user
 select * from t_friends
-insert t_friends values(104,102,'2017-05-05')
 
-delete from t_friends where userID=104 and friendID=102
 
 select * from blog_list
 
@@ -145,7 +145,7 @@ message_detail varchar(500),--留言内容
 message_time datetime,		--留言时间
 constraint cs_message foreign key(speakID) references t_user(userID),
 )
-
+select * from messageShow 
 
 select * from board
 
@@ -164,9 +164,9 @@ drop table messageShow
 delete from  blog_list
 
 
+select u_picture from t_user where userID=100
+select username,u_picture,friends_add_time from t_user a ,t_friends b where b.userID = 100 and a.userID = b.friendID
 
-
-
-select messageID u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID='100' and speakID=a.userID
-select messageID,u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID='100' and speakID=a.userID
+select messageID u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID=100 and speakID=a.userID
+select messageID,u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID=100 and speakID=a.userID
 select * from board

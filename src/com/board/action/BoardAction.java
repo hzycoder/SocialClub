@@ -19,6 +19,14 @@ public class BoardAction extends ActionSupport {
 	List<Board> boardList;
 
 	
+	public List<Board> getBoardList() {
+		return boardList;
+	}
+
+	public void setBoardList(List<Board> boardList) {
+		this.boardList = boardList;
+	}
+
 	public int getPageCount() {
 		return pageCount;
 	}
@@ -48,7 +56,7 @@ public class BoardAction extends ActionSupport {
 		boardSrv.save(board);
 		System.out.println("boarddeatil:" + board.getMessageDetail());
 		ac.getSession().put("LEAVEMESSAGESUCCESS", "¡Ù—‘≥…π¶");
-		return SUCCESS;
+		return "leaveMessage";
 	}
 
 	public String messageList() {
@@ -70,8 +78,6 @@ public class BoardAction extends ActionSupport {
 			pageIndex = pageCount;
 		}
 		boardList = boardSrv.showMessage(maxResult, (pageIndex - 1) * maxResult);
-		
-		ac.getSession().put("boardList", boardList);
 		return SUCCESS;
 	}
 

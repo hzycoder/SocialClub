@@ -97,9 +97,11 @@ li {
 	<hr size="3px" color="black" width="800px" align="center">
 
 	<div id="board">
-		<s:action name="boardAction!messageList" namespace="/"></s:action>
+	<!-- 	
+	<s:action name="boardAction!messageList" namespace="/"></s:action>
+	 -->
 		<ul style="list-style-type: none">
-			<s:iterator value="#session.boardList">
+			<s:iterator value="boardList" var="list">
 				<s:if test="UPicture==null">
 					<div id="mesPic">
 						<img src="upload/defalut.jpg" width="45px" height="45px" />
@@ -107,13 +109,13 @@ li {
 				</s:if>
 				<s:else>
 					<li id="mesPic"><img
-						src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+						src="upload/<s:property value="#list.username"/>/<s:property value="#list.UPicture"/>"
 						width="45px" height="45px" /></li>
 				</s:else>
-				<li id="mesContent">：<s:property value="messageDetail" /></li>
-				<li id="mesName"><s:property value="username" /></li>
+				<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
+				<li id="mesName"><s:property value="#list.username" /></li>
 				<li id="mesTime">留言时间：<br>
-				<s:date name="messageTime" /></li>
+				<s:date name="#list.messageTime" /></li>
 				<hr size="3px" width="90%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>

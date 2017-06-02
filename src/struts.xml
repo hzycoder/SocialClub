@@ -11,11 +11,6 @@
 			<result name="input">/register.jsp</result>
 		</action>
 
-		<action name="subBlogAction" class="subBlogAction">
-			<result name="success">/blogList.jsp</result>
-			<result name="input">/blogList.jsp</result>
-		</action>
-
 		<action name="logOffAction" class="logOffAction">
 			<result name="login">/login.jsp</result>
 		</action>
@@ -24,6 +19,8 @@
 			<result name="success">/blogList.jsp</result>
 			<result name="input">/blogList.jsp</result>
 			<result name="blogCotent">/blogContent.jsp</result>
+			<result name="submitSuccess" type="chain">showBlogAction</result>
+			<result name="submitFaile" type="chain">showBlogAction</result>
 		</action>
 
 		<action name="beFriendAction" class="beFriendAction">
@@ -34,15 +31,26 @@
 		<action name="friAction" class="friAction">
 			<result name="success">/friendPage.jsp</result>
 		</action>
+		
+		
 		<action name="clearFriAction" class="clearFriAction">	<!-- 用于清除已访问完好友的session -->
 			<result name="success">/homePage.jsp</result>
-			<result name="blog">/blogList.jsp</result>
-			<result name="board">/board.jsp</result>
+			<result name="blog" type="chain">showBlogAction</result>
+			<result name="board" type="chain">showBoardAction</result>
 		</action>
-		<action name="boardAction" class="boardAction">
+		
+		
+		<action name="showBoardAction" class="boardAction" method="messageList"><!-- 因为messageList不是默认方法  用于需要返回显示留言板的时候(clearFriActin chain)的时候  -->
 			<result name="success">/board.jsp</result>
 			<result name="input">/board.jsp</result>
 		</action>
+		
+		<action name="boardAction" class="boardAction">
+			<result name="success">/board.jsp</result>
+			<result name="input">/board.jsp</result>
+			<result name="leaveMessage" type="chain">showBoardAction</result>
+		</action>
+		
 		<action name="infoAction" class="com.info.action.infoAction">
 			<param name="savePath">/upload</param>
 			<result name="success">/personalInfo.jsp</result>

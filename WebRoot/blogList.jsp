@@ -20,8 +20,8 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<meta http-equiv="refresh" content="url=showBlogAction?pageIndex=1">
 <!--
+<meta http-equiv="refresh" content="url=showBlogAction?pageIndex=1">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
@@ -55,7 +55,6 @@ li {
 </head>
 
 <body>
-
 	<div id="research">
 		<s:property value="#session.SUBSUCCESS" />
 		<s:if test="hasFieldError"></s:if>
@@ -69,10 +68,10 @@ li {
 	<div id="blogList">
 		<a>博文列表</a>
 		<ul>
-			<s:iterator value="#session.blogShowLists">
-				<div id="blogTitle"><a href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">标题:<s:property value="title" /></a></li></div>
-				<div id="blogContent"><s:property value="content" /></div>
-				<div id="blogTime">博文时间<s:date name="blogTime" /></div>
+			<s:iterator value="blogShowLists" var="blog">
+				<div id="blogTitle"><a href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">标题:<s:property value="#blog.title" /></a></li></div>
+				<div id="blogContent"><s:property value="#blog.content" /></div>
+				<div id="blogTime">博文时间<s:date name="#blog.blogTime" /></div>
 				<hr size="3px" width="80%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>

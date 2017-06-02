@@ -31,10 +31,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 	<div id="blogEdit">
-		<s:form action="subBlogAction" method="post" namespace="/">
-			<s:textfield name="title" label="标题" size="50"></s:textfield>
+		<s:form action="showBlogAction!submitBlog" method="post" namespace="/">
+			<s:textfield name="titleString" label="标题" size="50"></s:textfield>
 			<br>
-			<s:textarea name="content" label="内容" cols="100" rows="20"></s:textarea>
+			<s:textarea name="contentString" label="内容" cols="100" rows="20"></s:textarea>
 			<s:submit value="提交"></s:submit>
 		</s:form>
 	</div>
