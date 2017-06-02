@@ -22,7 +22,7 @@ public class ShowBlogAction extends ActionSupport {
 	private int maxResult = 5;// 一页最大显示行数
 	private String titleString;
 	private String contentString;
-	
+
 	public String getContentString() {
 		return contentString;
 	}
@@ -59,6 +59,14 @@ public class ShowBlogAction extends ActionSupport {
 		return "blogCotent";
 	}
 
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
 	@Override
 	public String execute() {
 		int rows;
@@ -74,7 +82,6 @@ public class ShowBlogAction extends ActionSupport {
 			rows = blogSrv.blogRows(user.getUserId());
 		}
 
-		// ac.getSession().put("pageIndex", pageIndex);
 		System.out.println("rows===" + rows);
 		if (rows % maxResult == 0) {// 算出总页数
 			pageCount = rows / maxResult;

@@ -20,6 +20,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<meta http-equiv="refresh" content="url=showBlogAction?pageIndex=1">
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -67,7 +68,6 @@ li {
 
 	<div id="blogList">
 		<a>博文列表</a>
-		<s:action name="showBlogAction?pageIndex=1" namespace="/"></s:action>
 		<ul>
 			<s:iterator value="#session.blogShowLists">
 				<div id="blogTitle"><a href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">标题:<s:property value="title" /></a></li></div>
@@ -76,8 +76,8 @@ li {
 				<hr size="3px" width="80%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>
-		<a href="showBlogAction?pageIndex=1">首页</a> <a
-			href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+		<a href="showBlogAction?pageIndex=1">首页</a> 
+		<a href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
 		<s:property value="pageIndex" />
 		/

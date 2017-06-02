@@ -133,12 +133,11 @@
 }
 
 #nav {
-	vertical-align: middle;
 	margin: 0 auto;
 	width: 100%;
 	height: 40px;
 	border: #000000 0px solid;
-	background-color: gray;
+	background-image: url("image/nav_background.jpg");
 	margin: 0 auto;
 }
 
@@ -150,15 +149,27 @@
 	font-size: 18px;
 	padding: 10px;
 }
-#logOff{
-float: right;
-width: 16px;
-height: 16px;
-background-image:url("image/icon.png");
-background-position: -562px -52px;
+
+#logOff {
+	cursor: hand;
+	width: 16px;
+	height: 16px;
+	background-image: url("image/icon.png");
+	background-position: -562px -52px;
+	margin-top: 13px;
 }
+
 li {
+	vertical-align: middle;
+	margin-right: 10px;
 	float: left;
+}
+
+body {
+	
+	/*background-image: url("image/background.jpg");*/
+	/*background-repeat: repeat-y;*/
+	
 }
 </style>
 </head>
@@ -173,9 +184,12 @@ li {
 					<s:property value="#session.user.username" />
 				</div>
 			</li>
-			<li id="logOff"><s:a action="logOffAction" target="_parent"></s:a></li>
+			<li id="logOff"
+				onclick="javascript:document.getElementById('logOffA').click();"><a
+				id="logOffA" href="logOffAction" target="_parent"></a></li>
+
+		</ul>
 	</div>
-	</ul>
 	<s:action name="clearFriAction" namespace="/"></s:action>
 	<div id="contain">
 		<!-- Top部分 -->

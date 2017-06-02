@@ -46,6 +46,7 @@ delete  from t_user where username=''
 
 select * from t_friends
 insert t_friends values(104,102,'2017-05-05')
+
 delete from t_friends where userID=104 and friendID=102
 
 select * from blog_list
