@@ -61,7 +61,8 @@ li {
 }
 
 #mesPic {
-	float: left; width : 45px;
+	float: left;
+	width: 45px;
 	height: 45px;
 	background-color: white;
 	width: 45px;
@@ -77,8 +78,8 @@ li {
 }
 
 #mesTime {
-float:right;
-width:250px;
+	float: right;
+	width: 250px;
 	text-align: right;
 	font-size: 14px;
 }
@@ -88,7 +89,7 @@ width:250px;
 <body>
 	<s:property value="#session.LEAVEMESSAGESUCCESS"></s:property>
 	<div id="message">
-		<s:form id="form" action="boardAction" >
+		<s:form id="form" action="boardAction">
 			<s:textarea name="board.messageDetail" label="在此留言"></s:textarea>
 			<s:submit value="留言"></s:submit>
 		</s:form>
@@ -97,20 +98,32 @@ width:250px;
 
 	<div id="board">
 		<s:action name="boardAction!messageList" namespace="/"></s:action>
-		<ul>
+		<ul style="list-style-type: none">
 			<s:iterator value="#session.boardList">
-				<li id="mesPic"><img  src="upload/<s:property value="username"/>/<s:property value="UPicture"/>" width="45px" height="45px"/></li>
+				<s:if test="UPicture==null">
+					<div id="mesPic">
+						<img src="upload/defalut.jpg" width="45px" height="45px" />
+					</div>
+				</s:if>
+				<s:else>
+					<li id="mesPic"><img
+						src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+						width="45px" height="45px" /></li>
+				</s:else>
 				<li id="mesContent">：<s:property value="messageDetail" /></li>
 				<li id="mesName"><s:property value="username" /></li>
-				<li id="mesTime">留言时间：<s:date name="messageTime" /></li>
-				<hr size="3px" width="80%" text-align="left" align="left" />
+				<li id="mesTime">留言时间：<br>
+				<s:date name="messageTime" /></li>
+				<hr size="3px" width="90%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>
 		<a href="boardAction!messageList?pageIndex=1">首页</a> <a
 			href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a
 			href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-			<s:property value="pageIndex"/>/<s:property value="pageCount"/>
+		<s:property value="pageIndex" />
+		/
+		<s:property value="pageCount" />
 	</div>
 </body>
 </html>

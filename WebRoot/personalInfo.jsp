@@ -58,7 +58,7 @@ td {
     		</td>
     		</s:if>
     		<s:else>
-    		<td colspan="2"><img  src="upload/<s:property value="#user.username"/>/<s:property value="#user.UPicture"/>" width="237" height="318"/>
+    		<td colspan="2"><img style="margin:10px" src="upload/<s:property value="#user.username"/>/<s:property value="#user.UPicture"/>" width="100px" height="100px"/>
     			<s:form action="infoAction!modifyPhoto.action" method="post" namespace="/" theme="simple" enctype="multipart/form-data">
     		<s:file name="upload"></s:file>
     		<s:submit></s:submit>

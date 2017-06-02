@@ -166,7 +166,6 @@ li {
 }
 
 body {
-	
 	/*background-image: url("image/background.jpg");*/
 	/*background-repeat: repeat-y;*/
 	
@@ -194,10 +193,19 @@ body {
 	<div id="contain">
 		<!-- Top部分 -->
 		<div id="top">
+			<s:if test="#session.user.UPicture==null">
+				<div id="head_pic">
+					<img src="upload/defalut.jpg" width="140px" height="140px" />
+				</div>
+			</s:if>
+			<s:else>
+				<div id="head_pic">
+					<img
+						src="upload/<s:property value="#session.user.username"/>/<s:property value="#session.user.UPicture"/>"
+						width="140px" height="140px" />
+				</div>
+			</s:else>
 
-			<div id="head_pic">
-				<img  src="upload/<s:property value="#session.user.username"/>/<s:property value="#session.user.UPicture"/>" width="140px" height="140px"/>
-			</div>
 			<div id="petName">
 				昵称
 				<s:property value="#session.user.username"></s:property>

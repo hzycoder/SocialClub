@@ -27,36 +27,49 @@ public class FriendDaoImpl implements FriendDao {
 	private SessionFactory sessionFactory;
 	@Resource
 	TUser friendUser;
-	List<TFriends> friendList;	//好友表List
+	List<TFriends> friendList; // 好友表List
 	TUser user;
 
 	@Override
 	public List searchFriendList() { // 用于显示好友列表
 		List<FriendsInfo> friInfoList = new ArrayList<FriendsInfo>();
+		String uPicture;
 		Date date = new Date();
 		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
 		user = (TUser) ac.getSession().get("user");
 		friendList = sessionFactory.getCurrentSession().createQuery("from TFriends where userID=?")
 				.setParameter(0, user.getUserId()).list();// 查询朋友列表
+		System.out.println("------friendList-------");
+		for (int i = 0; i < friendList.size(); i++) {
+			System.out.println(friendList.get(i).toString());
+		}
+		System.out.println("------friendList-------");
 		if (friendList != null && !friendList.isEmpty()) {
 			for (int i = 0; i < friendList.size(); i++) { // 递归查询朋友列表中每一个朋友的信息转化为user存入userList中
 				FriendsInfo friInfo = new FriendsInfo();
-				System.out.println("i   "+i);
-				String name = sessionFactory.getCurrentSession().createQuery("select username from TUser where userID=?")
+				System.out.println("i   " + i);
+				/* name获取用户名 */
+				String name = sessionFactory.getCurrentSession()
+						.createQuery("select username from TUser where userID=?")
 						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
-				
-				long mm = (date.getTime())-(friendList.get(i).getFriendsAddTime().getTime());
-//				System.out.println("mmmmm"+mm);
-				int day = (int)(mm / (1000 * 60 * 60 * 24));
+				/* uPicture获取头像 */
+				if (sessionFactory.getCurrentSession().createQuery("select UPicture from TUser where userID=?")
+						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult() == null) {
+					uPicture = null;
+				} else
+					uPicture = sessionFactory.getCurrentSession()
+							.createQuery("select UPicture from TUser where userID=?")
+							.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
+				long mm = (date.getTime()) - (friendList.get(i).getFriendsAddTime().getTime());
+				int day = (int) (mm / (1000 * 60 * 60 * 24));
 				friInfo.setFriendTime(day);
 				friInfo.setUsername(name);
-				friInfo.setUPicture(null);
-//				System.out.println("friInfo"+friInfo.toString());
-				
+				friInfo.setUPicture(uPicture);
+				System.out.println(friInfo.toString());
 				friInfoList.add(friInfo);
 			}
 		}
-//		System.out.println("friInfoList888888"+friInfoList.toString());
+		// System.out.println("friInfoList888888"+friInfoList.toString());
 		return friInfoList;
 	}
 
@@ -67,18 +80,18 @@ public class FriendDaoImpl implements FriendDao {
 					.setParameter(0, friendString).list();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-//		finally {
-//			sessionFactory.close();		//getCurrentSession不用closeSession
-//		}
-//
-//		System.out.println("ssssssssssss" + userList);
+		}
+		// finally {
+		// sessionFactory.close(); //getCurrentSession不用closeSession
+		// }
+		//
+		// System.out.println("ssssssssssss" + userList);
 		return userList;
 	}
 
 	@Override
 	public Integer beFriend(String friendName) { // 添加朋友
-		System.out.println("friendName11119988654"+friendName);
+		System.out.println("friendName11119988654" + friendName);
 		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
 		user = (TUser) ac.getSession().get("user");
 		try {
@@ -86,7 +99,7 @@ public class FriendDaoImpl implements FriendDao {
 					.setParameter(0, friendName).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		fFriendsID.setFriendId(friendUser.getUserId());// 设置friends主键
 		fFriendsID.setUserId(user.getUserId()); //
 		Date date = new Date();
@@ -99,7 +112,7 @@ public class FriendDaoImpl implements FriendDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 1;
 	}
 
@@ -124,8 +137,7 @@ public class FriendDaoImpl implements FriendDao {
 		Integer id = null;
 		try {
 			id = sessionFactory.getCurrentSession().createQuery("delete from TFriends where userID=? and friendID=?")
-			.setParameter(0, user.getUserId())
-			.setParameter(1, friendUser.getUserId()).executeUpdate();
+					.setParameter(0, user.getUserId()).setParameter(1, friendUser.getUserId()).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

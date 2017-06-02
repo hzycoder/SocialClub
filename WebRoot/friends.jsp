@@ -73,8 +73,8 @@ li {
 </style>
 <script type="text/javascript">
 	function deleteConfirm(userName) {
-		if (confirm("你确定要删除该好友"+userName+"吗？")) {
-		    document.getElementById("deleteFriendFrom").action="beFriendAction!deleteFriend?friendString="+userName;
+		if (confirm("你确定要删除该好友" + userName + "吗？")) {
+			document.getElementById("deleteFriendFrom").action = "beFriendAction!deleteFriend?friendString=" + userName;
 			document.getElementById("deleteFriendFrom").submit();
 		}
 	}
@@ -89,8 +89,17 @@ li {
 		<s:action name="beFriendAction" namespace="/"></s:action>
 		<ul>
 			<s:iterator value="#session.friInfoList">
-				<li>
-					<div class="headpic">头像</div>
+				<li><s:if test="UPicture==null">
+						<div class="headpic">
+							<img src="upload/defalut.jpg" width="45px" height="45px" />
+						</div>
+					</s:if> <s:else>
+						<div class="headpic">
+							<img
+								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+								width="45px" height="45px" />
+						</div>
+					</s:else>
 					<div class="name" id="friendName">
 						<a href="friAction?friendName=<s:property value='username'/>"
 							target="_top"><s:property value="username"></s:property></a>
@@ -101,10 +110,10 @@ li {
 						天
 					</div>
 					<div>
-					<form id="deleteFriendFrom"	action="" method="post"></form>
-						<input type="button" value="删除好友" onclick="deleteConfirm('<s:property value='username'/>')">
-					</div>
-				</li>
+						<form id="deleteFriendFrom" action="" method="post"></form>
+						<input type="button" value="删除好友"
+							onclick="deleteConfirm('<s:property value='username'/>')">
+					</div></li>
 			</s:iterator>
 		</ul>
 	</div>
