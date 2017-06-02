@@ -196,7 +196,7 @@ body {
 		<div id="top">
 
 			<div id="head_pic">
-				<s:property value="#session.user.UPicture" />
+				<img  src="upload/<s:property value="#session.user.username"/>/<s:property value="#session.user.UPicture"/>" width="140px" height="140px"/>
 			</div>
 			<div id="petName">
 				昵称
@@ -210,7 +210,7 @@ body {
 						<td><a>个人动态</a></td>
 						<td><a href="clearFriAction?type=3" target="right_frame">留言板</a></td>
 						<td><a href="friends.jsp" target="right_frame">我的好友</a></td>
-						<td><a>个人档案</a></td>
+						<td><s:a action="infoAction" target="right_frame">个人档案</s:a></td>
 					</tr>
 				</table>
 			</div>

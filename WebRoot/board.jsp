@@ -99,7 +99,7 @@ width:250px;
 		<s:action name="boardAction!messageList" namespace="/"></s:action>
 		<ul>
 			<s:iterator value="#session.boardList">
-				<li id="mesPic"><s:property value="UPicture" /></li>
+				<li id="mesPic"><img  src="upload/<s:property value="username"/>/<s:property value="UPicture"/>" width="45px" height="45px"/></li>
 				<li id="mesContent">：<s:property value="messageDetail" /></li>
 				<li id="mesName"><s:property value="username" /></li>
 				<li id="mesTime">留言时间：<s:date name="messageTime" /></li>

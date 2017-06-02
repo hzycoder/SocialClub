@@ -25,7 +25,7 @@
 			<result name="input">/blogList.jsp</result>
 			<result name="blogCotent">/blogContent.jsp</result>
 		</action>
-		
+
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/friends.jsp</result>
 			<result name="input">/friends.jsp</result>
@@ -40,8 +40,17 @@
 			<result name="board">/board.jsp</result>
 		</action>
 		<action name="boardAction" class="boardAction">
-			<result name="success">/board.jsp</result>	
-			<result name="input">/board.jsp</result>	
+			<result name="success">/board.jsp</result>
+			<result name="input">/board.jsp</result>
+		</action>
+		<action name="infoAction" class="com.info.action.infoAction">
+			<param name="savePath">/upload</param>
+			<result name="success">/personalInfo.jsp</result>
+			<result name="update" type="">/modifySuccess.jsp</result>
+			<result name="photo">/modifySuccess.jsp</result>
+		</action>
+		<action name="recheckAction" class="com.info.action.infoAction">
+			<result name="success">/modifyInfo.jsp</result>
 		</action>
 	</package>
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
