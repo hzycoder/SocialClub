@@ -27,6 +27,7 @@
 	<bean id="tFriends" class="com.friend.domain.TFriends"></bean>
 	<bean id="fFriendsID" class="com.friend.domain.TFriendsId"></bean>
 	<bean id="friendUser" class="com.domain.TUser"></bean>
+	<bean id="uc" class="com.domain.UserCount"></bean>
 
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>

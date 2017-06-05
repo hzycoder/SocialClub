@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.domain.TUser;
 import com.friend.dao.FriendDao;
+import com.opensymphony.xwork2.ActionContext;
 
 @Transactional
 public class FriendServiceImpl implements FriendService {
@@ -31,8 +33,12 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public Integer deleteFriend(String friendName) {
-		friendDao.deleteFriend(friendName);
-		return null;
+		return friendDao.deleteFriend(friendName);
+	}
+
+	@Override
+	public Integer friendCount(int userID) {
+		return friendDao.friendCount(userID);
 	}
 
 }

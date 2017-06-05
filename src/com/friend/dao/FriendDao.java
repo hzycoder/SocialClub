@@ -10,4 +10,5 @@ public interface FriendDao {
 	public List searchFriendList();
 	public TUser findUser(String username);//¸ù¾İusernameÕÒuserID
 	public Integer deleteFriend(String friendName);
+	public Integer friendCount(int userID);
 }

@@ -22,7 +22,7 @@
 	-->
 <style type="text/css">
 #right {
-width:850px;
+width:100%;
 height:inherit;
 	background-color: #FFFFFF;
 }

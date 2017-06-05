@@ -19,10 +19,10 @@ public class BlogDaoImpl implements BlogDao {
 	public Integer insertBlog(BlogList blogList) {
 		Integer id = null;
 		try {
-			System.out.println("blogList_UserId" + blogList.getTUser().toString());
-			System.out.println("-----------------88");
+//			System.out.println("blogList_UserId" + blogList.getTUser().toString());
+//			System.out.println("-----------------88");
 			id = (Integer) sessionFactory.getCurrentSession().save(blogList);
-			System.out.println("id====" + id);
+//			System.out.println("id====" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class BlogDaoImpl implements BlogDao {
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);
 			blogLists = q.list();
-			System.out.println("blogList__query" + blogLists);
+//			System.out.println("blogList__query" + blogLists);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

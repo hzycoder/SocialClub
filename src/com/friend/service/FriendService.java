@@ -7,4 +7,5 @@ public interface FriendService {
 	public Integer beFriend(String friendName);
 	public List searchFriendList();
 	public Integer deleteFriend(String friendName);
+	public Integer friendCount(int userID);
 }

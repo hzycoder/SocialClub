@@ -28,8 +28,6 @@
 function jump()
 {
 parent.location.href = "homePage.jsp";
-document.getElementById("right").location.href="personalInfo.jsp"
-
 }());
 </script>
 

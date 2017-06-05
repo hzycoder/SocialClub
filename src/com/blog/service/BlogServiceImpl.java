@@ -73,11 +73,11 @@ public class BlogServiceImpl implements BlogService {
 			// System.out.println(blogShow.toString());
 			blogShowList.add(blogShow);
 		}
-		System.out.println("-*---------------");
-		for (int i = 0; i < blogShowList.size(); i++) {
-			System.out.println(blogShowList.toString());
-		}
-		System.out.println("-*---------------");
+//		System.out.println("-*---------------");
+//		for (int i = 0; i < blogShowList.size(); i++) {
+//			System.out.println(blogShowList.toString());
+//		}
+//		System.out.println("-*---------------");
 		return blogShowList;
 	}
 

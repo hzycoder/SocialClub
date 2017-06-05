@@ -29,32 +29,78 @@
 	background-color: #FFFFFF;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:HOVER {
+	text-decoration: underline;
+}
+
+a, a:VISITED {
+	color: black;
+}
+
+#blogList li {
+	padding: 30px;
+	padding-top: 5px;
+	border: 1px black dotted;
+	list-style: none;
+	border: 1px black dotted;
+}
+
 #blogList {
-	
+	text-indent: 20px;
 }
 
-#blogTitle {
-	
-}
-
-#blogContent {
-	
+#blogList p {
+	text-overflow: ellipsis; /*截断过长字符*/
+	white-space: nowrap;
+	overflow: hidden;
+	font-family: "宋体";
+	text-indent: 20px;
 }
 
 #blogTime {
-	float: right;
 	width: 250px;
 	text-align: right;
 	font-size: 14px;
-}
-
-li {
-	margin: 5px;
 }
 </style>
 </head>
 
 <body>
+	<div id="blogList">
+		<a>博文列表</a>
+		<ul>
+			<s:iterator value="blogShowLists" var="blog">
+				<li>
+					<!-- 博文标题 -->
+					<div id="blogTitle">
+						<a
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>"><h3>
+								<s:property value="#blog.title" />
+							</h3> </a>
+					</div> <!-- 博文时间 -->
+					<div id="blogTime">
+						<s:date name="#blog.blogTime" />
+					</div>
+					<!-- 博文内容 -->
+					<div id="blogContent">
+						<p>
+							<s:property value="#blog.content" />
+						</p>
+					</div> 
+				</li>
+			</s:iterator>
+		</ul>
+		<a href="showBlogAction?pageIndex=1">首页</a> <a
+			href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+		<s:property value="pageIndex" />
+		/
+		<s:property value="pageCount" />
+	</div>
 	<div id="research">
 		<s:property value="#session.SUBSUCCESS" />
 		<s:if test="hasFieldError"></s:if>
@@ -63,24 +109,6 @@ li {
  	 搜索我的博文:<s:textfield name="key" />
 		</s:form>
 		<a href="blogEdit.jsp">写新的文章</a>
-	</div>
-
-	<div id="blogList">
-		<a>博文列表</a>
-		<ul>
-			<s:iterator value="blogShowLists" var="blog">
-				<div id="blogTitle"><a href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">标题:<s:property value="#blog.title" /></a></li></div>
-				<div id="blogContent"><s:property value="#blog.content" /></div>
-				<div id="blogTime">博文时间<s:date name="#blog.blogTime" /></div>
-				<hr size="3px" width="80%" text-align="left" align="left" />
-			</s:iterator>
-		</ul>
-		<a href="showBlogAction?pageIndex=1">首页</a> 
-		<a href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-		<s:property value="pageIndex" />
-		/
-		<s:property value="pageCount" />
 	</div>
 </body>
 </html>

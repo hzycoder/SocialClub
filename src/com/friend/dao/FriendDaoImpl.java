@@ -69,7 +69,6 @@ public class FriendDaoImpl implements FriendDao {
 				friInfoList.add(friInfo);
 			}
 		}
-		// System.out.println("friInfoList888888"+friInfoList.toString());
 		return friInfoList;
 	}
 
@@ -116,17 +115,6 @@ public class FriendDaoImpl implements FriendDao {
 		return 1;
 	}
 
-	@Override
-	public TUser findUser(String username) {
-		TUser resultUser = null;
-		try {
-			resultUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
-					.setParameter(0, username).uniqueResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return resultUser;
-	}
 
 	@Override
 	public Integer deleteFriend(String friendName) {
@@ -142,6 +130,25 @@ public class FriendDaoImpl implements FriendDao {
 			e.printStackTrace();
 		}
 		return id;
+	}
+	@Override
+	public TUser findUser(String username) {
+		TUser resultUser = null;
+		try {
+			resultUser = (TUser) sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
+					.setParameter(0, username).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultUser;
+	}
+
+	@Override
+	public Integer friendCount(int userID) {
+		long l;
+		l =  (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from TFriends where userID=?").setParameter(0, userID).uniqueResult();
+		int friendCount = (int) l;
+		return friendCount;
 	}
 
 }

@@ -52,7 +52,11 @@ public class BeFriendAction extends ActionSupport {
 
 		return SUCCESS;
 	}
-
+	public String friendCount(){ //查询好友数量
+		
+		
+		return SUCCESS;
+	}
 	public String beFriend() throws Exception { // 添加好友
 		System.out.println("BeFriendEXECUTE---");
 		System.out.println("username==now==" + friendUser.getUsername());
