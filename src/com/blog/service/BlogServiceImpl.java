@@ -1,18 +1,12 @@
 package com.blog.service;
 
 import java.sql.Timestamp;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.annotation.Resource;
-
-import org.apache.catalina.User;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
@@ -70,14 +64,19 @@ public class BlogServiceImpl implements BlogService {
 			blogShow.setTitle(content.substring(0, index));
 			// System.out.println(content.indexOf("|_z!5)"));
 			blogShow.setContent(content.substring(index + 6));
-			// System.out.println(blogShow.toString());
+
+			String content1 = blogShow.getContent();
+			content1 = content1.replace("\r\n", "!y9_!");	//ÕÒ³ö»»ÐÐ·û
+
+
+			blogShow.setContent(content1);
 			blogShowList.add(blogShow);
 		}
-//		System.out.println("-*---------------");
-//		for (int i = 0; i < blogShowList.size(); i++) {
-//			System.out.println(blogShowList.toString());
-//		}
-//		System.out.println("-*---------------");
+		System.out.println("-*---------------");
+		for (int i = 0; i < blogShowList.size(); i++) {
+			System.out.println(blogShowList.get(i).getContent());
+		}
+		System.out.println("-*---------------");
 		return blogShowList;
 	}
 

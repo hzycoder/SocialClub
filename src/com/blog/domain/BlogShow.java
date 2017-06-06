@@ -15,8 +15,6 @@ public class BlogShow implements java.io.Serializable{
 	private Integer blogcommentId;
 	private Set blogComments = new HashSet(0);
 	
-	
-	
 	public BlogShow() {
 		super();
 	}

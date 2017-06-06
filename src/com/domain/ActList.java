@@ -84,12 +84,4 @@ public class ActList  implements java.io.Serializable {
         this.actComments = actComments;
     }
    
-
-
-
-
-
-
-
-
 }

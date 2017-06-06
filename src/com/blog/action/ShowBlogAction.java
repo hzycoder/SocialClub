@@ -20,10 +20,19 @@ public class ShowBlogAction extends ActionSupport {
 	private int maxResult = 5;// 一页最大显示行数
 	private String titleString;
 	private String contentString;
+	private String timeString;
 	@Resource
 	BlogList blogList;
 	@Resource
 	BlogService blogSrv;
+
+	public String getTimeString() {
+		return timeString;
+	}
+
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
+	}
 
 	public String getContentString() {
 		return contentString;
@@ -57,16 +66,16 @@ public class ShowBlogAction extends ActionSupport {
 		this.pageIndex = pageIndex;
 	}
 
-	public String showContent() {
-		return "blogCotent";
-	}
-
 	public int getPageCount() {
 		return pageCount;
 	}
 
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
+	}
+	
+	public String showContent() {	//跳转到内容
+		return "blogCotent";
 	}
 
 	@Override

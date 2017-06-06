@@ -26,6 +26,7 @@
 	-->
 <style type="text/css">
 #research {
+	float:right;
 	background-color: #FFFFFF;
 }
 
@@ -44,9 +45,8 @@ a, a:VISITED {
 #blogList li {
 	padding: 30px;
 	padding-top: 5px;
-	border: 1px black dotted;
+	border-bottom: 1px black dashed;
 	list-style: none;
-	border: 1px black dotted;
 }
 
 #blogList {
@@ -63,52 +63,83 @@ a, a:VISITED {
 
 #blogTime {
 	width: 250px;
-	text-align: right;
 	font-size: 14px;
+	color: gray;
+}
+
+h3 {
+	margin-bottom: 0px;
+}
+
+#blogContent {
+	margin-top: 35px;
+}
+
+#page {
+	float: right;
 }
 </style>
+<script type="text/javascript">
+	function filter() {
+		var result = document.getElementById("blogContent").innerHTML;
+		result =  result.replace(/!y9_!/g, "");
+		document.getElementById("blogContent").innerHTML = result;
+	}
+</script>
 </head>
 
-<body>
+<body onload="filter()">
 	<div id="blogList">
-		<a>博文列表</a>
+		<span style="color:gray;float:left:display:block;">所有博文(<s:property
+				value="#session.uc.blogCount" />)
+		</span>
+		<input type="button" value="写新的文章" onclick="window.location.href='blogEdit.jsp'">
+		<div id="research">
+			<s:property value="#session.SUBSUCCESS" />
+			<s:if test="hasFieldError"></s:if>
+			<s:fielderror />
+			<s:form>
+ 	 <s:textfield name="key" label="搜索" placeholder="输入文章关键字"/>
+			</s:form>
+		</div>
 		<ul>
 			<s:iterator value="blogShowLists" var="blog">
 				<li>
 					<!-- 博文标题 -->
 					<div id="blogTitle">
 						<a
-							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>"><h3>
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>&timeString=<s:date name="#blog.blogTime" />"><h3>
 								<s:property value="#blog.title" />
 							</h3> </a>
 					</div> <!-- 博文时间 -->
 					<div id="blogTime">
 						<s:date name="#blog.blogTime" />
-					</div>
-					<!-- 博文内容 -->
+					</div> <!-- 博文内容 -->
 					<div id="blogContent">
 						<p>
 							<s:property value="#blog.content" />
 						</p>
-					</div> 
+					</div>
+					<div style="margin-top: 8px;">
+						<a style="font-size: 12px;"
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">阅读全文>>
+						</a>
+					</div>
 				</li>
 			</s:iterator>
 		</ul>
-		<a href="showBlogAction?pageIndex=1">首页</a> <a
-			href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-		<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-		<s:property value="pageIndex" />
-		/
-		<s:property value="pageCount" />
+		<div id="page">
+			<a href="showBlogAction?pageIndex=1">首页</a> <a
+				href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+			<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+			<a href="showBlogAction?pageIndex=<s:property value='pageCount'/>">尾页</a>
+			<s:property value="pageIndex" />
+			/
+			<s:property value="pageCount" />
+		</div>
 	</div>
-	<div id="research">
-		<s:property value="#session.SUBSUCCESS" />
-		<s:if test="hasFieldError"></s:if>
-		<s:fielderror />
-		<s:form>
- 	 搜索我的博文:<s:textfield name="key" />
-		</s:form>
-		<a href="blogEdit.jsp">写新的文章</a>
-	</div>
+
+	
+
 </body>
 </html>

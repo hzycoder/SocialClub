@@ -174,7 +174,7 @@ public class TUser implements java.io.Serializable {
 	}
 
 	public Set getActLists() {
-		return this.actLists;
+		return actLists;
 	}
 
 	public void setActLists(Set actLists) {
@@ -212,6 +212,5 @@ public class TUser implements java.io.Serializable {
 	public void setBlogLists(Set blogLists) {
 		this.blogLists = blogLists;
 	}
-
 
 }
