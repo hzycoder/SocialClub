@@ -72,17 +72,22 @@ public class BlogServiceImpl implements BlogService {
 			blogShow.setContent(content1);
 			blogShowList.add(blogShow);
 		}
-		System.out.println("-*---------------");
-		for (int i = 0; i < blogShowList.size(); i++) {
-			System.out.println(blogShowList.get(i).getContent());
-		}
-		System.out.println("-*---------------");
+//		System.out.println("-*---------------");
+//		for (int i = 0; i < blogShowList.size(); i++) {
+//			System.out.println(blogShowList.get(i).toString());
+//		}
+//		System.out.println("-*---------------");
 		return blogShowList;
 	}
 
 	@Override
 	public int blogRows(int id) {
 		return blogDao.blogRows(id);
+	}
+
+	@Override
+	public void deleteBlog(int blogId) {
+		blogDao.deleteBlog(blogId);
 	}
 
 }

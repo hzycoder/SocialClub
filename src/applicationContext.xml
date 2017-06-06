@@ -46,8 +46,8 @@
 	<!-- 配置Action层 -->
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
 	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
-	<bean id="subBlogAction" class="com.blog.action.SubmitBlogAction"
-		scope="prototype"></bean>
+
+
 	<bean id="logOffAction" class="com.action.LogOffAction" scope="prototype"></bean>
 	<bean id="showBlogAction" class="com.blog.action.ShowBlogAction"
 		scope="prototype"></bean>
@@ -62,4 +62,5 @@
 	<!-- 用户获取blog列表的list 注意和上面的blogList不同 -->
 	<bean id="blogLists" class="java.util.ArrayList"></bean>
 
+	<bean id="ruc" class="com.util.RefreshUC"></bean>
 </beans>

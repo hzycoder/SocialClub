@@ -19,10 +19,7 @@ public class BlogDaoImpl implements BlogDao {
 	public Integer insertBlog(BlogList blogList) {
 		Integer id = null;
 		try {
-//			System.out.println("blogList_UserId" + blogList.getTUser().toString());
-//			System.out.println("-----------------88");
 			id = (Integer) sessionFactory.getCurrentSession().save(blogList);
-//			System.out.println("id====" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,5 +52,9 @@ public class BlogDaoImpl implements BlogDao {
 				.uniqueResult();
 		int rows = (int) temp;
 		return rows;
+	}
+	@Override
+	public void deleteBlog(int blogId){
+		sessionFactory.getCurrentSession().createQuery("delete from BlogList where blogID=?").setParameter(0, blogId).executeUpdate();
 	}
 }

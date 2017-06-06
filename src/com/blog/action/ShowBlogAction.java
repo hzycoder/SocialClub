@@ -12,12 +12,14 @@ import com.blog.service.BlogService;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.util.RefreshUC;
 
 public class ShowBlogAction extends ActionSupport {
 	List<BlogShow> blogShowLists;
 	private int pageIndex = 1;// 页码
 	private int pageCount;
 	private int maxResult = 5;// 一页最大显示行数
+	private int blogId;
 	private String titleString;
 	private String contentString;
 	private String timeString;
@@ -25,6 +27,16 @@ public class ShowBlogAction extends ActionSupport {
 	BlogList blogList;
 	@Resource
 	BlogService blogSrv;
+	@Resource
+	RefreshUC ruc;
+
+	public int getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(int blogId) {
+		this.blogId = blogId;
+	}
 
 	public String getTimeString() {
 		return timeString;
@@ -114,6 +126,7 @@ public class ShowBlogAction extends ActionSupport {
 			blogShowLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
 			// ac.getSession().put("blogShowLists", blogShowLists);
 		}
+		ruc.refreshUC();
 		return SUCCESS;
 
 	}
@@ -126,11 +139,18 @@ public class ShowBlogAction extends ActionSupport {
 		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");
+			
 			return "submitSuccess";
 		} else
 			this.addFieldError(ERROR, "系统繁忙");
 		return "submitFaile";
-
 	}
-
+	
+	public String deleteBlog(){
+		blogSrv.deleteBlog(blogId);
+		
+		return "delete";
+	}
+	
+	
 }

@@ -81,9 +81,9 @@ h3 {
 </style>
 <script type="text/javascript">
 	function filter() {
-		var result = document.getElementById("blogContent").innerHTML;
-		result =  result.replace(/!y9_!/g, "");
-		document.getElementById("blogContent").innerHTML = result;
+		var result = document.getElementById("blogList").innerHTML;
+		result = result.replace(/!y9_!/g, "");
+		document.getElementById("blogList").innerHTML = result;
 	}
 </script>
 </head>
@@ -95,9 +95,6 @@ h3 {
 		</span>
 		<input type="button" value="写新的文章" onclick="window.location.href='blogEdit.jsp'">
 		<div id="research">
-			<s:property value="#session.SUBSUCCESS" />
-			<s:if test="hasFieldError"></s:if>
-			<s:fielderror />
 			<s:form>
  	 <s:textfield name="key" label="搜索" placeholder="输入文章关键字"/>
 			</s:form>
@@ -108,12 +105,12 @@ h3 {
 					<!-- 博文标题 -->
 					<div id="blogTitle">
 						<a
-							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>&timeString=<s:date name="#blog.blogTime" />"><h3>
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>&timeString=<s:date name="#blog.blogTime" />&blogId=<s:property value="#blog.blogId" />"><h3>
 								<s:property value="#blog.title" />
 							</h3> </a>
 					</div> <!-- 博文时间 -->
 					<div id="blogTime">
-						<s:date name="#blog.blogTime" />
+						<s:date name="blogTime" />
 					</div> <!-- 博文内容 -->
 					<div id="blogContent">
 						<p>

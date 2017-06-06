@@ -19,9 +19,11 @@
 			<result name="success">/blogList.jsp</result>
 			<result name="input">/blogList.jsp</result>
 			<result name="blogCotent">/blogContent.jsp</result>
-			<result name="submitSuccess" type="chain">showBlogAction</result>
+			<result name="delete" type="chain">showBlogAction</result>			
+			<result name="submitSuccess" >/newBlogSuccess.jsp</result>
 			<result name="submitFaile" type="chain">showBlogAction</result>
 		</action>
+
 
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/friends.jsp</result>

@@ -189,3 +189,7 @@ select * from board
 
 
 select COUNT(*) from t_friends where userID=100
+
+select content from blog_list where blogID=18
+
+delete from blog_list where blogID=19

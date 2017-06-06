@@ -287,7 +287,7 @@ ula {
 			<!-- middle部分 -->
 			<div id="middle">
 				<iframe frameborder="0" id="middle_frame" name="middle_frame"
-					src="right.jsp"></iframe>
+					src="main.jsp"></iframe>
 			</div>
 			<div id="menu">
 				<ul>

@@ -43,21 +43,31 @@ a:HOVER {
 	margin-right: 80px;
 }
 
+#back ul {
+	list-style: none;
+}
+#back ul li{
+	float: right;
+	margin-left: 10px;
+}
+input{
+background-color: white;
+color: gray;
+border: 1px black groove;
+}
 #content {
 	width: inherit;
 	height: auto;
 	border-top: 1px gray dashed;
 	margin: 20px;
 	padding: 15px 50px 0 5px;
-	
 	word-wrap: break-word;
 }
 
 pre {
-font-family: "宋体";
-font-size:16px;
-line-height:20px;
-	white-space: pre-wrap; /* css-3 */
+	font-family: "宋体";
+	font-size: 16px;
+	line-height: 20px;
 	white-space: -moz-pre-wrap; /* mozilla, since 1999 */
 	white-space: -pre-wrap; /* opera 4-6 */
 	white-space: -o-pre-wrap; /* opera 7 */
@@ -65,6 +75,7 @@ line-height:20px;
 	overflow: auto;
 	word-break: break-all;
 	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 #time {
@@ -80,7 +91,7 @@ h2 {
 <script type="text/javascript">
 	function filter() {
 		var result = document.getElementById("content").innerHTML;
-		result =  result.replace(/!y9_!/g, "<br>");
+		result = result.replace(/!y9_!/g, "<br>");
 		document.getElementById("content").innerHTML = result;
 	}
 </script>
@@ -92,17 +103,23 @@ h2 {
 		</h2>
 	</div>
 	<div id="back">
-	<ul>
-		<li><a href="showBlogAction">《《返回博文列表</a></li>
-		<li><a href="">删除该博文</li>
-	</ul>
-		
+		<ul>
+			<li><a href="showBlogAction"><input type="button"
+					value="《《返回博文列表"></a></li>
+
+			<li><a
+				href="showBlogAction!deleteBlog?blogId=<s:property value="blogId"/>"><input
+					type="button" value="删除博文"></a></li>
+		</ul>
+
 	</div>
 	<div id="time">
 		<s:property value="timeString" />
 	</div>
 	<div id="content">
-	<pre><s:property value="contentString" /></pre>
+		<pre>
+			<s:property value="contentString" />
+		</pre>
 	</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.blog.action;
+/*package com.blog.action;
 
 import javax.annotation.Resource;
 
@@ -49,3 +49,4 @@ public class SubmitBlogAction extends ActionSupport {
 
 	}
 }
+*/

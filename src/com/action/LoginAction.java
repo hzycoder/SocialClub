@@ -12,6 +12,7 @@ import com.friend.service.FriendService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.LoginService;
+import com.util.RefreshUC;
 
 public class LoginAction extends ActionSupport {
 	TUser user;
@@ -22,11 +23,7 @@ public class LoginAction extends ActionSupport {
 	@Resource
 	LoginService logSrv;
 	@Resource
-	FriendService friednSrv; 
-	@Resource
-	BlogService blogSrv;
-	@Resource
-	BoardService boardSrv;
+	RefreshUC ruc;
 	String friendString;// 用于查询用户的名称或ID
 
 	public String getFriendString() {
@@ -63,11 +60,9 @@ public class LoginAction extends ActionSupport {
 		if (userList != null && !userList.isEmpty()) {
 			user = userList.get(0);
 			ac.getSession().put("user", user);
-			uc.setFriendCount(friednSrv.friendCount(user.getUserId()));
-			uc.setBlogCount(blogSrv.blogRows(user.getUserId()));
-			uc.setMessageCount(boardSrv.gerRows());
-			uc.setActCount(0);
-			ac.getSession().put("uc", uc);
+			
+			uc = ruc.refreshUC();//刷新用户博文、好友等数量
+//			ac.getSession().put("uc", uc);
 			return SUCCESS;
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");

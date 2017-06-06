@@ -24,16 +24,14 @@
 </head>
 
 <script>
-(
-function jump()
-{
-parent.location.href = "homePage.jsp";
-}());
+	(function jump() {
+		parent.location.href = "homePage.jsp";
+		middle_frame.windows.location.reload();
+		document.getElementById("middle_frame").src="personalInfo.jsp";
+	}());
 </script>
 
 <body>
-	修改成功,2秒钟后跳转
-	<a href="homePage.jsp" target="_parent">跳转页面</a>...
-	<br>
+
 </body>
 </html>
