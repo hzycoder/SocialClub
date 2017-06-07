@@ -73,18 +73,20 @@ public class FriendDaoImpl implements FriendDao {
 	}
 
 	@Override
-	public List searchFriend(String friendString) { // 用户搜索用户
+	public List searchFriend(String friendString) { // 用于搜索用户（根据用户名）
 		try {
 			userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
 					.setParameter(0, friendString).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// finally {
-		// sessionFactory.close(); //getCurrentSession不用closeSession
-		// }
-		//
-		// System.out.println("ssssssssssss" + userList);
+		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
+		user = (TUser) ac.getSession().get("user");
+		if (sessionFactory.getCurrentSession().createQuery("from TFriends where userID=? and friendID=?")
+				.setParameter(0, user.getUserId()).setParameter(1, userList.get(0).getUserId()).uniqueResult()!=null) {
+			ac.getSession().put("friendFlag", 1);
+			return userList;
+		}
 		return userList;
 	}
 
@@ -99,6 +101,7 @@ public class FriendDaoImpl implements FriendDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		fFriendsID.setFriendId(friendUser.getUserId());// 设置friends主键
 		fFriendsID.setUserId(user.getUserId()); //
 		Date date = new Date();
@@ -111,10 +114,8 @@ public class FriendDaoImpl implements FriendDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return 1;
 	}
-
 
 	@Override
 	public Integer deleteFriend(String friendName) {
@@ -131,6 +132,7 @@ public class FriendDaoImpl implements FriendDao {
 		}
 		return id;
 	}
+
 	@Override
 	public TUser findUser(String username) {
 		TUser resultUser = null;
@@ -146,7 +148,8 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	public Integer friendCount(int userID) {
 		long l;
-		l =  (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from TFriends where userID=?").setParameter(0, userID).uniqueResult();
+		l = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from TFriends where userID=?")
+				.setParameter(0, userID).uniqueResult();
 		int friendCount = (int) l;
 		return friendCount;
 	}

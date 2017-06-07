@@ -26,7 +26,7 @@
 	-->
 <style type="text/css">
 #research {
-	float:right;
+	float: right;
 	background-color: #FFFFFF;
 }
 
@@ -54,11 +54,7 @@ a, a:VISITED {
 }
 
 #blogList p {
-	text-overflow: ellipsis; /*截断过长字符*/
-	white-space: nowrap;
-	overflow: hidden;
-	font-family: "宋体";
-	text-indent: 20px;
+	
 }
 
 #blogTime {
@@ -72,7 +68,18 @@ h3 {
 }
 
 #blogContent {
-	margin-top: 35px;
+	line-height: 32px;
+	font-size:16px;
+	display: block;
+	width: 938px;
+	height: 64px;
+	white-space: nowrap;
+	font-family: "宋体";
+	text-indent: 20px;
+	margin-top: 25px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: keep-all;
 }
 
 #page {
@@ -92,11 +99,12 @@ h3 {
 	<div id="blogList">
 		<span style="color:gray;float:left:display:block;">所有博文(<s:property
 				value="#session.uc.blogCount" />)
-		</span>
-		<input type="button" value="写新的文章" onclick="window.location.href='blogEdit.jsp'">
+		</span> <input type="button" value="写新的文章"
+			onclick="window.location.href='blogEdit.jsp'">
 		<div id="research">
-			<s:form>
- 	 <s:textfield name="key" label="搜索" placeholder="输入文章关键字"/>
+			<s:form action="showBlogAction!research" method="post" namespace="/">
+				<s:textfield name="researchKey" label="搜索" placeholder="输入文章关键字" />
+				<s:submit value="查找"></s:submit>
 			</s:form>
 		</div>
 		<ul>
@@ -105,7 +113,7 @@ h3 {
 					<!-- 博文标题 -->
 					<div id="blogTitle">
 						<a
-							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>&timeString=<s:date name="#blog.blogTime" />&blogId=<s:property value="#blog.blogId" />"><h3>
+							href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />"><h3>
 								<s:property value="#blog.title" />
 							</h3> </a>
 					</div> <!-- 博文时间 -->
@@ -113,13 +121,16 @@ h3 {
 						<s:date name="blogTime" />
 					</div> <!-- 博文内容 -->
 					<div id="blogContent">
-						<p>
+						<s:if test="#blog.content.length()>80">
+							<s:property value="#blog.content.substring(0,120)" />...
+					</s:if>
+						<s:else>
 							<s:property value="#blog.content" />
-						</p>
+						</s:else>
 					</div>
 					<div style="margin-top: 8px;">
 						<a style="font-size: 12px;"
-							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">阅读全文>>
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="#blog.content"/>">阅读全文>>
 						</a>
 					</div>
 				</li>
@@ -136,7 +147,7 @@ h3 {
 		</div>
 	</div>
 
-	
+
 
 </body>
 </html>

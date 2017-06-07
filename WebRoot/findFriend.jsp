@@ -75,7 +75,7 @@ li {
 <body>
 	<div id="search">
 		<s:form action="beFriendAction!findFriend.action" method="post"
-namespace="/">
+			namespace="/">
 		添加新的用户：<s:textfield name="friendString" value="sara"></s:textfield>
 			<s:submit value="搜索"></s:submit>
 		</s:form>
@@ -91,9 +91,16 @@ namespace="/">
 			<s:property value="friendUser.username"></s:property>
 		</div>
 		<div class="act">最近动态</div>
+		<s:if test="#session.friendFlag==1">
+			<span>已成为好友</span>
+		</s:if>
+		<s:else>
+			<div id="add">
+				<a
+					href="beFriendAction!beFriend.action?friendUser.username=<s:property value='friendUser.username'/>">添加为好友<s:property value='#session.friendFlag'/></a>
+			</div>
+		</s:else>
 
-		<a
-			href="beFriendAction!beFriend.action?friendUser.username=<s:property value='friendUser.username'/>">添加为好友</a>
 	</div>
 </body>
 </html>

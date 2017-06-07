@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.blog.domain.BlogList;
+import com.blog.domain.BlogShow;
 
 public class BlogDaoImpl implements BlogDao {
 	@Resource
@@ -56,5 +57,18 @@ public class BlogDaoImpl implements BlogDao {
 	@Override
 	public void deleteBlog(int blogId){
 		sessionFactory.getCurrentSession().createQuery("delete from BlogList where blogID=?").setParameter(0, blogId).executeUpdate();
+	}
+
+	@Override
+	public List research(String researchKey) {
+		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where content like ?").setString(0, "%"+researchKey+"%").list();
+		return blogLists;
+	}
+
+	@Override
+	public List research(Integer blogID) {
+		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where blogID=?").setParameter(0, blogID).list();
+		
+		return blogLists;
 	}
 }

@@ -22,8 +22,8 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public Integer beFriend(String friendName) {// 用于添加好友
-		friendDao.beFriend(friendName);
-		return 1;
+		return friendDao.beFriend(friendName);
+		
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.omg.PortableInterceptor.ACTIVE;
 
 import com.domain.TUser;
 import com.friend.domain.FriendsInfo;
@@ -58,11 +59,11 @@ public class BeFriendAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String beFriend() throws Exception { // 添加好友
+//		ActionContext ac = ActionContext.getContext();
 		System.out.println("BeFriendEXECUTE---");
 		System.out.println("username==now==" + friendUser.getUsername());
 		friendSrv.beFriend(friendUser.getUsername());
-		return SUCCESS;
-
+			return SUCCESS;
 	}
 
 	public String deleteFriend() throws Exception{		//删除好友
@@ -72,6 +73,7 @@ public class BeFriendAction extends ActionSupport {
 
 	public String findFriend() throws Exception { // 查找好友
 		ActionContext ac = ActionContext.getContext();
+		ac.getSession().remove("friendFlag");
 		userList = friendSrv.searchFriend(friendString);
 		if (userList != null && !userList.isEmpty()) {
 			friendUser = userList.get(0);

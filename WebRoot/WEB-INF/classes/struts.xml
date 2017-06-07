@@ -22,6 +22,7 @@
 			<result name="delete">/modifySuccess.jsp</result>			
 			<result name="submitSuccess" >/modifySuccess.jsp</result>
 			<result name="submitFaile" type="chain">showBlogAction</result>
+			<result name="research">/researchBlog.jsp</result>
 		</action>
 
 		<action name="beFriendAction" class="beFriendAction">

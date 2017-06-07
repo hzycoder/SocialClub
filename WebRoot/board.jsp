@@ -23,24 +23,23 @@
 	-->
 <style type="text/css">
 #board {
-	width: 800px;
+	width: 90%;
 	height: auto;
-	background-color: pink;
-	margin: 20px auto;
-	border-width: 1px;
-	border-style: solid;
-	border-color: black;
+	margin-left: 15px;
+}
+
+#content {
+	padding: 20px;
 }
 
 #message {
+padding-top:30px;
+	display:block;
+	margin-top:40px;
 	text-align: center;
-	width: 800px;
+	width: 100%;
 	height: auto;
 	margin: 0 auto;
-	border-width: 1px;
-	border-style: solid;
-	border-color: black;
-	width: 800px;
 }
 
 form {
@@ -51,7 +50,7 @@ form {
 textarea {
 	background: none;
 	margin: 0 auto;
-	width: 650px;
+	width: 100%;
 	height: 200px;
 	margin: 0 auto;
 }
@@ -62,10 +61,10 @@ li {
 
 #mesPic {
 	float: left;
-	width: 45px;
 	height: 45px;
 	background-color: white;
 	width: 45px;
+	margin-bottom: 15px;
 }
 
 #mesName {
@@ -83,51 +82,67 @@ li {
 	text-align: right;
 	font-size: 14px;
 }
+
+ul {
+	width:90%;
+	height:110px;
+	list-style-type: none;
+	border-bottom: 1px dotted black;
+	padding-bottom: 5px;
+}
+
+#page {
+display:block;
+margin:10px 0 ;
+	float: right;
+}
 </style>
 </head>
 
 <body>
 	<s:property value="#session.LEAVEMESSAGESUCCESS"></s:property>
-	<div id="message">
-		<s:form id="form" action="boardAction">
-			<s:textarea name="board.messageDetail" label="在此留言"></s:textarea>
-			<s:submit value="留言"></s:submit>
-		</s:form>
-	</div>
-	<hr size="3px" color="black" width="800px" align="center">
-
 	<div id="board">
-		<!-- 	
-	<s:action name="boardAction!messageList" namespace="/"></s:action>
-	 -->
-		<ul style="list-style-type: none">
+		<span style="color:gray;float:left:display:block;">所有留言(<s:property
+				value="#session.uc.messageCount" />)
+		</span>
+		<div id="content">
 			<s:iterator value="boardList" var="list">
-				<s:if test="UPicture==null">
-					<div id="mesPic">
-						<img src="upload/defalut.jpg" width="45px" height="45px" />
-					</div>
-				</s:if>
-				<s:else>
-					<li id="mesPic"><img
-						src="upload/<s:property value="#list.username"/>/<s:property value="#list.UPicture"/>"
-						width="45px" height="45px" /></li>
-				</s:else>
-				<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
-				<li id="mesName"><s:property value="#list.username" /></li>
-				<li id="mesTime">留言时间：<br> <s:date
-						name="#list.messageTime" /></li>
-				<hr size="3px" width="90%" text-align="left" align="left" />
+
+				<ul>
+					<s:if test="UPicture==null">
+						<div id="mesPic">
+							<img src="upload/defalut.jpg" width="45px" height="45px" />
+						</div>
+					</s:if>
+					<s:else>
+						<li id="mesPic"><img
+							src="upload/<s:property value="#list.username"/>/<s:property value="#list.UPicture"/>"
+							width="45px" height="45px" /></li>
+					</s:else>
+					<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
+					<li id="mesName"><s:property value="#list.username" /></li>
+					<li id="mesTime"><s:date name="#list.messageTime" /></li>
+
+				</ul>
 			</s:iterator>
-		</ul>
-		<a href="boardAction!messageList?pageIndex=1">首页</a> <a
-			href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-		<a
-			href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-		<a
-			href="boardAction!messageList?pageIndex=<s:property value='pageCount'/>">尾页</a>
-		<s:property value="pageIndex" />
-		/
-		<s:property value="pageCount" />
+		</div>
+		<div id="page">
+			<a href="boardAction!messageList?pageIndex=1">首页</a> <a
+				href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+			<a
+				href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+			<a
+				href="boardAction!messageList?pageIndex=<s:property value='pageCount'/>">尾页</a>
+			<s:property value="pageIndex" />
+			/
+			<s:property value="pageCount" />
+		</div>
+		<div id="message">
+			<s:form id="form" action="boardAction">
+				<s:textarea name="board.messageDetail" label="在此留言"></s:textarea>
+				<s:submit value="留言"></s:submit>
+			</s:form>
+		</div>
 	</div>
 </body>
 </html>

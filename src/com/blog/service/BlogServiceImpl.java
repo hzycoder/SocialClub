@@ -12,6 +12,7 @@ import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
 import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
+import com.util.ChangeBlogShowFormat;
 
 @Transactional
 public class BlogServiceImpl implements BlogService {
@@ -19,6 +20,8 @@ public class BlogServiceImpl implements BlogService {
 	List<BlogList> blogLists;
 	@Resource
 	BlogDao blogDao;
+	@Resource
+	ChangeBlogShowFormat cbsf;
 
 	@Override
 	public Integer insertBlog(BlogList blogList) {
@@ -42,42 +45,10 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public List researchBlog(Integer userID, int maxResult, int firstResult) {
+	public List<BlogShow> researchBlog(Integer userID, int maxResult, int firstResult) {
 		blogLists = blogDao.researchBlog(userID, maxResult, firstResult);
-		System.out.println("-*---------------");
-		System.out.println("changing");
-		System.out.println("-*---------------");
-		// 把从数据库提取的blogLists转换为用于展示界面的blogShowList
-		List<BlogShow> blogShowList = new ArrayList<BlogShow>(); // 一个用于展示于界面的blog对象List
+		return cbsf.change(blogLists);
 
-		Iterator it = blogLists.iterator();
-		while (it.hasNext()) {
-			BlogShow blogShow = new BlogShow();
-			BlogList blogList = (BlogList) it.next();
-			blogShow.setBlogcommentId(blogList.getBlogcommentId());
-			blogShow.setBlogComments(blogList.getBlogComments());
-			blogShow.setBlogId(blogList.getBlogId());
-			blogShow.setBlogTime(blogList.getBlogTime());
-			blogShow.setTUser(blogList.getTUser());
-			String content = blogList.getContent();
-			int index = content.indexOf("|_z!5)");
-			blogShow.setTitle(content.substring(0, index));
-			// System.out.println(content.indexOf("|_z!5)"));
-			blogShow.setContent(content.substring(index + 6));
-
-			String content1 = blogShow.getContent();
-			content1 = content1.replace("\r\n", "!y9_!");	//找出换行符
-
-
-			blogShow.setContent(content1);
-			blogShowList.add(blogShow);
-		}
-//		System.out.println("-*---------------");
-//		for (int i = 0; i < blogShowList.size(); i++) {
-//			System.out.println(blogShowList.get(i).toString());
-//		}
-//		System.out.println("-*---------------");
-		return blogShowList;
 	}
 
 	@Override
@@ -88,6 +59,18 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public void deleteBlog(int blogId) {
 		blogDao.deleteBlog(blogId);
+	}
+
+	@Override
+	public List<BlogShow> research(String researchKey) {
+		blogLists =  blogDao.research(researchKey);
+		return cbsf.change(blogLists);
+	}
+
+	@Override
+	public List<BlogShow> research(Integer blogID) {
+		blogLists = blogDao.research(blogID);
+		return cbsf.change(blogLists);
 	}
 
 }

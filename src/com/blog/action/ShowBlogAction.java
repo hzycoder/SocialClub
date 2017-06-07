@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
 import com.blog.service.BlogService;
@@ -15,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.util.RefreshUC;
 
 public class ShowBlogAction extends ActionSupport {
-	List<BlogShow> blogShowLists;
+
 	private int pageIndex = 1;// 页码
 	private int pageCount;
 	private int maxResult = 5;// 一页最大显示行数
@@ -23,12 +24,33 @@ public class ShowBlogAction extends ActionSupport {
 	private String titleString;
 	private String contentString;
 	private String timeString;
+	private String researchKey;
+	@Resource
+	List<BlogShow> blogShowLists;
+	@Resource
+	List<BlogShow> blogShowLists1;// 显示搜索出博文
 	@Resource
 	BlogList blogList;
 	@Resource
 	BlogService blogSrv;
 	@Resource
 	RefreshUC ruc;
+
+	public List<BlogShow> getBlogShowLists1() {
+		return blogShowLists1;
+	}
+
+	public void setBlogShowLists1(List<BlogShow> blogShowLists1) {
+		this.blogShowLists1 = blogShowLists1;
+	}
+
+	public String getResearchKey() {
+		return researchKey;
+	}
+
+	public void setResearchKey(String researchKey) {
+		this.researchKey = researchKey;
+	}
 
 	public int getBlogId() {
 		return blogId;
@@ -85,8 +107,13 @@ public class ShowBlogAction extends ActionSupport {
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
-	
-	public String showContent() {	//跳转到内容
+
+	public String showContent() { // 跳转到内容
+		System.out.println("showcontentshowcontentshowcontent");
+		blogShowLists = blogSrv.research(blogId);
+		System.out.println("}}}}}}}}}}{}{}{}{}");
+		System.out.println(blogShowLists.get(0).getContent());
+		System.out.println("}}}}}}}}}}{}{}{}{}");
 		return "blogCotent";
 	}
 
@@ -120,15 +147,19 @@ public class ShowBlogAction extends ActionSupport {
 		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
 			TUser friend = (TUser) ac.getSession().get("friend");
 			blogShowLists = blogSrv.researchBlog(friend.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			// ac.getSession().put("blogShowLists", blogShowLists);
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
 			blogShowLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			// ac.getSession().put("blogShowLists", blogShowLists);
+			
 		}
 		ruc.refreshUC();
 		return SUCCESS;
 
+	}
+
+	public String research() {
+		blogShowLists1 = blogSrv.research(researchKey);
+		return "research";
 	}
 
 	public String submitBlog() {
@@ -139,18 +170,16 @@ public class ShowBlogAction extends ActionSupport {
 		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");
-			
+
 			return "submitSuccess";
 		} else
 			this.addFieldError(ERROR, "系统繁忙");
 		return "submitFaile";
 	}
-	
-	public String deleteBlog(){
+
+	public String deleteBlog() {
 		blogSrv.deleteBlog(blogId);
-		
 		return "delete";
 	}
-	
-	
+
 }

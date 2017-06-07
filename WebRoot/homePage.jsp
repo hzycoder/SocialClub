@@ -247,7 +247,6 @@ ula {
 <script type="text/javascript">
 	window.onload = function jump() {
 		var ref = document.referrer;
-		alert(ref);
 		if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
