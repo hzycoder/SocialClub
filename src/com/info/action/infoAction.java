@@ -124,6 +124,7 @@ public class infoAction extends ActionSupport {
 		user.setUsername(flag.getUsername());
 		System.out.println("petname" + user.getPetname() + user.getBirthday());
 		ifd.updateUser(user);
+		ac.getSession().put("user", user);
 		return "update";
 	}
 

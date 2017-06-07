@@ -23,15 +23,12 @@
 
 </head>
 
-<script>
-	(function jump() {
-		parent.location.href = "homePage.jsp";
-		middle_frame.windows.location.reload();
-		document.getElementById("middle_frame").src="personalInfo.jsp";
-	}());
+<script type="text/javascript">
+	window.onload = function() {
+		parent.location.href = "logAction.action";
+	}
 </script>
 
-<body>
-
+<body>modifySuccess
 </body>
 </html>

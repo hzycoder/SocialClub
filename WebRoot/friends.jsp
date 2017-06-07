@@ -83,7 +83,7 @@ li {
 
 <body>
 
-	<a href="findFriend.jsp" target="right_frame">查询用户</a>
+	<a href="findFriend.jsp" target="middle_frame">查询用户</a>
 	<div id="friends">
 		<!-- 好友列表 -->
 		<s:action name="beFriendAction" namespace="/"></s:action>

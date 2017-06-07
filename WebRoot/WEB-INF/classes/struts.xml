@@ -19,15 +19,14 @@
 			<result name="success">/blogList.jsp</result>
 			<result name="input">/blogList.jsp</result>
 			<result name="blogCotent">/blogContent.jsp</result>
-			<result name="delete" type="chain">showBlogAction</result>			
-			<result name="submitSuccess" >/newBlogSuccess.jsp</result>
+			<result name="delete">/modifySuccess.jsp</result>			
+			<result name="submitSuccess" >/modifySuccess.jsp</result>
 			<result name="submitFaile" type="chain">showBlogAction</result>
 		</action>
 
-
 		<action name="beFriendAction" class="beFriendAction">
-			<result name="success">/friends.jsp</result>
-			<result name="input">/friends.jsp</result>
+			<result name="success">/modifySuccess.jsp</result>
+			<result name="input">/modifySuccess.jsp</result>
 			<result name="none">/findFriend.jsp</result>
 		</action>           
 		<action name="friAction" class="friAction">
@@ -56,7 +55,7 @@
 		<action name="infoAction" class="com.info.action.infoAction">
 			<param name="savePath">/upload</param>
 			<result name="success">/personalInfo.jsp</result>
-			<result name="update" type="">/modifySuccess.jsp</result>
+			<result name="update">/modifySuccess.jsp</result>
 			<result name="photo">/modifySuccess.jsp</result>
 		</action>
 		<action name="recheckAction" class="com.info.action.infoAction">

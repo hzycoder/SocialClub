@@ -97,7 +97,7 @@ li {
 	<hr size="3px" color="black" width="800px" align="center">
 
 	<div id="board">
-	<!-- 	
+		<!-- 	
 	<s:action name="boardAction!messageList" namespace="/"></s:action>
 	 -->
 		<ul style="list-style-type: none">
@@ -114,8 +114,8 @@ li {
 				</s:else>
 				<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
 				<li id="mesName"><s:property value="#list.username" /></li>
-				<li id="mesTime">留言时间：<br>
-				<s:date name="#list.messageTime" /></li>
+				<li id="mesTime">留言时间：<br> <s:date
+						name="#list.messageTime" /></li>
 				<hr size="3px" width="90%" text-align="left" align="left" />
 			</s:iterator>
 		</ul>
@@ -123,6 +123,8 @@ li {
 			href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 		<a
 			href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+		<a
+			href="boardAction!messageList?pageIndex=<s:property value='pageCount'/>">尾页</a>
 		<s:property value="pageIndex" />
 		/
 		<s:property value="pageCount" />

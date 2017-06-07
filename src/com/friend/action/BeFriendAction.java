@@ -78,7 +78,6 @@ public class BeFriendAction extends ActionSupport {
 			ac.getSession().put("friendUser", friendUser);
 			return NONE;
 		} else {
-			ac.getSession().put("LOGFAILE", "用户名或密码错误");
 			return NONE;
 		}
 	}

@@ -182,12 +182,13 @@
 }
 
 #menu li a {
-	text-overflow: ellipsis;		/*截断过长字符*/
-	white-space: nowrap; 
-	overflow : hidden;
+	text-overflow: ellipsis; /*截断过长字符*/
+	white-space: nowrap;
+	overflow: hidden;
 	font-family: "Microsoft JhengHei";
 	font-size: 20px;
 	display: block;
+	overflow: hidden;
 	overflow: hidden;
 }
 
@@ -243,6 +244,19 @@ ula {
 }
 /*left_num*/
 </style>
+<script type="text/javascript">
+	window.onload = function jump() {
+		var ref = document.referrer;
+		alert(ref);
+		if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
+			document.getElementById("personA").click();
+		} else if (ref.indexOf("Blog") != -1) {
+			document.getElementById("blogA").click();
+		}else if (ref.indexOf("friend") != -1||ref.indexOf("Friend")!=-1) {
+			document.getElementById("friendA").click();
+		}
+	}
+</script>
 </head>
 <body>
 	<s:action name="clearFriAction" namespace="/"></s:action>
@@ -292,19 +306,18 @@ ula {
 			<div id="menu">
 				<ul>
 					<li><a href="main.jsp" target="middle_frame">主页</a></li>
-					<li><a href="clearFriAction?type=1" target="middle_frame">博文</a>
-					</li>
+					<li><a id="blogA" href="clearFriAction?type=1"
+						target="middle_frame">博文</a></li>
 					<li><a>个人动态</a></li>
 					<li><a href="clearFriAction?type=3" target="middle_frame">留言板</a>
 					</li>
-					<li><a href="friends.jsp" target="middle_frame">我的好友</a></li>
-					<li><s:a action="infoAction" target="middle_frame">个人档案</s:a></li>
+					<li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li>
+					<li><s:a id="personA" action="infoAction"
+							target="middle_frame">个人档案</s:a></li>
 					<li><a id="logOffA" href="logOffAction" target="_parent">
 							<span>注销</span>
 					</a></li>
 				</ul>
-				<!-- <div id="logOFF"
-								onclick="javascript:document.getElementById('logOffA').click();"></div> -->
 			</div>
 		</div>
 	</div>
