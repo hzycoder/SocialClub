@@ -63,12 +63,12 @@ public class BeFriendAction extends ActionSupport {
 		System.out.println("BeFriendEXECUTE---");
 		System.out.println("username==now==" + friendUser.getUsername());
 		friendSrv.beFriend(friendUser.getUsername());
-			return SUCCESS;
+			return "modysuccess";
 	}
 
 	public String deleteFriend() throws Exception{		//…æ≥˝∫√”—
 		friendSrv.deleteFriend(friendString);
-		return SUCCESS;
+		return "delete";
 	}
 
 	public String findFriend() throws Exception { // ≤È’“∫√”—

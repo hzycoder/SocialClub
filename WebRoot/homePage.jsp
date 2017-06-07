@@ -21,6 +21,32 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var speed = 200;
+
+		$("#show").click(function(event) {
+			event.stopPropagation();
+			var offset = $(event.target).offset();
+			$("#divpop").css({
+				top : offset.top + $(event.target).top + "px",
+				right : $(window).width() - offset.left
+			})
+			$("#divpop").toggle(speed);
+			$(document).click(function(event) {
+				$("#divpop").hide(speed);
+			})
+		})
+	})
+	function deleteConfirm(userName) {
+		if (confirm("你确定要删除该好友" + userName + "吗？")) {
+			document.getElementById("deleteFriendFrom").action = "beFriendAction!deleteFriend?friendString=" + userName;
+			document.getElementById("deleteFriendFrom").submit();
+		}
+	}
+</script>
 <style type="text/css">
 #contain {
 	margin: 0 auto;
@@ -243,6 +269,35 @@ ula {
 	border-bottom-right-radius: 20px;
 }
 /*left_num*/
+.button.gray {
+	color: #8c96a0;
+	text-shadow: 1px 1px 1px #fff;
+	border: 1px solid #dce1e6;
+	box-shadow: inset 0px 1px 2px #fff, inset 0px -1px 0px #a8abae;
+	background: -moz-linear-gradient(top, #f2f3f7, #e4e8ec);
+	background: linear-gradient(top, #f2f3f7, #e4e8ec);
+}
+
+.button {
+	text-align: center;
+	font-weight: bold;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.gray:hover {
+	background: -webkit-linear-gradient(top, #fefefe, #ebeced);
+	background: -moz-linear-gradient(top, #f2f3f7, #ebeced);
+	background: linear-gradient(top, #f2f3f7, #ebeced)
+}
+
+.gray:active {
+	top: 1px;
+	box-shadow: 0 1px 3px #a8abae inset, 0 3px 0 #fff;
+	background: -webkit-linear-gradient(top, #e4e8ec, #e4e8ec);
+	background: -moz-linear-gradient(top, #e4e8ec, #e4e8ec);
+	background: linear-gradient(top, #e4e8ec, #e4e8ec)
+}
 </style>
 <script type="text/javascript">
 	window.onload = function jump() {
@@ -251,13 +306,57 @@ ula {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
 			document.getElementById("blogA").click();
-		}else if (ref.indexOf("friend") != -1||ref.indexOf("Friend")!=-1) {
+		} else if (ref.indexOf("friend") != -1 || ref.indexOf("Friend") != -1) {
 			document.getElementById("friendA").click();
 		}
 	}
 </script>
 </head>
 <body>
+<div style="right:1px;
+	top:70px;	position: fixed;">
+		<button id="show" class="button gray">
+			好<br>友<br>列<br>表<br>
+		</button>
+	</div>
+	<div id="divpop"
+		style="background-color: #f0f0f0; border: solid 1px #000000; position: fixed; display: none;
+	width: 300px;height: 100%; 
+	">
+		<s:action name="beFriendAction" namespace="/"></s:action>
+		 <a href="findFriend.jsp" target="middle_frame"><img
+			src="image/timg.jpg" width="25px" height="25px"></a>搜索好友         
+		<div style="text-align: center;">
+			<s:iterator value="#session.friInfoList">
+				<li><s:if test="UPicture==null">
+						<div class="headpic">
+							<img src="upload/defalut.jpg" width="45px" height="45px" />
+						</div>
+					</s:if> <s:else>
+						<div class="headpic">
+							<img
+								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+								width="45px" height="45px" />
+						</div>
+					</s:else>
+					<div class="name" id="friendName">
+						<a href="friAction?friendName=<s:property value='username'/>"
+							target="_top"><s:property value="username"></s:property></a>
+					</div>
+					<div class="day">
+						关注好友已经：
+						<s:property value="friendTime"></s:property>
+						天
+					</div>
+					<div>
+						<form id="deleteFriendFrom" action="" method="post"></form>
+						<input type="button" value="删除好友"
+							onclick="deleteConfirm('<s:property value='username'/>')">
+					</div></li>
+			</s:iterator>
+		</div>
+		       
+	</div>
 	<s:action name="clearFriAction" namespace="/"></s:action>
 	<div id="contain">
 		<!-- Top部分 -->

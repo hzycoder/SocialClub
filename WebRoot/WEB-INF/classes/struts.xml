@@ -27,8 +27,10 @@
 
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/modifySuccess.jsp</result>
+			<result name="delete" type="redirect">/homePage.jsp</result>
 			<result name="input">/modifySuccess.jsp</result>
 			<result name="none">/findFriend.jsp</result>
+			<result name="modysuccess">/modifySuccess.jsp</result>
 		</action>           
 		<action name="friAction" class="friAction">
 			<result name="success">/friendPage.jsp</result>

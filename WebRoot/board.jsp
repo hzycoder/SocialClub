@@ -49,7 +49,6 @@ form {
 
 textarea {
 	background: none;
-	margin: 0 auto;
 	width: 100%;
 	height: 200px;
 	margin: 0 auto;
