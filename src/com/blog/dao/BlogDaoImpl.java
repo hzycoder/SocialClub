@@ -31,7 +31,7 @@ public class BlogDaoImpl implements BlogDao {
 	@Override
 	public List researchBlog(Integer userID, int maxResult, int firstResult) {
 		try {
-			Query q = sessionFactory.getCurrentSession().createQuery("from BlogList where userID=?").setParameter(0,
+			Query q = sessionFactory.getCurrentSession().createQuery("from BlogList where userID=? ORDER BY blogID DESC ").setParameter(0,
 					userID);
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);

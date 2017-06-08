@@ -110,10 +110,8 @@ public class ShowBlogAction extends ActionSupport {
 
 	public String showContent() { // Ìø×ªµ½ÄÚÈÝ
 		System.out.println("showcontentshowcontentshowcontent");
+		System.out.println(blogId);
 		blogShowLists = blogSrv.research(blogId);
-		System.out.println("}}}}}}}}}}{}{}{}{}");
-		System.out.println(blogShowLists.get(0).getContent());
-		System.out.println("}}}}}}}}}}{}{}{}{}");
 		return "blogCotent";
 	}
 

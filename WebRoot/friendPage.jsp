@@ -312,6 +312,51 @@ ula {
 </script>
 </head>
 <body>
+	<!-- 悬浮好友列表 -->
+	<div style="right:1px;
+	top:70px;	position: fixed;">
+		<button id="show" class="button gray">
+			好<br>友<br>列<br>表<br>
+		</button>
+	</div>
+	<div id="divpop"
+		style="background-color: #f0f0f0; border: solid 1px #000000; position: fixed; display: none;
+	width: 300px;height: 100%; 
+	">
+		<s:action name="beFriendAction" namespace="/"></s:action>
+		 <a href="findFriend.jsp" target="middle_frame"><img
+			src="image/timg.jpg" width="25px" height="25px"></a>搜索好友         
+		<div style="text-align: center;">
+			<s:iterator value="#session.friInfoList">
+				<li><s:if test="UPicture==null">
+						<div class="headpic">
+							<img src="upload/defalut.jpg" width="45px" height="45px" />
+						</div>
+					</s:if> <s:else>
+						<div class="headpic">
+							<img
+								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+								width="45px" height="45px" />
+						</div>
+					</s:else>
+					<div class="name" id="friendName">
+						<a href="friAction?friendName=<s:property value='username'/>"
+							target="_top"><s:property value="username"></s:property></a>
+					</div>
+					<div class="day">
+						关注好友已经：
+						<s:property value="friendTime"></s:property>
+						天
+					</div>
+					<div>
+						<form id="deleteFriendFrom" action="" method="post"></form>
+						<input type="button" value="删除好友"
+							onclick="deleteConfirm('<s:property value='username'/>')">
+					</div></li>
+			</s:iterator>
+		</div>
+	</div>
+	<!-- 悬浮好友列表 -->
 	<div id="contain">
 		<!-- Top部分 -->
 		<div id="top">
@@ -353,14 +398,11 @@ ula {
 			<!-- middle部分 -->
 			<div id="middle">
 				<iframe frameborder="0" id="middle_frame" name="middle_frame"
-					src="main.jsp"></iframe>
+					src=""></iframe>
 			</div>
 			<div id="menu">
 				<ul>
-					<li><a href="main.jsp" target="middle_frame"><s:property
-								value="#session.friend.username" />的主页</a></li>
-					<li><a id="blogA" href="showBlogAction"
-						target="middle_frame"><s:property
+					<li><a id="blogA" href="showBlogAction" target="middle_frame"><s:property
 								value="#session.friend.username" />的博文</a></li>
 					<li><a><s:property value="#session.friend.username" />的动态</a></li>
 					<li><a href="showBoardAction" target="middle_frame"><s:property
@@ -368,9 +410,7 @@ ula {
 					<li><s:a id="personA" action="infoAction"
 							target="middle_frame">
 							<s:property value="#session.friend.username" />的档案</s:a></li>
-					<li><a id="logOffA" href="logOffAction" target="_parent">
-							<span>注销</span>
-					</a></li>
+					<li><a href="clearFriAction?type=2">返回我的主页</a></li>
 				</ul>
 			</div>
 		</div>

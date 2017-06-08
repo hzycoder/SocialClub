@@ -137,7 +137,6 @@ public class infoAction extends ActionSupport {
 			ifd.updateUser(user);
 			ac.getSession().put("user", user);
 		}
-		
 		return "update";
 	}
 

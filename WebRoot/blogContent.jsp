@@ -66,8 +66,9 @@ input {
 	width: inherit;
 	height: auto;
 	border-top: 1px gray dashed;
+	border-bottom: 1px gray dashed;
 	margin: 20px;
-	padding: 15px 50px 0 5px;
+	padding: 15px 50px 80px 5px;
 	word-wrap: break-word;
 }
 
@@ -105,7 +106,7 @@ h2 {
 	}
 </script>
 </head>
-<body style="width: 90%" onload="filter()">
+<body style="width: 85%" onload="filter()">
 	<s:iterator value="blogShowLists" var="blog">
 		<div id="title">
 			<h2>
@@ -116,10 +117,13 @@ h2 {
 			<ul>
 				<li><a href="showBlogAction"><input type="button"
 						value="《《返回博文列表"></a></li>
-
-				<li><a
-					href="showBlogAction!deleteBlog?blogId=<s:property value="#blog.blogId" />"><input
-						type="button" value="删除博文"></a></li>
+				<s:if test="#session.friend!=null">
+				</s:if>
+				<s:else>
+					<li><a
+						href="showBlogAction!deleteBlog?blogId=<s:property value="#blog.blogId" />"><input
+							type="button" value="删除博文"></a></li>
+				</s:else>
 			</ul>
 
 		</div>

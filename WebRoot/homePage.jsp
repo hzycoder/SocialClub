@@ -305,19 +305,11 @@ ula {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
 			document.getElementById("blogA").click();
-		} else if (ref.indexOf("friend") != -1 || ref.indexOf("Friend") != -1) {
-			document.getElementById("friendA").click();
 		}
 	}
 </script>
 </head>
 <body>
-	<s:if test="#session.friend!=null">
-
-	</s:if>
-	<s:else>
-
-	</s:else>
 	<!-- 悬浮好友列表 -->
 	<div style="right:1px;
 	top:70px;	position: fixed;">
@@ -361,10 +353,8 @@ ula {
 					</div></li>
 			</s:iterator>
 		</div>
-		  
-		<!-- 悬浮好友列表 -->
-		    
 	</div>
+	<!-- 悬浮好友列表 -->
 	<s:action name="clearFriAction" namespace="/"></s:action>
 	<div id="contain">
 		<!-- Top部分 -->

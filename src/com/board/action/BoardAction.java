@@ -53,6 +53,7 @@ public class BoardAction extends ActionSupport {
 
 	public String execute() {
 		ActionContext ac = ActionContext.getContext();
+		
 		boardSrv.save(board);
 		System.out.println("boarddeatil:" + board.getMessageDetail());
 		ac.getSession().put("LEAVEMESSAGESUCCESS", "¡Ù—‘≥…π¶");

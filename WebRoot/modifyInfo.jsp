@@ -27,12 +27,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <center>
     <s:iterator value="userList" var="user">
     <s:form action="infoAction!modify.action" method="post" theme="simple">
-    昵&nbsp;&nbsp;称：<s:textfield name="user.petname" value="%{user.petname}"></s:textfield></br>
+    昵&nbsp;&nbsp;称：<s:textfield name="user.petname" value="%{#user.petname}"></s:textfield></br>
     生&nbsp;&nbsp;日：<s:textfield name="user.birthday">
     <s:param name="value"> <s:date name="#user.birthday" format="yyyy-MM-dd"></s:date></s:param>
     </s:textfield></br>
-  所在单位：<s:textfield name="user.college" value="%{user.college}"></s:textfield></br>
-  电&nbsp;&nbsp;话：<s:textfield name="user.phone" value="%{user.phone}"></s:textfield></br>
+  所在单位：<s:textfield name="user.college" value="%{#user.college}"></s:textfield></br>
+  电&nbsp;&nbsp;话：<s:textfield name="user.phone" value="%{#user.phone}"></s:textfield></br>
   <s:submit ></s:submit>
     </s:form>
     </s:iterator>

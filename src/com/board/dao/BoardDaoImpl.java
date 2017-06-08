@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,18 +34,12 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			Query q = sessionFactory.getCurrentSession()
 					.createSQLQuery(
-							"select messageID,u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID=? and speakID=a.userID")
+							"select messageID,u_picture,username,speakID,message_detail,message_time from t_user a,board b where  b.userID=? and speakID=a.userID ORDER BY messageId DESC")
 					.addEntity(MessageShow.class).setParameter(0, id);
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);
 			//
 			boardList = q.list();
-			System.out.println("----------------");
-			for (int i = 0; i < boardList.size(); i++) {
-				System.out.println(boardList.get(i).toString());
-			}
-			System.out.println("----------------");
-
 			// .addScalar("messageId",StandardBasicTypes.INTEGER)
 			// .addScalar("UPicture", StandardBasicTypes.STRING)
 			// .addScalar("username", StandardBasicTypes.STRING)

@@ -1,9 +1,14 @@
 package com.friend.action;
 
+import javax.annotation.Resource;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.util.RefreshUC;
 
 public class ClearFriendAction extends ActionSupport{//返回个人主页 清空friendsession
+	@Resource
+	RefreshUC ruc;
 	int type;
 	
 	public int getType() {
@@ -22,6 +27,7 @@ public class ClearFriendAction extends ActionSupport{//返回个人主页 清空friendse
 		}else if(type==2){	//返回主页
 //			ActionContext ac = ActionContext.getContext();
 			ac.getSession().remove("friend");
+			ruc.refreshUC();
 			return SUCCESS;
 		}else if(type==3){
 //			ActionContext ac = ActionContext.getContext();
