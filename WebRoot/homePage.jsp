@@ -26,7 +26,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var speed = 200;
-
 		$("#show").click(function(event) {
 			event.stopPropagation();
 			var offset = $(event.target).offset();
@@ -313,7 +312,14 @@ ula {
 </script>
 </head>
 <body>
-<div style="right:1px;
+	<s:if test="#session.friend!=null">
+
+	</s:if>
+	<s:else>
+
+	</s:else>
+	<!-- 悬浮好友列表 -->
+	<div style="right:1px;
 	top:70px;	position: fixed;">
 		<button id="show" class="button gray">
 			好<br>友<br>列<br>表<br>
@@ -355,7 +361,9 @@ ula {
 					</div></li>
 			</s:iterator>
 		</div>
-		       
+		  
+		<!-- 悬浮好友列表 -->
+		    
 	</div>
 	<s:action name="clearFriAction" namespace="/"></s:action>
 	<div id="contain">

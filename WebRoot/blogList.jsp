@@ -71,7 +71,7 @@ h3 {
 	line-height: 32px;
 	font-size:16px;
 	display: block;
-	width: 938px;
+	width: 100%;
 	height: 64px;
 	white-space: nowrap;
 	font-family: "宋体";

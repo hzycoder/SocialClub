@@ -8,33 +8,33 @@ import com.domain.TUser;
 import com.friend.service.FriendService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.util.RefreshUC;
 
-public class friendAction extends ActionSupport{//访问其他用户主页添加friendsession
+public class friendAction extends ActionSupport {// 访问其他用户主页添加friendsession
 	TUser friend = new TUser();
 	private String friendName;
 	@Resource
 	private SessionFactory sessionFactory;
 	@Resource
 	private FriendService friendSrv;
-	
+	@Resource
+	RefreshUC ruc;
+
 	public String getFriendName() {
 		return friendName;
 	}
-
-
 
 	public void setFriendName(String friendName) {
 		this.friendName = friendName;
 	}
 
-
-
-	public String execute(){
+	public String execute() {
 		ActionContext ac = ActionContext.getContext();
-		System.out.println("friendName:---"+friendName);
+		System.out.println("friendName:---" + friendName);
 		friend = (TUser) friendSrv.searchFriend(friendName).get(0);
 		ac.getSession().put("friend", friend);
-		System.out.println("friID"+friend.getUserId());
+		System.out.println("friID" + friend.getUserId());
+		ruc.refreshUC();
 		return SUCCESS;
 	}
 

@@ -60,9 +60,7 @@ public class LoginAction extends ActionSupport {
 		if (userList != null && !userList.isEmpty()) {
 			user = userList.get(0);
 			ac.getSession().put("user", user);
-			
 			uc = ruc.refreshUC();//刷新用户博文、好友等数量
-//			ac.getSession().put("uc", uc);
 			return SUCCESS;
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");

@@ -21,84 +21,68 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var speed = 200;
+		$("#show").click(function(event) {
+			event.stopPropagation();
+			var offset = $(event.target).offset();
+			$("#divpop").css({
+				top : offset.top + $(event.target).top + "px",
+				right : $(window).width() - offset.left
+			})
+			$("#divpop").toggle(speed);
+			$(document).click(function(event) {
+				$("#divpop").hide(speed);
+			})
+		})
+	})
+	function deleteConfirm(userName) {
+		if (confirm("你确定要删除该好友" + userName + "吗？")) {
+			document.getElementById("deleteFriendFrom").action = "beFriendAction!deleteFriend?friendString=" + userName;
+			document.getElementById("deleteFriendFrom").submit();
+		}
+	}
+</script>
 <style type="text/css">
 #contain {
 	margin: 0 auto;
-	width: 1070px;
+	width: 100%;
 }
 
 #top {
 	margin: 0 auto;
-	width: 1070px;
 	height: 150px;
-	background-color: gray;
+	background-image: url("image/top-back.png");
 	padding: 40px;
 }
 
 #head_pic {
+	margin: 0 auto;
+	height: 160px;
+	width: 160px;
+	margin-top: 10px;
+}
+
+#head_pic img {
 	width: 140px;
 	height: 140px;
-	float: left;
-	background-color: #EFEFEF;
+	border-radius: 50%;
+	border: 10px solid #fff;
 }
 
 #petName {
-	float: left;
-	width: 200px;
-	height: 30px;
-	margin-left: 30px;
-	background-color: #EFEFEF;
-}
-
-#menu {
-	position: absolute;
-	top: 158px;
-	left: 605px;
-	width: 500px;
-	height: 30px;
-	background-color: #EFEFEF;
-}
-
-#bottom {
-	width: 1130px;
-	height: 1200px;
-	padding: 10px;
-	background-color: #EEFFFF;
-}
-
-#left {
-	float: left;
-	width: 240px;
-	height: inherit;
-	background-color: #FFEEFF;
-}
-
-#left_frame {
-	border: #000000 0px solid;
-	float: left;
-	width: 240px;
-	height: inherit;
-}
-
-#right {
-	float: right;
-	width: 870px;
-	height: inherit;
-	background-color: #FFFFEE;
-}
-#right_frame {
-	border: #000000 0px solid;
-	float: right;
-	width: 870px;
-	height: inherit;
-}
-
-#act_list td {
-	padding: 0px;
-	margin: auto;
-	height: 120px;
-	width: 700px;
-	background-color: white;
+	text-align: center;
+	font-size: 20px;
+	width: 160px;
+	height: 28px;
+	line-height: 28px;
+	background-color: #e2eee7;
+	font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei",
+		"sans-serif";
+	margin: 10px auto;
 }
 
 .act_headpic {
@@ -123,52 +107,271 @@
 	position: relative;
 }
 
-#frm {
+#nav {
+	margin: 0 auto;
+	width: 100%;
+	height: 40px;
+	border: #000000 0px solid;
+	background-color: #04b1cc;
+	margin: 0 auto;
+}
+
+#nav_logo {
+	width: auto
+}
+
+#nav_name {
+	font-size: 18px;
+	padding: 10px;
+}
+
+#logOffIcon {
+	cursor: hand;
+	width: 16px;
+	height: 16px;
+	background-image: url("image/icon.png");
+	background-position: -562px -52px;
+	margin-top: 13px;
+}
+
+#logOFF {
+	width: 30px;
+	height: auto;
+}
+
+#bottom {
+	margin-top: 20px;
+	width: 100%;
+	height: 650px;
+}
+
+#left {
+	float: left;
+	width: 20%;
+	height: inherit;
+}
+
+#left_frame {
+	position: fixed;
+	width: 100%;
+	height: inherit;
+	float: left;
+}
+
+#middle {
+	float: left;
+	width: 58%;
+	height: inherit;
+	border-left: 1px solid #91d3ba;
+	border-right: 1px solid #60a7ba;
+	border-top: none;
+	border-bottom: none;
+	border-top: none
+}
+
+#middle_frame {
+	width: 100%;
+	height: inherit;
+}
+/*菜单css*/
+#menu {
+	float: left;
+	width: 20%;
+	height: inherit;
+}
+
+#menu ul {
 	
 }
 
-#frm iframe {
-	
+#menu li {
+	text-align: center;
+	width: 70%;
+	height: 60px;
+	line-height: 60px;
+	list-style: none;
+	cursor: pointer;
+	border: 1px solid #60a7ba;
+	margin-bottom: -1px;
+}
+
+#menu li:FIRST-CHILD {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+#menu li:LAST-CHILD {
+	margin-bottom: 0;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+#menu li a {
+	text-overflow: ellipsis; /*截断过长字符*/
+	white-space: nowrap;
+	overflow: hidden;
+	font-family: "Microsoft JhengHei";
+	font-size: 20px;
+	display: block;
+	overflow: hidden;
+	overflow: hidden;
+}
+
+a, a:VISITED {
+	color: black;
+	text-decoration: none;
+}
+
+#menu li:hover, #menu li:FOCUS {
+	background-color: #7bbcbd;
+}
+/*菜单CSS*/
+/*left_num*/
+#left_num {
+	width: 100%;
+	height: 600px;
+}
+
+#left_num ul strong {
+	font: 32px/1.5 Tahoma, Helvetica, Arial, '宋体', sans-serif;
+	display: block;
+}
+
+#left_num ul span {
+	font-family: "幼圆";
+	display: block;
+}
+
+ula {
+	width: 70%;
+}
+
+#left_num ul li {
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+	border: 1px solid #91d3ba;
+	float: left;
+	width: 36%;
+	height: 80px;
+	list-style: none;
+	margin-right: -1px;
+	margin-bottom: -1px;
+	text-align: center;
+}
+
+#left_num ul li:FIRST-CHILD {
+	border-top-left-radius: 20px;
+}
+
+#left_num ul li:LAST-CHILD {
+	border-bottom-right-radius: 20px;
+}
+/*left_num*/
+.button.gray {
+	color: #8c96a0;
+	text-shadow: 1px 1px 1px #fff;
+	border: 1px solid #dce1e6;
+	box-shadow: inset 0px 1px 2px #fff, inset 0px -1px 0px #a8abae;
+	background: -moz-linear-gradient(top, #f2f3f7, #e4e8ec);
+	background: linear-gradient(top, #f2f3f7, #e4e8ec);
+}
+
+.button {
+	text-align: center;
+	font-weight: bold;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.gray:hover {
+	background: -webkit-linear-gradient(top, #fefefe, #ebeced);
+	background: -moz-linear-gradient(top, #f2f3f7, #ebeced);
+	background: linear-gradient(top, #f2f3f7, #ebeced)
+}
+
+.gray:active {
+	top: 1px;
+	box-shadow: 0 1px 3px #a8abae inset, 0 3px 0 #fff;
+	background: -webkit-linear-gradient(top, #e4e8ec, #e4e8ec);
+	background: -moz-linear-gradient(top, #e4e8ec, #e4e8ec);
+	background: linear-gradient(top, #e4e8ec, #e4e8ec)
 }
 </style>
 <script type="text/javascript">
-	function show() {
-		document.getElementById("right").lo
+	window.onload = function jump() {
+		var ref = document.referrer;
+		if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
+			document.getElementById("personA").click();
+		} else if (ref.indexOf("Blog") != -1) {
+			document.getElementById("blogA").click();
+		} else if (ref.indexOf("friend") != -1 || ref.indexOf("Friend") != -1) {
+			document.getElementById("friendA").click();
+		}
 	}
 </script>
 </head>
 <body>
-
 	<div id="contain">
 		<!-- Top部分 -->
 		<div id="top">
-		欢迎你！<s:property value="#session.user.username"/>
-			<div id="head_pic">无图无真相</div>
-			<div id="petName">昵称<s:property value="#session.friend.username"></s:property>s</div>
-			<div id="menu">
-				<table>
-					<tr>
-						<td><a href="mainFrame.jsp" target="right_frame"><s:property value="#session.friend.username"/>的主页</a></td>
-						<td><a href="blogList.jsp" target="right_frame"><s:property value="#session.friend.username"/>的博文</a></td>
-						<td><a><s:property value="#session.friend.username"/>的动态</a></td>
-						<td><a href="board.jsp" target="right_frame">留言板</a></td>
-						<td><a><s:property value="#session.friend.username"/>的档案</a></td>
-						<td><s:a href="clearFriAction?type=2">返回我的主页</s:a></td>
-					</tr>
-				</table>
+			<!-- 导航栏 -->
+			<s:if test="#session.friend.UPicture==null">
+				<div id="head_pic">
+					<img src="upload/defalut.jpg" width="140px" height="140px" />
+				</div>
+			</s:if>
+			<s:else>
+				<div id="head_pic">
+					<img
+						src="upload/<s:property value="#session.friend.username"/>/<s:property value="#session.user.UPicture"/>"
+						width="140px" height="140px" />
+				</div>
+			</s:else>
+			<div id="petName">
+				<s:property value="#session.friend.petname"></s:property>
 			</div>
 		</div>
 
-		<hr width="1070px" color="red">
 		<!-- Bottom部分 -->
 		<div id="bottom">
 			<!-- Left部分 -->
 			<div id="left">
-				<iframe id="left_frame" name="left_frame" src="left.jsp"></iframe>
+				<div id="left_num">
+					<ul id="ula">
+						<li><strong><s:property
+									value="#session.uc.friendCount" /></strong> <span>好友</span></li>
+						<li><strong><s:property
+									value="#session.uc.blogCount" /></strong> <span>博文</span></li>
+						<li><strong><s:property
+									value="#session.uc.messageCount" /></strong> <span>留言</span></li>
+						<li><strong><s:property value="#session.uc.actCount" /></strong>
+							<span>动态</span></li>
+					</ul>
+				</div>
 			</div>
-			<!-- Right部分 -->
-			<div id="right">
-				<iframe id="right_frame" name="right_frame" src="right.jsp"></iframe> 
+			<!-- middle部分 -->
+			<div id="middle">
+				<iframe frameborder="0" id="middle_frame" name="middle_frame"
+					src="main.jsp"></iframe>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="main.jsp" target="middle_frame"><s:property
+								value="#session.friend.username" />的主页</a></li>
+					<li><a id="blogA" href="showBlogAction"
+						target="middle_frame"><s:property
+								value="#session.friend.username" />的博文</a></li>
+					<li><a><s:property value="#session.friend.username" />的动态</a></li>
+					<li><a href="showBoardAction" target="middle_frame"><s:property
+								value="#session.friend.username" />的留言板</a></li>
+					<li><s:a id="personA" action="infoAction"
+							target="middle_frame">
+							<s:property value="#session.friend.username" />的档案</s:a></li>
+					<li><a id="logOffA" href="logOffAction" target="_parent">
+							<span>注销</span>
+					</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>

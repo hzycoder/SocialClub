@@ -16,20 +16,32 @@ public class RefreshUC {
 	@Resource
 	LoginService logSrv;
 	@Resource
-	FriendService friednSrv; 
+	FriendService friednSrv;
 	@Resource
 	BlogService blogSrv;
 	@Resource
 	BoardService boardSrv;
-	public UserCount refreshUC(){
+
+	public UserCount refreshUC() {
 		ActionContext ac = ActionContext.getContext();
-		TUser user = (TUser) ac.getSession().get("user");
-		uc.setFriendCount(friednSrv.friendCount(user.getUserId()));
-		uc.setBlogCount(blogSrv.blogRows(user.getUserId()));
-		uc.setMessageCount(boardSrv.gerRows());
-		uc.setActCount(0);
-		ac.getSession().put("uc", uc);
-		return uc;
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			TUser friend = (TUser) ac.getSession().get("friend");
+			uc.setFriendCount(friednSrv.friendCount(friend.getUserId()));
+			uc.setBlogCount(blogSrv.blogRows(friend.getUserId()));
+			uc.setMessageCount(boardSrv.gerRows());
+			uc.setActCount(0);
+			ac.getSession().put("uc", uc);
+			return uc;
+		} else {
+			TUser user = (TUser) ac.getSession().get("user");
+			uc.setFriendCount(friednSrv.friendCount(user.getUserId()));
+			uc.setBlogCount(blogSrv.blogRows(user.getUserId()));
+			uc.setMessageCount(boardSrv.gerRows());
+			uc.setActCount(0);
+			ac.getSession().put("uc", uc);
+			return uc;
+		}
+
 	}
 
 }

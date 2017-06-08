@@ -108,11 +108,16 @@ public class infoAction extends ActionSupport {
 
 	public String execute() {
 		ActionContext ac = ActionContext.getContext();
-		user = (TUser) ac.getSession().get("user");
-		System.out.println("user:" + user.getUserId());
 		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 		infoDao ifd = (infoDao) cxt.getBean("infoDao");
-		userList = ifd.searchUser(user);
+		
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			TUser friend = (TUser) ac.getSession().get("friend");
+			userList = ifd.searchUser(friend);
+		} else {
+			TUser user = (TUser) ac.getSession().get("user");
+			userList = ifd.searchUser(user);
+		}
 		return SUCCESS;
 	}
 
@@ -120,11 +125,19 @@ public class infoAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 		infoDao ifd = (infoDao) cxt.getBean("infoDao");
-		TUser flag = (TUser) ac.getSession().get("user");
-		user.setUsername(flag.getUsername());
-		System.out.println("petname" + user.getPetname() + user.getBirthday());
-		ifd.updateUser(user);
-		ac.getSession().put("user", user);
+
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			TUser friend = (TUser) ac.getSession().get("friend");
+			user.setUsername(friend.getUsername());
+			ifd.updateUser(user);
+			ac.getSession().put("friend", user);
+		} else {
+			TUser nowTUser = (TUser) ac.getSession().get("user");
+			user.setUsername(nowTUser.getUsername());
+			ifd.updateUser(user);
+			ac.getSession().put("user", user);
+		}
+		
 		return "update";
 	}
 
@@ -132,16 +145,20 @@ public class infoAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 		infoDao ifd = (infoDao) cxt.getBean("infoDao");
-		user = (TUser) ac.getSession().get("user");
-
+		
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			user = (TUser) ac.getSession().get("friend");
+		} else {
+			 user = (TUser) ac.getSession().get("user");
+		}
+		
 		String userPath = ServletActionContext.getServletContext().getRealPath(this.getSavePath()) + "\\"
 				+ user.getUsername();
 		String path = userPath + "\\" + this.getUploadFileName();
-		System.out.println("----------path-----");
-		System.out.println(path);
-		System.out.println(this.getUploadFileName());
-		System.out.println("----------path-----");
-
+//		System.out.println("----------path-----");
+//		System.out.println(path);
+//		System.out.println(this.getUploadFileName());
+//		System.out.println("----------path-----");
 		File f = new File(userPath);
 		if (!f.exists() && !f.isDirectory()) {
 			System.out.println("文件夹不存在");
@@ -155,14 +172,18 @@ public class infoAction extends ActionSupport {
 			System.out.println("已创建");
 		}
 		File target = new File(path);
-
-		System.out.println(this.upload + this.uploadContentType + this.uploadFileName);
+//		System.out.println(this.upload + this.uploadContentType + this.uploadFileName);
 		copy(this.upload, target);
 		if (this.getUploadFileName() != null) {//防止不上传文件就提交
 			user.setUPicture(this.getUploadFileName());
 		}
 		ifd.updatePhoto(user);
-		ac.getSession().put("user", user);
+		
+		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
+			ac.getSession().put("friend", user);
+		} else {
+			ac.getSession().put("user", user);
+		}
 		return "photo";
 	}
 }

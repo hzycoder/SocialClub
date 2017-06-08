@@ -33,9 +33,9 @@
 }
 
 #message {
-padding-top:30px;
-	display:block;
-	margin-top:40px;
+	padding-top: 30px;
+	display: block;
+	margin-top: 40px;
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -43,13 +43,14 @@ padding-top:30px;
 }
 
 form {
+	width:100%;
 	margin: 20px;
 	background: none;
 }
 
 textarea {
 	background: none;
-	width: 100%;
+	width: 280%;
 	height: 200px;
 	margin: 0 auto;
 }
@@ -83,16 +84,17 @@ li {
 }
 
 ul {
-	width:90%;
-	height:110px;
+	width: 90%;
+	height: 110px;
 	list-style-type: none;
 	border-bottom: 1px dotted black;
 	padding-bottom: 5px;
 }
 
 #page {
-display:block;
-margin:10px 0 ;
+	display: block;
+	margin: 10px 0;
+	margin-right:80px;
 	float: right;
 }
 </style>

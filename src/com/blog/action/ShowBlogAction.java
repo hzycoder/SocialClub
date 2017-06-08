@@ -150,7 +150,6 @@ public class ShowBlogAction extends ActionSupport {
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
 			blogShowLists = blogSrv.researchBlog(user.getUserId(), maxResult, (pageIndex - 1) * maxResult);
-			
 		}
 		ruc.refreshUC();
 		return SUCCESS;
