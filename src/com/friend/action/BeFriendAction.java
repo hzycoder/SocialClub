@@ -18,7 +18,8 @@ public class BeFriendAction extends ActionSupport {
 	private TUser user; // 自己
 	private TUser friendUser;// 朋友
 	private String friendString; // 用于查找用户的username
-	private List<FriendsInfo> friInfoList;// 存放朋友列表
+	private List<FriendsInfo> friInfoList;// 存放已关注的朋友列表
+	private List<FriendsInfo> friInfoList1;// 存放被朋友关注列表
 	@Resource
 	private List<TUser> userList;// 存放通过搜索找到的用户
 	@Resource
@@ -42,20 +43,41 @@ public class BeFriendAction extends ActionSupport {
 		this.friendString = friendString;
 	}
 
+	public List<FriendsInfo> getFriInfoList() {
+		return friInfoList;
+	}
+
+	public void setFriInfoList(List<FriendsInfo> friInfoList) {
+		this.friInfoList = friInfoList;
+	}
+
+	public List<FriendsInfo> getFriInfoList1() {
+		return friInfoList1;
+	}
+
+	public void setFriInfoList1(List<FriendsInfo> friInfoList1) {
+		this.friInfoList1 = friInfoList1;
+	}
+
 	public String execute() throws Exception {// 默认方法用于显示好友列表
 		System.out.println("EXECVUTTTTTTT");
 		ActionContext ac = ActionContext.getContext();
 		friInfoList = friendSrv.searchFriendList();
-		for (int i = 0; i < friInfoList.size(); i++) {
-			System.out.println("friendsList::::::::::::::" + friInfoList.get(i).getUsername());
+		friInfoList1=friendSrv.searchFriendlist1();
+		for (int i = 0; i < friInfoList1.size(); i++) {
+			System.out.println("friendsList::::::::::::::" + friInfoList1.get(i).getUsername());
 		}
 		ac.getSession().put("friInfoList", friInfoList);
+		ac.getSession().put("friInfoList1", friInfoList1);
 
+		
+		
 		return SUCCESS;
+		
+		
+		
 	}
 	public String friendCount(){ //查询好友数量
-		
-		
 		return SUCCESS;
 	}
 	public String beFriend() throws Exception { // 添加好友

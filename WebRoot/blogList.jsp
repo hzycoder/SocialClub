@@ -93,28 +93,24 @@ h3 {
 }
 </style>
 <script type="text/javascript">
-	function filter() {
+function filter() {
 		var result = document.getElementById("blogList").innerHTML;
 		result = result.replace(/!y9_!/g, "");
 		document.getElementById("blogList").innerHTML = result;
 	}
 </script>
 </head>
-
 <body onload="filter()">
-
 		<div id="blogList">
 			<span style="color:gray;float:left:display:block;">所有博文(<s:property
 					value="#session.uc.blogCount" />)
 			</span>
 			<s:if test="#session.friend!=null">
-
 			</s:if>
 			<s:else>
 				<input type="button" value="写新的文章"
 					onclick="window.location.href='blogEdit.jsp'">
 			</s:else>
-
 			<div id="research">
 				<s:form action="showBlogAction!research" method="post" namespace="/">
 					<s:textfield name="researchKey" label="搜索" placeholder="输入文章关键字" />

@@ -28,7 +28,7 @@
 	<bean id="fFriendsID" class="com.friend.domain.TFriendsId"></bean>
 	<bean id="friendUser" class="com.domain.TUser"></bean>
 	<bean id="uc" class="com.domain.UserCount"></bean>
-
+	<bean id="tdaily" class="com.daily.domain.TDaily"></bean>
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
@@ -36,17 +36,19 @@
 	<bean id="friendDao" class="com.friend.dao.FriendDaoImpl"></bean>
 	<bean id="boardDao" class="com.board.dao.BoardDaoImpl"></bean>
 	<bean id="infoDao" class="com.info.dao.infoDaoImpl"></bean>
+	<bean id="dailyDao" class="com.daily.dao.DailyDaoImpl"></bean>
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
 	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
 	<bean id="blogSrv" class="com.blog.service.BlogServiceImpl"></bean>
 	<bean id="friendSrv" class="com.friend.service.FriendServiceImpl"></bean>
 	<bean id="boardSrv" class="com.board.service.BoardServiceImpl"></bean>
-
+	<bean id="dailySrv" class="com.daily.service.DailyServiceImpl"></bean>
 	<!-- 配置Action层 -->
 	<bean id="loginAction" class="com.action.LoginAction" scope="prototype"></bean>
 	<bean id="regAction" class="com.action.RegisterAction" scope="prototype"></bean>
-
+	<bean id="deleteDailyAction" class="com.daily.action.DeleteDailyAction"></bean>
+	<bean id="showDailyAction" class="com.daily.action.ShowDailyAction"></bean>
 
 	<bean id="logOffAction" class="com.action.LogOffAction" scope="prototype"></bean>
 	<bean id="showBlogAction" class="com.blog.action.ShowBlogAction"

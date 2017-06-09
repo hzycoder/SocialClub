@@ -41,4 +41,9 @@ public class FriendServiceImpl implements FriendService {
 		return friendDao.friendCount(userID);
 	}
 
+	@Override
+	public List searchFriendlist1() {
+		return friendDao.searchFriendList1();
+	}
+
 }

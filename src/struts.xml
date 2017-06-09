@@ -64,6 +64,21 @@
 		<action name="recheckAction" class="com.info.action.infoAction">
 			<result name="success">/modifyInfo.jsp</result>
 		</action>
+		
+		<!-- 朋友圈 -->
+		<action name="subDailyAction" class="com.daily.action.SubmitDailyAction">
+			<result name="success">/daily.jsp</result>
+			<result name="input">/daily.jsp</result>
+		</action>
+		
+		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
+		<result name="success">/daily.jsp</result>
+		<result name="input">/daily.jsp</result>
+		</action>
+		
+		<action name="deleteDailyAction" class="com.daily.action.DeleteDailyAction">
+			<result name="success">/daily.jsp</result>
+		</action>
 	</package>
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>

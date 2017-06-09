@@ -27,7 +27,8 @@ public class FriendDaoImpl implements FriendDao {
 	private SessionFactory sessionFactory;
 	@Resource
 	TUser friendUser;
-	List<TFriends> friendList; // 好友表List
+	List<TFriends> friendList; // 关注好友表List
+	List<TFriends> friendList1; // 被关注好友表List
 	TUser user;
 
 	@Override
@@ -73,6 +74,42 @@ public class FriendDaoImpl implements FriendDao {
 	}
 
 	@Override
+	public List searchFriendList1() { // 用于搜索用户（根据用户名）
+		List<FriendsInfo> friInfoList1 = new ArrayList<FriendsInfo>();
+		String uPicture;
+		Date date = new Date();
+		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
+		user = (TUser) ac.getSession().get("user");
+		friendList1 = sessionFactory.getCurrentSession().createQuery("from TFriends where friendID=?")
+				.setParameter(0, user.getUserId()).list();// 查询朋友列表
+
+		if (friendList1 != null && !friendList1.isEmpty()) {
+			for (int i = 0; i < friendList1.size(); i++) { // 递归查询朋友列表中每一个朋友的信息转化为user存入userList中
+				FriendsInfo friInfo = new FriendsInfo();
+				/* name获取用户名 */
+				String name = sessionFactory.getCurrentSession()
+						.createQuery("select username from TUser where userID=?")
+						.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult().toString();
+				/* uPicture获取头像 */
+				if (sessionFactory.getCurrentSession().createQuery("select UPicture from TUser where userID=?")
+						.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult() == null) {
+					uPicture = null;
+				} else
+					uPicture = sessionFactory.getCurrentSession()
+							.createQuery("select UPicture from TUser where userID=?")
+							.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult().toString();
+				long mm = (date.getTime()) - (friendList1.get(i).getFriendsAddTime().getTime());
+				int day = (int) (mm / (1000 * 60 * 60 * 24));
+				friInfo.setFriendTime(day);
+				friInfo.setUsername(name);
+				friInfo.setUPicture(uPicture);
+				friInfoList1.add(friInfo);
+			}
+		}
+		return friInfoList1;
+	}
+
+	@Override
 	public List searchFriend(String friendString) { // 用于搜索用户（根据用户名）
 		try {
 			userList = sessionFactory.getCurrentSession().createQuery("from TUser where username=?")
@@ -83,7 +120,8 @@ public class FriendDaoImpl implements FriendDao {
 		ActionContext ac = ActionContext.getContext();// 获取当前已登录用户的信息
 		user = (TUser) ac.getSession().get("user");
 		if (sessionFactory.getCurrentSession().createQuery("from TFriends where userID=? and friendID=?")
-				.setParameter(0, user.getUserId()).setParameter(1, userList.get(0).getUserId()).uniqueResult()!=null) {
+				.setParameter(0, user.getUserId()).setParameter(1, userList.get(0).getUserId())
+				.uniqueResult() != null) {
 			ac.getSession().put("friendFlag", 1);
 			return userList;
 		}
@@ -101,7 +139,7 @@ public class FriendDaoImpl implements FriendDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		fFriendsID.setFriendId(friendUser.getUserId());// 设置friends主键
 		fFriendsID.setUserId(user.getUserId()); //
 		Date date = new Date();
@@ -148,7 +186,7 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	public Integer friendCount(int userID) {
 		long l;
-		l = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from TFriends where userID=?")
+		l = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from TFriends where friendID=?")
 				.setParameter(0, userID).uniqueResult();
 		int friendCount = (int) l;
 		return friendCount;

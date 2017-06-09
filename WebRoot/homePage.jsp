@@ -21,31 +21,8 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var speed = 200;
-		$("#show").click(function(event) {
-			event.stopPropagation();
-			var offset = $(event.target).offset();
-			$("#divpop").css({
-				top : offset.top + $(event.target).top + "px",
-				right : $(window).width() - offset.left
-			})
-			$("#divpop").toggle(speed);
-			$(document).click(function(event) {
-				$("#divpop").hide(speed);
-			})
-		})
-	})
-	function deleteConfirm(userName) {
-		if (confirm("你确定要删除该好友" + userName + "吗？")) {
-			document.getElementById("deleteFriendFrom").action = "beFriendAction!deleteFriend?friendString=" + userName;
-			document.getElementById("deleteFriendFrom").submit();
-		}
-	}
-</script>
+
+
 <style type="text/css">
 #contain {
 	margin: 0 auto;
@@ -161,7 +138,7 @@
 #middle {
 	float: left;
 	width: 58%;
-	height: inherit;
+	height: 100%;
 	border-left: 1px solid #91d3ba;
 	border-right: 1px solid #60a7ba;
 	border-top: none;
@@ -298,13 +275,55 @@ ula {
 	background: linear-gradient(top, #e4e8ec, #e4e8ec)
 }
 </style>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.1.min.js">
+	</script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		var speed = 200;
+		$("#show").click(function(event) {
+			event.stopPropagation();
+			var offset = $(event.target).offset();
+			$("#divpop").css({
+				top : offset.top + $(event.target).top + "px",
+				right : $(window).width() - offset.left
+			})
+			$("#divpop").toggle(speed);
+			$(document).click(function(event) {
+				$("#divpop").hide(speed);
+			})
+		})
+	})
+	function deleteConfirm(userName) {
+		if (confirm("你确定要取消关注" + userName + "吗？")) {
+			document.getElementById("deleteFriendFrom").action = "beFriendAction!deleteFriend?friendString=" + userName;
+			document.getElementById("deleteFriendFrom").submit();
+		}
+	}
 	window.onload = function jump() {
 		var ref = document.referrer;
 		if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
 			document.getElementById("blogA").click();
+		}
+	}
+	function openShutManager(oSourceObj, oTargetObj, shutAble, oOpenTip, oShutTip) {
+		var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
+		var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+		var openTip = oOpenTip || "";
+		var shutTip = oShutTip || "";
+		if (targetObj.style.display != "none") {
+			if (shutAble) return;
+			targetObj.style.display = "none";
+			if (openTip && shutTip) {
+				sourceObj.innerHTML = shutTip;
+			}
+		} else {
+			targetObj.style.display = "block";
+			if (openTip && shutTip) {
+				sourceObj.innerHTML = openTip;
+			}
 		}
 	}
 </script>
@@ -323,8 +342,12 @@ ula {
 	">
 		<s:action name="beFriendAction" namespace="/"></s:action>
 		 <a href="findFriend.jsp" target="middle_frame"><img
-			src="image/timg.jpg" width="25px" height="25px"></a>搜索好友         
-		<div style="text-align: center;">
+			src="image/timg.jpg" width="25px" height="25px"></a>搜索好友    
+
+		<button
+			onclick="openShutManager(this,'follow',false,'我关注的#关闭','我关注的#展开')">我关注的#关闭</button>
+		<!-- 关注好友列表 -->
+		<div id="follow" style="text-align: center;">
 			<s:iterator value="#session.friInfoList">
 				<li><s:if test="UPicture==null">
 						<div class="headpic">
@@ -348,11 +371,48 @@ ula {
 					</div>
 					<div>
 						<form id="deleteFriendFrom" action="" method="post"></form>
-						<input type="button" value="删除好友"
+						<input type="button" value="取消关注"
 							onclick="deleteConfirm('<s:property value='username'/>')">
 					</div></li>
 			</s:iterator>
 		</div>
+		<!-- 关注好友列表 -->
+		   
+		<!-- 被关注列表 -->
+		   
+		<button
+			onclick="openShutManager(this,'followed',false,'关注我的#关闭','关注我的#展开')">关注我的#关闭</button>
+		<div id="followed" style="text-align: center;">
+			<s:iterator value="#session.friInfoList1">
+				<li><s:if test="UPicture==null">
+						<div class="headpic">
+							<img src="upload/defalut.jpg" width="45px" height="45px" />
+						</div>
+					</s:if> <s:else>
+						<div class="headpic">
+							<img
+								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+								width="45px" height="45px" />
+						</div>
+					</s:else>
+					<div class="name" id="friendName">
+						<a href="friAction?friendName=<s:property value='username'/>"
+							target="_top"><s:property value="username"></s:property></a>
+					</div>
+					<div class="day">
+						ta关注你已经：
+						<s:property value="friendTime"></s:property>
+						天
+					</div>
+					<div>
+						<form id="deleteFriendFrom" action="" method="post"></form>
+						<input type="button" value="取消关注"
+							onclick="deleteConfirm('<s:property value='username'/>')">
+					</div></li>
+			</s:iterator>
+		</div>
+		<!-- 被关注列表 -->
+		   
 	</div>
 	<!-- 悬浮好友列表 -->
 	<s:action name="clearFriAction" namespace="/"></s:action>
@@ -384,7 +444,7 @@ ula {
 				<div id="left_num">
 					<ul id="ula">
 						<li><strong><s:property
-									value="#session.uc.friendCount" /></strong> <span>好友</span></li>
+									value="#session.uc.friendCount" /></strong> <span>粉丝</span></li>
 						<li><strong><s:property
 									value="#session.uc.blogCount" /></strong> <span>博文</span></li>
 						<li><strong><s:property
@@ -404,7 +464,7 @@ ula {
 					<li><a href="main.jsp" target="middle_frame">主页</a></li>
 					<li><a id="blogA" href="clearFriAction?type=1"
 						target="middle_frame">博文</a></li>
-					<li><a>个人动态</a></li>
+					<li><a id="daily" href="daily.jsp" target="middle_frame">个人动态</a></li>
 					<li><a href="clearFriAction?type=3" target="middle_frame">留言板</a>
 					</li>
 					<li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li>

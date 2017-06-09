@@ -125,9 +125,7 @@ h2 {
 							type="button" value="删除博文"></a></li>
 				</s:else>
 			</ul>
-
 		</div>
-
 		<div id="time">
 			<s:property value="#blog.blogTime" />
 		</div>

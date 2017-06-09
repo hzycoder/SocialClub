@@ -49,7 +49,8 @@ select u_picture from t_user where userID=102
 select * from t_user
 select * from t_friends
 
-
+select * from t_friends where userID=101
+select * from t_friends where friendID=101
 select * from blog_list
 
 select * from notice
