@@ -2,6 +2,7 @@ package com.blog.dao;
 
 import java.util.List;
 
+import com.blog.domain.BlogComment;
 import com.blog.domain.BlogList;
 
 public interface BlogDao {
@@ -11,5 +12,5 @@ public interface BlogDao {
 	public List research(String researchKey);
 	public int blogRows(int id);
 	public void deleteBlog(int blogId);
-
+	public Integer comment(BlogComment blogComment);
 }

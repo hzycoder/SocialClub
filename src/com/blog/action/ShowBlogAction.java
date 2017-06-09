@@ -1,12 +1,9 @@
 package com.blog.action;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.blog.dao.BlogDao;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
 import com.blog.service.BlogService;
@@ -25,10 +22,11 @@ public class ShowBlogAction extends ActionSupport {
 	private String contentString;
 	private String timeString;
 	private String researchKey;
+	private String commentDetail;
 	@Resource
 	List<BlogShow> blogShowLists;
-	@Resource
-	List<BlogShow> blogShowLists1;// 显示搜索出博文
+	// @Resource
+	// List<BlogShow> blogShowLists1;// 显示搜索出博文
 	@Resource
 	BlogList blogList;
 	@Resource
@@ -36,16 +34,24 @@ public class ShowBlogAction extends ActionSupport {
 	@Resource
 	RefreshUC ruc;
 
-	public List<BlogShow> getBlogShowLists1() {
-		return blogShowLists1;
-	}
-
-	public void setBlogShowLists1(List<BlogShow> blogShowLists1) {
-		this.blogShowLists1 = blogShowLists1;
-	}
+	// public List<BlogShow> getBlogShowLists1() {
+	// return blogShowLists1;
+	// }
+	//
+	// public void setBlogShowLists1(List<BlogShow> blogShowLists1) {
+	// this.blogShowLists1 = blogShowLists1;
+	// }
 
 	public String getResearchKey() {
 		return researchKey;
+	}
+
+	public String getCommentDetail() {
+		return commentDetail;
+	}
+
+	public void setCommentDetail(String commentDetail) {
+		this.commentDetail = commentDetail;
 	}
 
 	public void setResearchKey(String researchKey) {
@@ -109,8 +115,6 @@ public class ShowBlogAction extends ActionSupport {
 	}
 
 	public String showContent() { // 跳转到内容
-		System.out.println("showcontentshowcontentshowcontent");
-		System.out.println(blogId);
 		blogShowLists = blogSrv.research(blogId);
 		return "blogCotent";
 	}
@@ -130,7 +134,6 @@ public class ShowBlogAction extends ActionSupport {
 			rows = blogSrv.blogRows(user.getUserId());
 		}
 
-		System.out.println("rows===" + rows);
 		if (rows % maxResult == 0) {// 算出总页数
 			pageCount = rows / maxResult;
 		} else {
@@ -151,19 +154,27 @@ public class ShowBlogAction extends ActionSupport {
 		}
 		ruc.refreshUC();
 		return SUCCESS;
+	}
 
+	public String comment() {//评论
+		System.out.println("comment-------------");
+		ActionContext ac = ActionContext.getContext();
+		TUser user = (TUser) ac.getSession().get("user");
+		System.out.println("commentcommentcommentcomment");
+		System.out.println(blogId+"  "+commentDetail);
+		System.out.println("commentcommentcommentcomment");
+		blogSrv.comment(user, blogId, commentDetail);
+		return "comment";
 	}
 
 	public String research() {
-		blogShowLists1 = blogSrv.research(researchKey);
+		blogShowLists = blogSrv.research(researchKey);
 		return "research";
 	}
 
 	public String submitBlog() {
 		ActionContext ac = ActionContext.getContext();
-
 		blogList.setContent(titleString + "|_z!5)" + contentString);
-
 		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");

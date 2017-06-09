@@ -36,6 +36,7 @@
 <body>
 	<div id="index1">
 		<s:property value="#session.LOGFAILE"></s:property>
+		
 		<s:form action="logAction" method="post" namespace="/" theme="simple">
 			<br>
 			<br>

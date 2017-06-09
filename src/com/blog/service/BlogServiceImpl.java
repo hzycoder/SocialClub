@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.transaction.annotation.Transactional;
 import com.blog.dao.BlogDao;
+import com.blog.domain.BlogComment;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
 import com.domain.TUser;
@@ -22,6 +23,8 @@ public class BlogServiceImpl implements BlogService {
 	BlogDao blogDao;
 	@Resource
 	ChangeBlogShowFormat cbsf;
+	@Resource
+	BlogComment blogComment;
 
 	@Override
 	public Integer insertBlog(BlogList blogList) {
@@ -71,6 +74,20 @@ public class BlogServiceImpl implements BlogService {
 	public List<BlogShow> research(Integer blogID) {
 		blogLists = blogDao.research(blogID);
 		return cbsf.change(blogLists);
+	}
+
+	@Override
+	public Integer comment(TUser user, int blogID,String commentDetail) {
+		
+		blogLists = blogDao.research(blogID);
+		blogComment.setBlogList(blogLists.get(0));
+		blogComment.setTUser(user);
+		blogComment.setCommentDetail(commentDetail);
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		blogComment.setCommentTime(timestamp);
+		
+		return blogDao.comment(blogComment);
 	}
 
 }

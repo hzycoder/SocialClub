@@ -35,6 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   电&nbsp;&nbsp;话：<s:textfield name="user.phone" value="%{#user.phone}"></s:textfield></br>
   <s:submit ></s:submit>
     </s:form>
+    <s:if test="hasFieldError"></s:if>
+			<s:fielderror/>
     </s:iterator>
     </center>
   </body>

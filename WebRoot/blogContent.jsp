@@ -130,8 +130,23 @@ h2 {
 			<s:property value="#blog.blogTime" />
 		</div>
 		<div id="content">
-			<pre><s:property value="#blog.content" /></pre>
+			<pre>
+				<s:property value="#blog.content" />
+			</pre>
 		</div>
+		<div id="commentList"></div>
+
+		<div id="commentArea">
+			<span>评论：</span>
+			<s:form
+				action="showBlogAction!comment"
+				method="post">
+				<s:textarea name="commentDetail" label="评论" />
+				<input type="hidden" name="blogId" value=<s:property value="#blog.blogId" />>
+				<s:submit value="评论"></s:submit>
+			</s:form>
+		</div>
+
 	</s:iterator>
 </body>
 </html>

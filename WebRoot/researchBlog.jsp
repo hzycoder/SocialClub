@@ -75,7 +75,7 @@ h3 {
 <body>
 	<div id="blogList">
 		<ul>
-			<s:iterator value="blogShowLists1" var="blog">
+			<s:iterator value="blogShowLists" var="blog">
 				<li>
 					<!-- 博文标题 -->
 					<div id="blogTitle">
@@ -94,7 +94,7 @@ h3 {
 					</div>
 					<div style="margin-top: 8px;">
 						<a style="font-size: 12px;"
-							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>">阅读全文>>
+							href="showBlogAction!showContent?titleString=<s:property value="title"/>&contentString=<s:property value="content"/>&timeString=<s:date name="#blog.blogTime" />&blogId=<s:property value="#blog.blogId" />">阅读全文>>
 						</a>
 					</div>
 				</li>

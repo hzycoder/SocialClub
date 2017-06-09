@@ -338,7 +338,7 @@ ula {
 	</div>
 	<div id="divpop"
 		style="background-color: #f0f0f0; border: solid 1px #000000; position: fixed; display: none;
-	width: 300px;height: 100%; 
+	width: 300px;height: 100%;overflow: scroll;  
 	">
 		<s:action name="beFriendAction" namespace="/"></s:action>
 		 <a href="findFriend.jsp" target="middle_frame"><img

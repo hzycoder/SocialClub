@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
+import com.blog.domain.BlogComment;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
+import com.domain.TUser;
 
 public class BlogDaoImpl implements BlogDao {
 	@Resource
@@ -70,5 +72,17 @@ public class BlogDaoImpl implements BlogDao {
 		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where blogID=?").setParameter(0, blogID).list();
 		
 		return blogLists;
+	}
+
+	@Override
+	public Integer comment(BlogComment blogComment) {
+		Integer id = null;
+		try {
+			id = (Integer) sessionFactory.getCurrentSession().save(blogComment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sessionFactory.close();
+		return id;
 	}
 }

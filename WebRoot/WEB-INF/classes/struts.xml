@@ -23,7 +23,8 @@
 			<result name="submitSuccess" >/modifySuccess.jsp</result>
 			<result name="submitFaile" type="chain">showBlogAction</result>
 			<result name="research">/researchBlog.jsp</result>
-		</action>
+			<result name="comment">/blogContent.jsp</result>
+		</action> 
 
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/modifySuccess.jsp</result>

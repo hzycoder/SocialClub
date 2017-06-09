@@ -56,7 +56,7 @@
             <key>
                 <column name="userID" />
             </key>
-            <one-to-many class="com.domain.BlogComment" />
+            <one-to-many class="com.blog.domain.BlogComment" />
         </set>
         <set name="TFriendses" inverse="true">
             <key>

@@ -29,6 +29,7 @@
 	<bean id="friendUser" class="com.domain.TUser"></bean>
 	<bean id="uc" class="com.domain.UserCount"></bean>
 	<bean id="tdaily" class="com.daily.domain.TDaily"></bean>
+	<bean id="blogComment" class="com.blog.domain.BlogComment"></bean>
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
