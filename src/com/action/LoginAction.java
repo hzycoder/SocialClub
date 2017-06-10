@@ -33,7 +33,6 @@ public class LoginAction extends ActionSupport {
 	public void setFriendString(String friendString) {
 		this.friendString = friendString;
 	}
-	
 
 	public UserCount getUc() {
 		return uc;
@@ -53,6 +52,11 @@ public class LoginAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		ruc.refreshUC();// 刷新用户博文、好友等数量
+		return SUCCESS;
+	}
+
+	public String login() {
 		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
 		ac.getSession().remove("LOGFAILE");
@@ -60,12 +64,13 @@ public class LoginAction extends ActionSupport {
 		if (userList != null && !userList.isEmpty()) {
 			user = userList.get(0);
 			ac.getSession().put("user", user);
-			uc = ruc.refreshUC();//刷新用户博文、好友等数量
+			ruc.refreshUC();// 刷新用户博文、好友等数量
 			return SUCCESS;
 		} else {
 			ac.getSession().put("LOGFAILE", "用户名或密码错误");
 			return INPUT;
 		}
+
 	}
 
 }

@@ -14,6 +14,13 @@
 		<action name="logOffAction" class="logOffAction">
 			<result name="login">/login.jsp</result>
 		</action>
+		
+		<action name="noticeAction" class="noticeAction">
+		<result name="success">/notice.jsp</result>
+		<result name="input">/notice.jsp</result>
+		<result name="detail">/showNoticeDetail.jsp</result>
+		</action>
+		
 		<!-- 查询博文Action -->
 		<action name="showBlogAction" class="showBlogAction">
 			<result name="success">/blogList.jsp</result>
@@ -65,11 +72,13 @@
 		<action name="infoAction" class="com.info.action.infoAction">
 			<param name="savePath">/upload</param>
 			<result name="success">/personalInfo.jsp</result>
+			<result name="input">/modifyInfo.jsp</result>
 			<result name="update">/modifySuccess.jsp</result>
 			<result name="photo">/modifySuccess.jsp</result>
 		</action>
 		<action name="recheckAction" class="com.info.action.infoAction">
 			<result name="success">/modifyInfo.jsp</result>
+			<result name="input">/modifyInfo.jsp</result>
 		</action>
 
 		<!-- 朋友圈 -->

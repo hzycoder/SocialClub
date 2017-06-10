@@ -5,6 +5,16 @@ public class UserCount implements java.io.Serializable {
 	private int blogCount;
 	private int actCount;
 	private int messageCount;
+	private int unreadNotice;
+
+	
+	public int getUnreadNotice() {
+		return unreadNotice;
+	}
+
+	public void setUnreadNotice(int unreadNotice) {
+		this.unreadNotice = unreadNotice;
+	}
 
 	public int getFriendCount() {
 		return friendCount;
@@ -42,12 +52,15 @@ public class UserCount implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserCount(int friendCount, int blogCount, int actCount, int messageCount) {
+	public UserCount(int friendCount, int blogCount, int actCount, int messageCount, int unreadNotice) {
 		super();
 		this.friendCount = friendCount;
 		this.blogCount = blogCount;
 		this.actCount = actCount;
 		this.messageCount = messageCount;
+		this.unreadNotice = unreadNotice;
 	}
+
+	
 
 }

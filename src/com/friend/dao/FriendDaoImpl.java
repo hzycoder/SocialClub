@@ -29,6 +29,8 @@ public class FriendDaoImpl implements FriendDao {
 	private SessionFactory sessionFactory;
 	@Resource
 	TUser friendUser;
+	@Resource
+	private NoticeDao noticeDao;
 	List<TFriends> friendList; // 关注好友表List
 	List<TFriends> friendList1; // 被关注好友表List
 	TUser user;
@@ -154,9 +156,7 @@ public class FriendDaoImpl implements FriendDao {
 			e.printStackTrace();
 		}
 		
-
-		NoticeDao noticeDaoImpl = new NoticeDaoImpl();
-		noticeDaoImpl.addFriendNotice(friendUser);
+		noticeDao.addFriendNotice(friendUser);//发送添加好友消息
 		return 1;
 		
 		

@@ -30,6 +30,7 @@
 	<bean id="uc" class="com.domain.UserCount"></bean>
 	<bean id="tdaily" class="com.daily.domain.TDaily"></bean>
 	<bean id="blogComment" class="com.blog.domain.BlogComment"></bean>
+	<bean id="notice" class="com.domain.Notice"></bean>
 	<!-- 配置Dao层 -->
 	<bean id="loginDao" class="com.dao.LoginDaoImpl"></bean>
 	<bean id="regDao" class="com.dao.RegisterDaoImpl"></bean>
@@ -38,6 +39,7 @@
 	<bean id="boardDao" class="com.board.dao.BoardDaoImpl"></bean>
 	<bean id="infoDao" class="com.info.dao.infoDaoImpl"></bean>
 	<bean id="dailyDao" class="com.daily.dao.DailyDaoImpl"></bean>
+	<bean id="noticeDao" class="com.dao.NoticeDaoImpl"></bean>
 	<!-- 配置Service层 -->
 	<bean id="logSrv" class="com.service.LoginServiceImpl"></bean>
 	<bean id="regSrv" class="com.service.RegisterServiceImpl"></bean>
@@ -60,6 +62,7 @@
 	<bean id="clearFriAction" class="com.friend.action.ClearFriendAction"
 		scope="prototype"></bean>
 	<bean id="boardAction" class="com.board.action.BoardAction" scope="prototype"></bean>
+	<bean id="noticeAction" class="com.action.NoticeAction"></bean>
 
 	<bean id="userList" class="java.util.ArrayList"></bean>
 	<!-- 用户获取blog列表的list 注意和上面的blogList不同 -->
@@ -67,6 +70,7 @@
 	<bean id="blogShowLists" class="java.util.ArrayList"></bean>
 	<bean id="blogShowLists1" class="java.util.ArrayList"></bean>
 	<bean id="blogCommentList" class="java.util.ArrayList"></bean>
+	<bean id="noticeList" class="java.util.ArrayList"></bean>
 	<bean id="ruc" class="com.util.RefreshUC"></bean>
 	<bean id="cbsf" class="com.util.ChangeBlogShowFormat"></bean>
 </beans>

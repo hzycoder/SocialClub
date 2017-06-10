@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import com.blog.domain.BlogComment;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
+import com.dao.NoticeDao;
 import com.domain.TUser;
+import com.opensymphony.xwork2.ActionContext;
 
 public class BlogDaoImpl implements BlogDao {
 	@Resource
@@ -19,6 +21,8 @@ public class BlogDaoImpl implements BlogDao {
 	private SessionFactory sessionFactory;
 	@Resource
 	private List<BlogComment> blogCommentList;
+	@Resource
+	private NoticeDao noticeDao;
 
 	@Override
 	public Integer insertBlog(BlogList blogList) {
@@ -40,11 +44,8 @@ public class BlogDaoImpl implements BlogDao {
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);
 			blogLists = q.list();
-			// System.out.println("blogList__query" + blogLists);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			sessionFactory.close();
 		}
 		return blogLists;
 	}
@@ -88,7 +89,12 @@ public class BlogDaoImpl implements BlogDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		sessionFactory.close();
+		ActionContext ac = ActionContext.getContext();
+		if(ac.getSession().get("friend") != null){	//判断是否在评论他人博文
+			blogLists = this.research(blogComment.getBlogList().getBlogId());
+			noticeDao.blogCommentNotice(blogLists);
+		}
+		
 		return id;
 	}
 

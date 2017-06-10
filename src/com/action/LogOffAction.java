@@ -9,6 +9,7 @@ public class LogOffAction extends ActionSupport{
 	public String execute(){
 		ActionContext ac = ActionContext.getContext();
 		ac.getSession().remove("user");
+		ac.getSession().remove("uc");
 		return LOGIN;		
 	}
 

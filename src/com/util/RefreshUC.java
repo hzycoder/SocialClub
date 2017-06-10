@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import com.blog.service.BlogService;
 import com.board.service.BoardService;
+import com.dao.NoticeDao;
 import com.domain.TUser;
 import com.domain.UserCount;
 import com.friend.service.FriendService;
@@ -21,6 +22,8 @@ public class RefreshUC {
 	BlogService blogSrv;
 	@Resource
 	BoardService boardSrv;
+	@Resource
+	NoticeDao noticeDao;
 
 	public UserCount refreshUC() {
 		ActionContext ac = ActionContext.getContext();
@@ -38,6 +41,7 @@ public class RefreshUC {
 			uc.setBlogCount(blogSrv.blogRows(user.getUserId()));
 			uc.setMessageCount(boardSrv.gerRows());
 			uc.setActCount(0);
+			uc.setUnreadNotice(noticeDao.unreadNotice());
 			ac.getSession().put("uc", uc);
 			return uc;
 		}

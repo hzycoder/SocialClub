@@ -10,10 +10,10 @@
             <column name="noticeID" />
             <generator class="increment" />
         </id>
-        <many-to-one name="TUserByRecipientId" class="com.domain.TUser" fetch="select">
+        <many-to-one name="TUserByRecipientId" class="com.domain.TUser" fetch="select" lazy="false">
             <column name="recipientID" />
         </many-to-one>
-        <many-to-one name="TUserBySenderId" class="com.domain.TUser" fetch="select">
+        <many-to-one name="TUserBySenderId" class="com.domain.TUser" fetch="select"  lazy="false">
             <column name="senderID" />
         </many-to-one>
         <property name="noticeType" type="java.lang.Integer">

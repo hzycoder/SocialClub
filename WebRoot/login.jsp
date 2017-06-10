@@ -37,7 +37,7 @@
 	<div id="index1">
 		<s:property value="#session.LOGFAILE"></s:property>
 		
-		<s:form action="logAction" method="post" namespace="/" theme="simple">
+		<s:form action="logAction!login" method="post" namespace="/" theme="simple">
 			<br>
 			<br>
 		用户名：<s:textfield name="user.username" size="15" value="admin" />

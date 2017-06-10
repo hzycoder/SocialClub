@@ -93,4 +93,12 @@ public class Notice implements java.io.Serializable {
 		this.noticeTime = noticeTime;
 	}
 
+	@Override
+	public String toString() {
+		return "Notice [noticeId=" + noticeId + ", TUserByRecipientId=" + TUserByRecipientId + ", TUserBySenderId="
+				+ TUserBySenderId + ", noticeType=" + noticeType + ", noticeContent=" + noticeContent + ", noticeState="
+				+ noticeState + ", noticeTime=" + noticeTime + "]";
+	}
+
+	
 }

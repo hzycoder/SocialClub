@@ -454,14 +454,20 @@ ula {
 							<span>动态</span></li>
 					</ul>
 				</div>
-				
+
 				<div id="notice">
-				通知中心
-				<img alt="" src="image/notice.png">
+					<a href="noticeAction!showNotice" target="middle_frame">通知中心</a>
+					<s:if test="#session.uc.UnreadNotice==0">
+						<img src="image/notice.png">
+					</s:if>
+					<s:else>
+						<img title="有未读的消息" src="image/notice.gif">
+					</s:else>
+
 				</div>
-				
+
 			</div>
-			
+
 			<!-- middle部分 -->
 			<div id="middle">
 				<iframe frameborder="0" id="middle_frame" name="middle_frame"

@@ -131,6 +131,8 @@ constraint cs_noticeuserid foreign key(senderID) references t_user(userID),
 constraint cs_noticeuser foreign key(recipientID) references t_user(userID),
 )
 
+select * from notice
+
 create table board(
 messageID int primary key,--留言信息ID
 userID int,	--被留言人
