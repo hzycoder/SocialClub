@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
+import com.dao.NoticeDao;
+import com.dao.NoticeDaoImpl;
 import com.domain.TUser;
 import com.friend.domain.FriendsInfo;
 import com.friend.domain.TFriends;
@@ -146,13 +148,18 @@ public class FriendDaoImpl implements FriendDao {
 		Timestamp timestamp = new Timestamp(date.getTime());
 		tFriends.setFriendsAddTime(timestamp);// 设置添加好友时间
 		tFriends.setId(fFriendsID);
-		System.out.println("tfrienddd:" + tFriends.toString());
 		try {
 			sessionFactory.getCurrentSession().save(tFriends);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+
+		NoticeDao noticeDaoImpl = new NoticeDaoImpl();
+		noticeDaoImpl.addFriendNotice(friendUser);
 		return 1;
+		
+		
 	}
 
 	@Override

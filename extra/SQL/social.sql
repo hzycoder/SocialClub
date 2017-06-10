@@ -16,7 +16,6 @@ phone varchar(20),
 registerTime datetime
 )
 
-
 insert t_user values(100,'admin','123','2017-10-01',null,null,'狗子','社会大学','123@qq.com','888888','2016-10-01')
 
 insert t_user values(101,'jack','123','2017-10-02',null,null,'杰克','社会大学','123@qq.com','222222','2016-10-02')
@@ -89,10 +88,13 @@ blogcommentID int primary key,
 userID int,
 blogID int,
 comment_detail nvarchar(500),
-comment_time date ,
+comment_time datetime ,
 constraint cs_bloguser foreign key(userID) references t_user(userID),
 constraint cs_blogcomment foreign key(blogID) references blog_list(blogID)
 )
+
+select * from blog_comment
+
 
 create table act_list(
 userID int ,

@@ -329,6 +329,7 @@ ula {
 </script>
 </head>
 <body>
+
 	<!-- 悬浮好友列表 -->
 	<div style="right:1px;
 	top:70px;	position: fixed;">
@@ -453,7 +454,14 @@ ula {
 							<span>动态</span></li>
 					</ul>
 				</div>
+				
+				<div id="notice">
+				通知中心
+				<img alt="" src="image/notice.png">
+				</div>
+				
 			</div>
+			
 			<!-- middle部分 -->
 			<div id="middle">
 				<iframe frameborder="0" id="middle_frame" name="middle_frame"

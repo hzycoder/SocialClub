@@ -17,6 +17,8 @@ public class BlogDaoImpl implements BlogDao {
 	List<BlogList> blogLists;
 	@Resource
 	private SessionFactory sessionFactory;
+	@Resource
+	private List<BlogComment> blogCommentList;
 
 	@Override
 	public Integer insertBlog(BlogList blogList) {
@@ -33,12 +35,12 @@ public class BlogDaoImpl implements BlogDao {
 	@Override
 	public List researchBlog(Integer userID, int maxResult, int firstResult) {
 		try {
-			Query q = sessionFactory.getCurrentSession().createQuery("from BlogList where userID=? ORDER BY blogID DESC ").setParameter(0,
-					userID);
+			Query q = sessionFactory.getCurrentSession()
+					.createQuery("from BlogList where userID=? ORDER BY blogID DESC ").setParameter(0, userID);
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResult);
 			blogLists = q.list();
-//			System.out.println("blogList__query" + blogLists);
+			// System.out.println("blogList__query" + blogLists);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -51,26 +53,30 @@ public class BlogDaoImpl implements BlogDao {
 	// 查询博文总记录数
 	public int blogRows(int id) {
 		System.out.println("blogRows*------");
-		long temp = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from  BlogList where userID=?").setParameter(0, id)
-				.uniqueResult();
+		long temp = (Long) sessionFactory.getCurrentSession()
+				.createQuery("select count(*) from  BlogList where userID=?").setParameter(0, id).uniqueResult();
 		int rows = (int) temp;
 		return rows;
 	}
+
 	@Override
-	public void deleteBlog(int blogId){
-		sessionFactory.getCurrentSession().createQuery("delete from BlogList where blogID=?").setParameter(0, blogId).executeUpdate();
+	public void deleteBlog(int blogId) {
+		sessionFactory.getCurrentSession().createQuery("delete from BlogList where blogID=?").setParameter(0, blogId)
+				.executeUpdate();
 	}
 
 	@Override
 	public List research(String researchKey) {
-		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where content like ?").setString(0, "%"+researchKey+"%").list();
+		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where content like ?")
+				.setString(0, "%" + researchKey + "%").list();
 		return blogLists;
 	}
 
 	@Override
 	public List research(Integer blogID) {
-		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where blogID=?").setParameter(0, blogID).list();
-		
+		blogLists = sessionFactory.getCurrentSession().createQuery("from BlogList where blogID=?")
+				.setParameter(0, blogID).list();
+
 		return blogLists;
 	}
 
@@ -84,5 +90,21 @@ public class BlogDaoImpl implements BlogDao {
 		}
 		sessionFactory.close();
 		return id;
+	}
+
+	@Override
+	public List<BlogComment> commentList(int blogID, int maxResult, int firstResult) {
+		Query q = sessionFactory.getCurrentSession().createQuery("from BlogComment where blogID=? ORDER BY blogID DESC")
+				.setParameter(0, blogID).setFirstResult(firstResult).setMaxResults(maxResult);
+		blogCommentList = q.list();
+		return blogCommentList;
+	}
+
+	@Override
+	public Integer getCommentCount(int blogID) {
+		long temp = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from  BlogComment where blogID=?")
+				.setParameter(0, blogID).uniqueResult();
+		int rows = (int) temp;
+		return rows;
 	}
 }

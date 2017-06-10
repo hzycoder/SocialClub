@@ -66,7 +66,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public List<BlogShow> research(String researchKey) {
-		blogLists =  blogDao.research(researchKey);
+		blogLists = blogDao.research(researchKey);
 		return cbsf.change(blogLists);
 	}
 
@@ -77,8 +77,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public Integer comment(TUser user, int blogID,String commentDetail) {
-		
+	public Integer comment(TUser user, int blogID, String commentDetail) {
+
 		blogLists = blogDao.research(blogID);
 		blogComment.setBlogList(blogLists.get(0));
 		blogComment.setTUser(user);
@@ -86,8 +86,17 @@ public class BlogServiceImpl implements BlogService {
 		Date date = new Date();
 		Timestamp timestamp = new Timestamp(date.getTime());
 		blogComment.setCommentTime(timestamp);
-		
+
 		return blogDao.comment(blogComment);
 	}
 
+	@Override
+	public List<BlogComment> commentList(int blogID,int maxResult, int firstResult) {
+		return blogDao.commentList(blogID,maxResult,firstResult);
+	}
+
+	@Override
+	public Integer getCommentCount(int blogID) {
+		return blogDao.getCommentCount(blogID);
+	}
 }

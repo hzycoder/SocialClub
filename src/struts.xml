@@ -18,13 +18,18 @@
 		<action name="showBlogAction" class="showBlogAction">
 			<result name="success">/blogList.jsp</result>
 			<result name="input">/blogList.jsp</result>
-			<result name="blogCotent">/blogContent.jsp</result>
-			<result name="delete">/modifySuccess.jsp</result>			
-			<result name="submitSuccess" >/modifySuccess.jsp</result>
+			<result name="blogContent">/blogContent.jsp</result>
+			<result name="delete">/modifySuccess.jsp</result>
+			<result name="submitSuccess">/modifySuccess.jsp</result>
 			<result name="submitFaile" type="chain">showBlogAction</result>
 			<result name="research">/researchBlog.jsp</result>
-			<result name="comment">/blogContent.jsp</result>
-		</action> 
+			<result name="comment" type="chain">showBlogContentAction</result>
+		</action>
+		<action name="showBlogContentAction" class="showBlogAction"
+			method="showContent">
+			<result name="blogContent">/blogContent.jsp</result>
+		</action>
+
 
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/modifySuccess.jsp</result>
@@ -32,30 +37,31 @@
 			<result name="input">/modifySuccess.jsp</result>
 			<result name="none">/findFriend.jsp</result>
 			<result name="modysuccess">/modifySuccess.jsp</result>
-		</action>           
+		</action>
 		<action name="friAction" class="friAction">
 			<result name="success">/friendPage.jsp</result>
 		</action>
-		
-		
+
+
 		<action name="clearFriAction" class="clearFriAction">	<!-- 用于清除已访问完好友的session -->
 			<result name="success">/homePage.jsp</result>
 			<result name="blog" type="chain">showBlogAction</result>
 			<result name="board" type="chain">showBoardAction</result>
 		</action>
-		
-		
-		<action name="showBoardAction" class="boardAction" method="messageList"><!-- 因为messageList不是默认方法  用于需要返回显示留言板的时候(clearFriActin chain)的时候  -->
+
+
+		<action name="showBoardAction" class="boardAction" method="messageList"><!-- 因为messageList不是默认方法 
+				用于需要返回显示留言板的时候(clearFriActin chain)的时候 -->
 			<result name="success">/board.jsp</result>
 			<result name="input">/board.jsp</result>
 		</action>
-		
+
 		<action name="boardAction" class="boardAction">
 			<result name="success">/board.jsp</result>
 			<result name="input">/board.jsp</result>
 			<result name="leaveMessage" type="chain">showBoardAction</result>
 		</action>
-		
+
 		<action name="infoAction" class="com.info.action.infoAction">
 			<param name="savePath">/upload</param>
 			<result name="success">/personalInfo.jsp</result>
@@ -65,18 +71,18 @@
 		<action name="recheckAction" class="com.info.action.infoAction">
 			<result name="success">/modifyInfo.jsp</result>
 		</action>
-		
+
 		<!-- 朋友圈 -->
 		<action name="subDailyAction" class="com.daily.action.SubmitDailyAction">
 			<result name="success">/daily.jsp</result>
 			<result name="input">/daily.jsp</result>
 		</action>
-		
+
 		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
-		<result name="success">/daily.jsp</result>
-		<result name="input">/daily.jsp</result>
+			<result name="success">/daily.jsp</result>
+			<result name="input">/daily.jsp</result>
 		</action>
-		
+
 		<action name="deleteDailyAction" class="com.daily.action.DeleteDailyAction">
 			<result name="success">/daily.jsp</result>
 		</action>

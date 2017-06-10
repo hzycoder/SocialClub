@@ -5,9 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
-import org.omg.PortableInterceptor.ACTIVE;
-
 import com.domain.TUser;
 import com.friend.domain.FriendsInfo;
 import com.friend.service.FriendService;
@@ -63,32 +60,26 @@ public class BeFriendAction extends ActionSupport {
 		System.out.println("EXECVUTTTTTTT");
 		ActionContext ac = ActionContext.getContext();
 		friInfoList = friendSrv.searchFriendList();
-		friInfoList1=friendSrv.searchFriendlist1();
+		friInfoList1 = friendSrv.searchFriendlist1();
 		for (int i = 0; i < friInfoList1.size(); i++) {
 			System.out.println("friendsList::::::::::::::" + friInfoList1.get(i).getUsername());
 		}
 		ac.getSession().put("friInfoList", friInfoList);
 		ac.getSession().put("friInfoList1", friInfoList1);
+		return SUCCESS;
+	}
 
-		
-		
-		return SUCCESS;
-		
-		
-		
-	}
-	public String friendCount(){ //查询好友数量
+	public String friendCount() { // 查询好友数量
 		return SUCCESS;
 	}
+
 	public String beFriend() throws Exception { // 添加好友
-//		ActionContext ac = ActionContext.getContext();
-		System.out.println("BeFriendEXECUTE---");
-		System.out.println("username==now==" + friendUser.getUsername());
+		 ActionContext ac = ActionContext.getContext();
 		friendSrv.beFriend(friendUser.getUsername());
-			return "modysuccess";
+		return "modysuccess";
 	}
 
-	public String deleteFriend() throws Exception{		//删除好友
+	public String deleteFriend() throws Exception { // 删除好友
 		friendSrv.deleteFriend(friendString);
 		return "delete";
 	}

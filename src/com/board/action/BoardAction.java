@@ -64,14 +64,12 @@ public class BoardAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		ac.getSession().remove("LEAVEMESSAGESUCCESS");
 		int rows = boardSrv.gerRows();
-		System.out.println("rows===" + rows);
+		
 		if (rows % maxResult == 0) {// Ëã³ö×ÜÒ³Êý
 			pageCount = rows / maxResult;
 		} else {
 			pageCount = rows / maxResult + 1;
 		}
-		System.out.println("pageCount"+pageCount);
-		System.out.println("pageIndex" + pageIndex);
 
 		if (pageIndex < 1) {
 			pageIndex = 1;

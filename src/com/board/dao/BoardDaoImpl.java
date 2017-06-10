@@ -69,7 +69,6 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	// 查询留言板总记录数（当前查看用户）
 	public int getRows(int id) {
-		System.out.println("blogRows*------");
 		long temp = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from  Board where userID=?")
 				.setParameter(0, id).uniqueResult();
 		int rows = (int) temp;

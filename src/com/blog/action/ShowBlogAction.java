@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.blog.domain.BlogComment;
 import com.blog.domain.BlogList;
 import com.blog.domain.BlogShow;
 import com.blog.service.BlogService;
@@ -33,6 +34,8 @@ public class ShowBlogAction extends ActionSupport {
 	BlogService blogSrv;
 	@Resource
 	RefreshUC ruc;
+	@Resource
+	List<BlogComment> blogCommentList;
 
 	// public List<BlogShow> getBlogShowLists1() {
 	// return blogShowLists1;
@@ -44,6 +47,14 @@ public class ShowBlogAction extends ActionSupport {
 
 	public String getResearchKey() {
 		return researchKey;
+	}
+
+	public List<BlogComment> getBlogCommentList() {
+		return blogCommentList;
+	}
+
+	public void setBlogCommentList(List<BlogComment> blogCommentList) {
+		this.blogCommentList = blogCommentList;
 	}
 
 	public String getCommentDetail() {
@@ -114,11 +125,6 @@ public class ShowBlogAction extends ActionSupport {
 		this.pageCount = pageCount;
 	}
 
-	public String showContent() { // 跳转到内容
-		blogShowLists = blogSrv.research(blogId);
-		return "blogCotent";
-	}
-
 	@Override
 	public String execute() {
 		int rows;
@@ -156,13 +162,29 @@ public class ShowBlogAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String comment() {//评论
-		System.out.println("comment-------------");
+	public String showContent() { // 跳转到内容
+		System.out.println("showConete");
+		int rows = blogSrv.getCommentCount(blogId);
+		if (rows % maxResult == 0) {// 算出总页数
+			pageCount = rows / maxResult;
+		} else {
+			pageCount = rows / maxResult + 1;
+		}
+		if (pageIndex < 1) {
+			pageIndex = 1;
+		} else if (pageIndex > pageCount) {
+			pageIndex = pageCount;
+		}
+		System.out.println(blogId+"  "+maxResult+"  "+pageIndex+"  "+pageCount);
+		blogCommentList = blogSrv.commentList(blogId,maxResult, (pageIndex - 1) * maxResult);
+
+		blogShowLists = blogSrv.research(blogId);
+		return "blogContent";
+	}
+
+	public String comment() {// 评论
 		ActionContext ac = ActionContext.getContext();
 		TUser user = (TUser) ac.getSession().get("user");
-		System.out.println("commentcommentcommentcomment");
-		System.out.println(blogId+"  "+commentDetail);
-		System.out.println("commentcommentcommentcomment");
 		blogSrv.comment(user, blogId, commentDetail);
 		return "comment";
 	}

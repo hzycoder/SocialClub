@@ -13,7 +13,7 @@
         <many-to-one name="blogList" class="com.blog.domain.BlogList" fetch="select">
             <column name="blogID" />
         </many-to-one>
-        <many-to-one name="TUser" class="com.domain.TUser" fetch="select">
+        <many-to-one name="TUser" class="com.domain.TUser" lazy="false" fetch="select">
             <column name="userID" />
         </many-to-one>
         <property name="commentDetail" type="java.lang.String">
