@@ -1,6 +1,7 @@
 package com.daily.dao;
 import com.util.*;
 
+import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,7 +24,22 @@ public class DailyDaoImpl implements DailyDao {
 	@Resource
 	private SessionFactory sessionFactory;
 	int rows;
-
+	public List<TDaily> showmessage_recent(int start,int size){
+		List<TDaily> tdList= null;
+		try{
+			session= HibernateSessionFactory.getSession();
+			Query q=session.createQuery("from TDaily where dailyID=dailyID order by dailyID desc");
+			q.setFirstResult((start-1)*size);
+			q.setMaxResults(size);
+			tdList = q.list();
+			System.out.println("tdList"+tdList);
+		}catch(Exception e){
+		System.out.println("dodo~");	
+		}
+	
+		return tdList;
+		
+	}
 	public Integer addmessage(TDaily tdaily) {
 		Integer id = null;
 		try {

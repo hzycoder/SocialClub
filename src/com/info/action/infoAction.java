@@ -151,17 +151,12 @@ public class infoAction extends ActionSupport {
 		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 		infoDao ifd = (infoDao) cxt.getBean("infoDao");
 
-		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
-			TUser friend = (TUser) ac.getSession().get("friend");
-			user.setUsername(friend.getUsername());
-			ifd.updateUser(user);
-			ac.getSession().put("friend", user);
-		} else {
+		
 			TUser nowTUser = (TUser) ac.getSession().get("user");
 			user.setUsername(nowTUser.getUsername());
 			ifd.updateUser(user);
-			ac.getSession().put("user", user);
-		}
+			
+		
 		return "update";
 	}
 

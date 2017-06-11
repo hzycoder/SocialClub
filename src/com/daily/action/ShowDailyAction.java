@@ -1,6 +1,8 @@
 package com.daily.action;
 
 import com.blog.domain.BlogShow;
+import com.daily.dao.DailyDao;
+import com.daily.dao.DailyDaoImpl;
 import com.daily.domain.TDaily;
 import com.daily.service.DailyService;
 import com.domain.TUser;
@@ -12,6 +14,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class ShowDailyAction {
@@ -23,13 +27,23 @@ public class ShowDailyAction {
 	@Resource
 	List<TDaily> tdailys1;
 	int type;
-	
+	@Resource
+	List<TDaily> tdlist;
 	private int pageIndex = 1;
 	private int pageCount;
 	private int maxResult = 5;
 	
 	
-	
+	public String showrecent(){
+		List<TDaily> flag;
+		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+		DailyDao dd = (DailyDao) cxt.getBean("dailyDao");
+		
+		tdlist=dd.showmessage_recent(pageIndex, maxResult);
+		//tdlist.addAll(flag);
+		System.out.println("tdlist:"+tdlist);
+		return "recent";
+	}
 	public String execute(){
 		
 		ActionContext ac = ActionContext.getContext();
@@ -160,6 +174,12 @@ public class ShowDailyAction {
 
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
+	}
+	public List<TDaily> getTdlist() {
+		return tdlist;
+	}
+	public void setTdlist(List<TDaily> tdlist) {
+		this.tdlist = tdlist;
 	}
 	
 	
