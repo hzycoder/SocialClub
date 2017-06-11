@@ -21,10 +21,9 @@ public class DailyServiceImpl implements DailyService {
 	DailyDao dailyDao;
 	
 	@Override
-	public List showmessage(int f,int m) {
+	public List showmessage(TUser tuser,int f,int m) {
 		// TODO Auto-generated method stub
 		ActionContext ac = ActionContext.getContext();
-		TUser tuser = (TUser)ac.getSession().get("user");
 		return dailyDao.showmessage(tuser,f,m);
 	}
 

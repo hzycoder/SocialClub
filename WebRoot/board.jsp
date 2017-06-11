@@ -43,7 +43,7 @@
 }
 
 form {
-	width:100%;
+	width: 100%;
 	margin: 20px;
 	background: none;
 }
@@ -94,50 +94,66 @@ ul {
 #page {
 	display: block;
 	margin: 10px 0;
-	margin-right:80px;
+	margin-right: 80px;
 	float: right;
+}
+
+#nothing {
+	width:200px;
+	height:39px;
+	padding-top:30px;
+	margin:0 auto;
+	font-size: 30px;
+	font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+	
 }
 </style>
 </head>
 
 <body>
+
 	<s:property value="#session.LEAVEMESSAGESUCCESS"></s:property>
 	<div id="board">
 		<span style="color:gray;float:left:display:block;">所有留言(<s:property
 				value="#session.uc.messageCount" />)
 		</span>
-		<div id="content">
-			<s:iterator value="boardList" var="list">
+		<s:if test="%{boardList}==null">
+			<div id="nothing">这里空空如也~</div>
+		</s:if>
+		<s:else>
+			<div id="content">
+				<s:iterator value="boardList" var="list">
 
-				<ul>
-					<s:if test="UPicture==null">
-						<div id="mesPic">
-							<img src="upload/defalut.jpg" width="45px" height="45px" />
-						</div>
-					</s:if>
-					<s:else>
-						<li id="mesPic"><img
-							src="upload/<s:property value="#list.username"/>/<s:property value="#list.UPicture"/>"
-							width="45px" height="45px" /></li>
-					</s:else>
-					<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
-					<li id="mesName"><s:property value="#list.username" /></li>
-					<li id="mesTime"><s:date name="#list.messageTime" /></li>
+					<ul>
+						<s:if test="UPicture==null">
+							<div id="mesPic">
+								<img src="upload/defalut.jpg" width="45px" height="45px" />
+							</div>
+						</s:if>
+						<s:else>
+							<li id="mesPic"><img
+								src="upload/<s:property value="#list.username"/>/<s:property value="#list.UPicture"/>"
+								width="45px" height="45px" /></li>
+						</s:else>
+						<li id="mesContent">：<s:property value="#list.messageDetail" /></li>
+						<li id="mesName"><s:property value="#list.username" /></li>
+						<li id="mesTime"><s:date name="#list.messageTime" /></li>
 
-				</ul>
-			</s:iterator>
-		</div>
-		<div id="page">
-			<a href="boardAction!messageList?pageIndex=1">首页</a> <a
-				href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-			<a
-				href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-			<a
-				href="boardAction!messageList?pageIndex=<s:property value='pageCount'/>">尾页</a>
-			<s:property value="pageIndex" />
-			/
-			<s:property value="pageCount" />
-		</div>
+					</ul>
+				</s:iterator>
+			</div>
+			<div id="page">
+				<a href="boardAction!messageList?pageIndex=1">首页</a> <a
+					href="boardAction!messageList?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+				<a
+					href="boardAction!messageList?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+				<a
+					href="boardAction!messageList?pageIndex=<s:property value='pageCount'/>">尾页</a>
+				<s:property value="pageIndex" />
+				/
+				<s:property value="pageCount" />
+			</div>
+		</s:else>
 		<div id="message">
 			<s:form id="form" action="boardAction">
 				<s:textarea name="board.messageDetail" label="在此留言"></s:textarea>

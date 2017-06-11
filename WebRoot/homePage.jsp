@@ -493,14 +493,13 @@ button {
 			<!-- middle部分 -->
 			<div id="middle">
 				<iframe frameborder="0" id="middle_frame" name="middle_frame"
-					src="main.jsp"></iframe>
+					src="friends.jsp"></iframe>
 			</div>
 			<div id="menu">
 				<ul>
-					<li><a href="main.jsp" target="middle_frame">主页</a></li>
 					<li><a id="blogA" href="clearFriAction?type=1"
 						target="middle_frame">博文</a></li>
-					<li><a id="daily" href="daily.jsp" target="middle_frame">个人动态</a></li>
+					<li><a id="daily" href="showDailyAction?type=1" target="middle_frame">个人动态</a></li>
 					<li><a href="clearFriAction?type=3" target="middle_frame">留言板</a>
 					</li>
 					<li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li>

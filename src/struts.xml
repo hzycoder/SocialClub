@@ -10,17 +10,14 @@
 			<result name="success">/registerSuccess.jsp</result>
 			<result name="input">/register.jsp</result>
 		</action>
-
 		<action name="logOffAction" class="logOffAction">
 			<result name="login">/login.jsp</result>
 		</action>
-		
 		<action name="noticeAction" class="noticeAction">
-		<result name="success">/notice.jsp</result>
-		<result name="input">/notice.jsp</result>
-		<result name="detail">/showNoticeDetail.jsp</result>
+			<result name="success">/notice.jsp</result>
+			<result name="input">/notice.jsp</result>
+			<result name="detail">/showNoticeDetail.jsp</result>
 		</action>
-		
 		<!-- 查询博文Action -->
 		<action name="showBlogAction" class="showBlogAction">
 			<result name="success">/blogList.jsp</result>
@@ -36,8 +33,6 @@
 			method="showContent">
 			<result name="blogContent">/blogContent.jsp</result>
 		</action>
-
-
 		<action name="beFriendAction" class="beFriendAction">
 			<result name="success">/modifySuccess.jsp</result>
 			<result name="delete" type="redirect">/homePage.jsp</result>
@@ -88,8 +83,8 @@
 		</action>
 
 		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
-			<result name="success">/daily.jsp</result>
-			<result name="input">/daily.jsp</result>
+			<result name="daily">/daily.jsp</result>
+			<result name="fdaily">/fdaily.jsp</result>
 		</action>
 
 		<action name="deleteDailyAction" class="com.daily.action.DeleteDailyAction">

@@ -88,12 +88,21 @@ h3 {
 
 #lazy {
 	width: auto;
-	height: auto; 
+	height: auto;
 	margin: 0 auto;
+}
+
+#nothing {
+	width: 410px;
+	height: 39px;
+	padding-top: 30px;
+	margin: 0 auto;
+	font-size: 30px;
+	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
 </style>
 <script type="text/javascript">
-function filter() {
+	function filter() {
 		var result = document.getElementById("blogList").innerHTML;
 		result = result.replace(/!y9_!/g, "");
 		document.getElementById("blogList").innerHTML = result;
@@ -101,62 +110,127 @@ function filter() {
 </script>
 </head>
 <body onload="filter()">
-		<div id="blogList">
-			<span style="color:gray;float:left:display:block;">所有博文(<s:property
-					value="#session.uc.blogCount" />)
-			</span>
-			<s:if test="#session.friend!=null">
+	<div id="blogList">
+		<span style="color:gray;float:left:display:block;">所有博文(<s:property
+				value="#session.uc.blogCount" />)
+		</span>
+		<s:if test="#session.friend!=null">
+			<!-- 判断是否浏览好友的页面 -->
+			<s:if test="#blogShowLists==null">
+				<!-- 判断好友的博文是否为空-->
+				<div id="nothing" style="width:430px;">这个人很懒，还没发表过博客~</div>
 			</s:if>
 			<s:else>
-				<input type="button" value="写新的文章"
-					onclick="window.location.href='blogEdit.jsp'">
-			</s:else>
-			<div id="research">
-				<s:form action="showBlogAction!research" method="post" namespace="/">
-					<s:textfield name="researchKey" label="搜索" placeholder="输入文章关键字" />
-					<s:submit value="查找"></s:submit>
-				</s:form>
-			</div>
-			<ul>
-				<s:iterator value="blogShowLists" var="blog">
-					<li>
-						<!-- 博文标题 -->
-						<div id="blogTitle">
-							<a
-								href="showBlogAction!showContent?
+				<div id="research">
+					<s:form action="showBlogAction!research" method="post"
+						namespace="/">
+						<s:textfield name="researchKey" label="搜索" placeholder="输入文章关键字" />
+						<s:submit value="查找"></s:submit>
+					</s:form>
+				</div>
+				<ul>
+					<s:iterator value="blogShowLists" var="blog">
+						<li>
+							<!-- 博文标题 -->
+							<div id="blogTitle">
+								<a
+									href="showBlogAction!showContent?
 							blogId=<s:property value="#blog.blogId" />"><h3>
-									<s:property value="#blog.title" />
-								</h3> </a>
-						</div> <!-- 博文时间 -->
-						<div id="blogTime">
-							<s:date name="blogTime" />
-						</div> <!-- 博文内容 -->
-						<div id="blogContent">
-							<s:if test="#blog.content.length()>80">
-								<s:property value="#blog.content.substring(0,120)" />...
-					</s:if>
-							<s:else>
-								<s:property value="#blog.content" />
-							</s:else>
-						</div>
-						<div style="margin-top: 8px;">
-							<a style="font-size: 12px;"
-								href="showBlogAction!showContent?
+										<s:property value="#blog.title" />
+									</h3> </a>
+							</div> <!-- 博文时间 -->
+							<div id="blogTime">
+								<s:date name="blogTime" />
+							</div> <!-- 博文内容 -->
+							<div id="blogContent">
+								<s:if test="#blog.content.length()>80">
+									<s:property value="#blog.content.substring(0,120)" />...
+								</s:if>
+								<s:else>
+									<s:property value="#blog.content" />
+								</s:else>
+							</div>
+							<div style="margin-top: 8px;">
+								<a style="font-size: 12px;"
+									href="showBlogAction!showContent?
 							blogId=<s:property value="#blog.blogId" />">阅读全文>>
-							</a>
-						</div>
-					</li>
-				</s:iterator>
-			</ul>
-			<div id="page">
-				<a href="showBlogAction?pageIndex=1">首页</a> <a
-					href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-				<a href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-				<a href="showBlogAction?pageIndex=<s:property value='pageCount'/>">尾页</a>
-				<s:property value="pageIndex" />
-				/
-				<s:property value="pageCount" />
-			</div>
-		</div>
+								</a>
+							</div>
+						</li>
+					</s:iterator>
+				</ul>
+				<div id="page">
+					<a href="showBlogAction?pageIndex=1">首页</a> <a
+						href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+					<a
+						href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+					<a href="showBlogAction?pageIndex=<s:property value='pageCount'/>">尾页</a>
+					<s:property value="pageIndex" />
+					/
+					<s:property value="pageCount" />
+				</div>
+			</s:else>
+		</s:if>
+
+
+		<s:else>			<!-- 个人的博文主页 -->
+			<s:if test="blogShowLists==null">	<!-- 判断是否为空的博文主页 -->
+				<div id="nothing">这里空空如也~</div>
+			</s:if>
+			<s:else>
+				<div id="research">
+					<s:form action="showBlogAction!research" method="post"
+						namespace="/">
+						<s:textfield name="researchKey" label="搜索" placeholder="输入文章关键字" />
+						<s:submit value="查找"></s:submit>
+					</s:form>
+				</div>
+				<ul>
+					<s:iterator value="blogShowLists" var="blog">
+						<li>
+							<!-- 博文标题 -->
+							<div id="blogTitle">
+								<a
+									href="showBlogAction!showContent?
+							blogId=<s:property value="#blog.blogId" />"><h3>
+										<s:property value="#blog.title" />
+									</h3> </a>
+							</div> <!-- 博文时间 -->
+							<div id="blogTime">
+								<s:date name="blogTime" />
+							</div> <!-- 博文内容 -->
+							<div id="blogContent">
+								<s:if test="#blog.content.length()>80">
+									<s:property value="#blog.content.substring(0,120)" />...
+					</s:if>
+								<s:else>
+									<s:property value="#blog.content" />
+								</s:else>
+							</div>
+							<div style="margin-top: 8px;">
+								<a style="font-size: 12px;"
+									href="showBlogAction!showContent?
+							blogId=<s:property value="#blog.blogId" />">阅读全文>>
+								</a>
+							</div>
+						</li>
+					</s:iterator>
+				</ul>
+				<div id="page">
+					<a href="showBlogAction?pageIndex=1">首页</a> <a
+						href="showBlogAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+					<a
+						href="showBlogAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+					<a href="showBlogAction?pageIndex=<s:property value='pageCount'/>">尾页</a>
+					<s:property value="pageIndex" />
+					/
+					<s:property value="pageCount" />
+				</div>
+			</s:else>
+			<input type="button" value="写新的文章"
+				onclick="window.location.href='blogEdit.jsp'">
+		</s:else>
+
+	</div>
 </body>
 </html>

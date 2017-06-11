@@ -31,27 +31,33 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 
+<link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 	<div id="index1">
-		<s:property value="#session.LOGFAILE"></s:property>
-		
-		<s:form action="logAction!login" method="post" namespace="/" theme="simple">
-			<br>
-			<br>
-		用户名：<s:textfield name="user.username" size="15" value="admin" />
-			<br>
-			<br>
-		密&nbsp;&nbsp;码：<s:password name="user.password" size="15" />
-			<br>
-			<br>
-		<s:if test="hasFieldError"></s:if>
-			<s:fielderror/>
-			<s:submit value="登录" theme="simple" />&nbsp;
-		<input type=button value="注册" onclick="window.location='register.jsp'" />
-		
-		</s:form>
+		<div class="inset">
+			<div class="login-head">
+				<h1>Login Form</h1>
+			</div>
+			<s:property value="#session.LOGFAILE"></s:property>
+			<s:form action="logAction!login" method="post" namespace="/" theme="simple">
+				<li><s:textfield name="user.username" size="15" value="admin"
+						onfocus="this.value = '';" /> <a class=" icon user"></a></li>
+				<div class="clear"></div>
+				<li><s:password name="user.password" size="15"
+						onfocus="this.value = '';" /> <a class="icon lock"></a></li>
+				<div class="clear"></div>
+				<s:submit value="Sign in" theme="simple" />
+				<input type="reset" value="register" onclick="window.location='register.jsp'">
+				<div class="clear"></div>
+				<s:if test="hasFieldError"></s:if>
+				<s:fielderror />
+			</s:form>
+
+
+		</div>
 	</div>
+	<div class="clear"></div>
 </body>
 </html>

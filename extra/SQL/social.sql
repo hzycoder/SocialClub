@@ -142,6 +142,8 @@ message_time datetime,		--留言时间
 constraint cs_board foreign key(userID) references t_user(userID),
 )
 
+delete from board messageID=32
+
 create table messageShow(
 messageID int primary key,--留言信息ID
 u_picture varchar(100),	--留言人头像
