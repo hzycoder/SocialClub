@@ -130,7 +130,7 @@ noticeTime datetime,	--通知时间
 constraint cs_noticeuserid foreign key(senderID) references t_user(userID),
 constraint cs_noticeuser foreign key(recipientID) references t_user(userID),
 )
-
+update notice set noticeState=0 where noticeID=2
 select * from notice
 
 create table board(

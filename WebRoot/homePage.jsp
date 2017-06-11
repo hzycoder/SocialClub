@@ -274,6 +274,42 @@ ula {
 	background: -moz-linear-gradient(top, #e4e8ec, #e4e8ec);
 	background: linear-gradient(top, #e4e8ec, #e4e8ec)
 }
+
+#parent {
+	margin-bottom: 15px;
+}
+
+#parent li {
+	list-style: none;
+	margin-bottom: 15px;
+}
+
+#parent li:HOVER {
+	background-color: #f0f0f0;
+}
+
+#parent1 li {
+	list-style: none;
+	margin-bottom: 15px;
+}
+
+#parent1 {
+	
+}
+
+#parent1 li:HOVER {
+	background-color: #f0f0f0;
+}
+
+form {
+	margin: 0px;
+	display: inline
+}
+
+button {
+	float: right;
+	position: relative;
+}
 </style>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.1.min.js">
@@ -289,9 +325,6 @@ ula {
 				right : $(window).width() - offset.left
 			})
 			$("#divpop").toggle(speed);
-			$(document).click(function(event) {
-				$("#divpop").hide(speed);
-			})
 		})
 	})
 	function deleteConfirm(userName) {
@@ -338,79 +371,68 @@ ula {
 		</button>
 	</div>
 	<div id="divpop"
-		style="background-color: #f0f0f0; border: solid 1px #000000; position: fixed; display: none;
-	width: 300px;height: 100%;overflow: scroll;  
+		style="background-color: #ffffff; border: solid 1px #000000; position: fixed; display: none;
+	width: 350px;height: 100%; overflow: scroll;  
 	">
 		<s:action name="beFriendAction" namespace="/"></s:action>
 		 <a href="findFriend.jsp" target="middle_frame"><img
 			src="image/timg.jpg" width="25px" height="25px"></a>搜索好友    
 
-		<button
-			onclick="openShutManager(this,'follow',false,'我关注的#关闭','我关注的#展开')">我关注的#关闭</button>
 		<!-- 关注好友列表 -->
-		<div id="follow" style="text-align: center;">
-			<s:iterator value="#session.friInfoList">
-				<li><s:if test="UPicture==null">
-						<div class="headpic">
-							<img src="upload/defalut.jpg" width="45px" height="45px" />
+
+		<div id="parent" style="width: 100%; ">
+			<button style="float: right;"
+				onclick="openShutManager(this,'child',false,'我关注的#关闭','我关注的#展开')">我关注的#关闭</button>
+			<div id="child" style="padding: 18px 47px 20px 27px;">
+				<s:iterator value="#session.friInfoList">
+					<li><a
+						href="friAction?friendName=<s:property value='username'/>"
+						target="_top"><s:if test="UPicture==null">
+								<img src="upload/defalut.jpg" width="45px" height="45px" />
+							</s:if> <s:else>
+								<img
+									src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+									width="45px" height="45px" />
+							</s:else></a> <s:property value="username"></s:property>
+						<div>
+							<form id="deleteFriendFrom" action="" method="post"></form>
+							<input type="button" value="取消关注"
+								onclick="deleteConfirm('<s:property value='username'/>')"
+								style="display:inline-block; float: right;">
 						</div>
-					</s:if> <s:else>
-						<div class="headpic">
-							<img
-								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
-								width="45px" height="45px" />
-						</div>
-					</s:else>
-					<div class="name" id="friendName">
-						<a href="friAction?friendName=<s:property value='username'/>"
-							target="_top"><s:property value="username"></s:property></a>
-					</div>
-					<div class="day">
-						关注好友已经：
-						<s:property value="friendTime"></s:property>
-						天
-					</div>
-					<div>
-						<form id="deleteFriendFrom" action="" method="post"></form>
-						<input type="button" value="取消关注"
-							onclick="deleteConfirm('<s:property value='username'/>')">
-					</div></li>
-			</s:iterator>
+						<div class="day">
+							关注好友已经：
+							<s:property value="friendTime"></s:property>
+							天
+						</div></li>
+				</s:iterator>
+			</div>
 		</div>
 		<!-- 关注好友列表 -->
 		   
 		<!-- 被关注列表 -->
-		   
-		<button
-			onclick="openShutManager(this,'followed',false,'关注我的#关闭','关注我的#展开')">关注我的#关闭</button>
-		<div id="followed" style="text-align: center;">
-			<s:iterator value="#session.friInfoList1">
-				<li><s:if test="UPicture==null">
-						<div class="headpic">
-							<img src="upload/defalut.jpg" width="45px" height="45px" />
-						</div>
-					</s:if> <s:else>
-						<div class="headpic">
-							<img
-								src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
-								width="45px" height="45px" />
-						</div>
-					</s:else>
-					<div class="name" id="friendName">
-						<a href="friAction?friendName=<s:property value='username'/>"
-							target="_top"><s:property value="username"></s:property></a>
-					</div>
-					<div class="day">
-						ta关注你已经：
-						<s:property value="friendTime"></s:property>
-						天
-					</div>
-					<div>
-						<form id="deleteFriendFrom" action="" method="post"></form>
-						<input type="button" value="取消关注"
-							onclick="deleteConfirm('<s:property value='username'/>')">
-					</div></li>
-			</s:iterator>
+		<div id="parent1" style="width: 100%; ">
+			<button style="float: right;"
+				onclick="openShutManager(this,'child1',false,'关注我的#关闭','关注我的#展开')">关注我的#关闭</button>
+			<div id="child1" style="padding: 18px 47px 20px 27px;">
+				<s:iterator value="#session.friInfoList1">
+					<li><a
+						href="friAction?friendName=<s:property value='username'/>"
+						target="_top"><s:if test="UPicture==null">
+								<img src="upload/defalut.jpg" width="45px" height="45px" />
+							</s:if> <s:else>
+								<img
+									src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+									width="45px" height="45px" />
+							</s:else></a> <s:property value="username"></s:property>
+
+						<div class="day">
+							ta关注你已经：
+							<s:property value="friendTime"></s:property>
+							天
+						</div></li>
+				</s:iterator>
+			</div>
 		</div>
 		<!-- 被关注列表 -->
 		   

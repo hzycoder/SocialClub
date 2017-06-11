@@ -26,7 +26,7 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping resource="com/domain/ActList.hbm.xml" />
-		<mapping resource="com/domain/TUser.hbm.xml" />		
+		<mapping resource="com/domain/TUser.hbm.xml" />
 		<mapping resource="com/domain/ActComment.hbm.xml" />
 		<mapping resource="com/friend/domain/TFriends.hbm.xml" />
 		<mapping resource="com/blog/domain/BlogList.hbm.xml" />
