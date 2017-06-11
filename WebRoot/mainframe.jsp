@@ -49,7 +49,16 @@ ul.address-text {
 ul.address-text li:nth-child(1) {
 	width: 20%;
 }
+a:link {
+font-size:30px;
+ color: #000000;
+ text-decoration: none;
+}
+a:visited {
 
+ color: #000000;
+ text-decoration: none;
+}
 img{
 width: 75px;
 height: 75px;
@@ -75,18 +84,18 @@ border-radius: 50%;
   <s:else>
   <img alt="" src="upload/default.jpg"><br>
   </s:else>
-  <s:property value="#td.TUser.username"/>说：
+  <s:property value="#td.TUser.petname"/>说：
   </li>
   <li class="text"><s:property value="#td.mesg" ></s:property></li>
   <li style="float: right;"><s:date name="#td.dailyTime" ></s:date></li>
   </ul>
   </li>
   </ul>
-  </s:iterator>
-  <a href="showDailyAction!showrecent.action?pageIndex=<s:property value="pageIndex+1" />"> 换一组</a>
+  </s:iterator><center>
+  <a href="showDailyAction!showrecent.action?pageIndex=<s:property value="pageIndex+1" />" style="text-decoration: none; display: inline-block;"><div style="height: 40px;width: 170px; border-style:solid; border-width:1px; border-color:#000;font-size: 30px"> 换一组</div></a></center>
   </s:if>
-  <s:else>
-  没有更多了
+  <s:else><center>
+  没有更多了</center>
   </s:else>
 
 </div>
