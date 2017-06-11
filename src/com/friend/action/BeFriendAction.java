@@ -61,9 +61,7 @@ public class BeFriendAction extends ActionSupport {
 		ActionContext ac = ActionContext.getContext();
 		friInfoList = friendSrv.searchFriendList();
 		friInfoList1 = friendSrv.searchFriendlist1();
-		for (int i = 0; i < friInfoList1.size(); i++) {
-			System.out.println("friendsList::::::::::::::" + friInfoList1.get(i).getUsername());
-		}
+
 		ac.getSession().put("friInfoList", friInfoList);
 		ac.getSession().put("friInfoList1", friInfoList1);
 		return SUCCESS;

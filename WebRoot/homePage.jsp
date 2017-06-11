@@ -310,6 +310,12 @@ button {
 	float: right;
 	position: relative;
 }
+
+#divpop img {
+	border-radius: 50%;
+}
+#notice{
+}
 </style>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.1.min.js">
@@ -339,7 +345,7 @@ button {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
 			document.getElementById("blogA").click();
-		}else if (ref.indexOf("boardAction") != -1) {
+		} else if (ref.indexOf("boardAction") != -1) {
 			document.getElementById("boardA").click();
 		}
 	}
@@ -388,18 +394,18 @@ button {
 			<div id="child" style="padding: 18px 47px 20px 27px;">
 				<s:iterator value="#session.friInfoList">
 					<li><a
-						href="friAction?friendName=<s:property value='username'/>"
-						target="_top"><s:if test="UPicture==null">
+						href="friAction?friendName=<s:property value='user_friList.username'/>"
+						target="_top"><s:if test="user_friList.UPicture==null">
 								<img src="upload/defalut.jpg" width="45px" height="45px" />
 							</s:if> <s:else>
 								<img
-									src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+									src="upload/<s:property value="user_friList.username"/>/<s:property value="user_friList.UPicture"/>"
 									width="45px" height="45px" />
-							</s:else></a> <s:property value="username"></s:property>
+							</s:else></a> <s:property value="user_friList.petname"></s:property>
 						<div>
 							<form id="deleteFriendFrom" action="" method="post"></form>
 							<input type="button" value="取消关注"
-								onclick="deleteConfirm('<s:property value='username'/>')"
+								onclick="deleteConfirm('<s:property value='user_friList.username'/>')"
 								style="display:inline-block; float: right;">
 						</div>
 						<div class="day">
@@ -419,14 +425,14 @@ button {
 			<div id="child1" style="padding: 18px 47px 20px 27px;">
 				<s:iterator value="#session.friInfoList1">
 					<li><a
-						href="friAction?friendName=<s:property value='username'/>"
-						target="_top"><s:if test="UPicture==null">
+						href="friAction?friendName=<s:property value='user_friList.username'/>"
+						target="_top"><s:if test="user_friList.UPicture==null">
 								<img src="upload/defalut.jpg" width="45px" height="45px" />
 							</s:if> <s:else>
 								<img
-									src="upload/<s:property value="username"/>/<s:property value="UPicture"/>"
+									src="upload/<s:property value="user_friList.username"/>/<s:property value="user_friList.UPicture"/>"
 									width="45px" height="45px" />
-							</s:else></a> <s:property value="username"></s:property>
+							</s:else></a> <s:property value="user_friList.petname"></s:property>
 
 						<div class="day">
 							ta关注你已经：
@@ -452,9 +458,11 @@ button {
 			</s:if>
 			<s:else>
 				<div id="head_pic">
-					<img
-						src="upload/<s:property value="#session.user.username"/>/<s:property value="#session.user.UPicture"/>"
-						width="140px" height="140px" />
+					<s:a href="logAction.action">
+						<img
+							src="upload/<s:property value="#session.user.username"/>/<s:property value="#session.user.UPicture"/>"
+							width="140px" height="140px" />
+					</s:a>
 				</div>
 			</s:else>
 			<div id="petName">
@@ -474,21 +482,19 @@ button {
 									value="#session.uc.blogCount" /></strong> <span>博文</span></li>
 						<li><strong><s:property
 									value="#session.uc.messageCount" /></strong> <span>留言</span></li>
-						<li><strong><s:property value="#session.uc.actCount" /></strong>
-							<span>动态</span></li>
+						<li><div id="notice">
+								<s:if test="#session.uc.UnreadNotice==0">
+									<a href="noticeAction!showNotice" target="middle_frame"><img title="通知中心" src="image/notice.png"></a>
+								</s:if>
+								<s:else>
+									<a href="noticeAction!showNotice" target="middle_frame"><img title="有未读的消息" src="image/notice.gif"></a>
+								</s:else>
+							</div>
+						</li>
 					</ul>
 				</div>
 
-				<div id="notice">
-					<a href="noticeAction!showNotice" target="middle_frame">通知中心</a>
-					<s:if test="#session.uc.UnreadNotice==0">
-						<img src="image/notice.png">
-					</s:if>
-					<s:else>
-						<img title="有未读的消息" src="image/notice.gif">
-					</s:else>
 
-				</div>
 
 			</div>
 
@@ -501,10 +507,11 @@ button {
 				<ul>
 					<li><a id="blogA" href="clearFriAction?type=1"
 						target="middle_frame">博文</a></li>
-					<li><a id="daily" href="showDailyAction?type=1" target="middle_frame">个人动态</a></li>
-					<li><a id="boardA" href="clearFriAction?type=3" target="middle_frame">留言板</a>
-					</li>
-					<li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li>
+					<li><a id="daily" href="showDailyAction?type=1"
+						target="middle_frame">个人动态</a></li>
+					<li><a id="boardA" href="clearFriAction?type=3"
+						target="middle_frame">留言板</a></li>
+					<!-- <li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li> -->
 					<li><s:a id="personA" action="infoAction"
 							target="middle_frame">个人档案</s:a></li>
 					<li><a id="logOffA" href="logOffAction" target="_parent">

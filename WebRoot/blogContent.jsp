@@ -120,7 +120,8 @@ h2 {
 	display: block;
 	float: right;
 	width: 83%;
-	height: 100%;
+	min-height:20px;
+	height: auto;
 }
 
 #commentPic {
@@ -191,6 +192,7 @@ h2 {
 				<li><a href="showBlogAction"><input type="button"
 						value="《《返回博文列表"></a></li>
 				<s:if test="#session.friend!=null">
+
 				</s:if>
 				<s:else>
 					<li><a
@@ -203,12 +205,10 @@ h2 {
 			<s:property value="#blog.blogTime" />
 		</div>
 		<div id="content">
-			<pre>
-				<s:property value="#blog.content" />
-			</pre>
+			<pre><s:property value="#blog.content" /></pre>
 		</div>
 		<div id="commentList">
-			<span>评论区域</span>
+			<span style="color:gray;float:left:display:block;">评论区域</span>
 			
 			<s:iterator value="blogCommentList" var="cList">
 				<div id="ul">
@@ -234,9 +234,6 @@ h2 {
 					</div>
 
 					<div id="ul_right">
-						<div id="reply">
-							<a>回复</a>
-						</div>
 						<div id="commentDetail">
 							:
 							<s:property value="#cList.commentDetail" />
@@ -256,22 +253,18 @@ h2 {
 				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
 				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
 				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageCount'/>">尾页</a>
-				<s:property value="pageIndex" />
-				/
-				<s:property value="pageCount" />
+				<s:property value="pageIndex" />/<s:property value="pageCount" />
 			</div>
 			</s:else>
 		</div>
-
 		<div id="commentArea">
 			<s:form action="showBlogAction!comment" method="post">
-				<s:textarea name="commentDetail" label="评论" />
+				<s:textarea name="commentDetail" label="评论" style="width:700px;height:200px"/>
 				<input type="hidden" name="blogId"
 					value=<s:property value="#blog.blogId" />>
 				<s:submit value="评论"></s:submit>
 			</s:form>
 		</div>
-
 	</s:iterator>
 </body>
 </html>

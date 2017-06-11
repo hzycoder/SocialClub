@@ -35,6 +35,7 @@
 </head>
 
 <body>
+<s:action name="logAction!judgeLogin" ></s:action>
 	<div id="index1">
 		<div class="inset">
 			<div class="login-head">

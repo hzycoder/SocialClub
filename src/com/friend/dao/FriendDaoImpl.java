@@ -44,33 +44,19 @@ public class FriendDaoImpl implements FriendDao {
 		user = (TUser) ac.getSession().get("user");
 		friendList = sessionFactory.getCurrentSession().createQuery("from TFriends where userID=?")
 				.setParameter(0, user.getUserId()).list();// 查询朋友列表
-		System.out.println("------friendList-------");
-		for (int i = 0; i < friendList.size(); i++) {
-			System.out.println(friendList.get(i).toString());
-		}
-		System.out.println("------friendList-------");
+
 		if (friendList != null && !friendList.isEmpty()) {
 			for (int i = 0; i < friendList.size(); i++) { // 递归查询朋友列表中每一个朋友的信息转化为user存入userList中
 				FriendsInfo friInfo = new FriendsInfo();
-				System.out.println("i   " + i);
 				/* name获取用户名 */
-				String name = sessionFactory.getCurrentSession()
-						.createQuery("select username from TUser where userID=?")
-						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
-				/* uPicture获取头像 */
-				if (sessionFactory.getCurrentSession().createQuery("select UPicture from TUser where userID=?")
-						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult() == null) {
-					uPicture = null;
-				} else
-					uPicture = sessionFactory.getCurrentSession()
-							.createQuery("select UPicture from TUser where userID=?")
-							.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult().toString();
+				TUser user_friList = (TUser) sessionFactory.getCurrentSession()
+						.createQuery("from TUser where userID=?")
+						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult();				
 				long mm = (date.getTime()) - (friendList.get(i).getFriendsAddTime().getTime());
 				int day = (int) (mm / (1000 * 60 * 60 * 24));
 				friInfo.setFriendTime(day);
-				friInfo.setUsername(name);
-				friInfo.setUPicture(uPicture);
-				System.out.println(friInfo.toString());
+//				user_friList.setUPicture(uPicture);
+				friInfo.setUser_friList(user_friList);
 				friInfoList.add(friInfo);
 			}
 		}
@@ -91,22 +77,14 @@ public class FriendDaoImpl implements FriendDao {
 			for (int i = 0; i < friendList1.size(); i++) { // 递归查询朋友列表中每一个朋友的信息转化为user存入userList中
 				FriendsInfo friInfo = new FriendsInfo();
 				/* name获取用户名 */
-				String name = sessionFactory.getCurrentSession()
-						.createQuery("select username from TUser where userID=?")
-						.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult().toString();
-				/* uPicture获取头像 */
-				if (sessionFactory.getCurrentSession().createQuery("select UPicture from TUser where userID=?")
-						.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult() == null) {
-					uPicture = null;
-				} else
-					uPicture = sessionFactory.getCurrentSession()
-							.createQuery("select UPicture from TUser where userID=?")
-							.setParameter(0, friendList1.get(i).getId().getUserId()).uniqueResult().toString();
+				TUser user_friList = (TUser) sessionFactory.getCurrentSession()
+						.createQuery("from TUser where userID=?")
+						.setParameter(0, friendList.get(i).getId().getFriendId()).uniqueResult();
 				long mm = (date.getTime()) - (friendList1.get(i).getFriendsAddTime().getTime());
 				int day = (int) (mm / (1000 * 60 * 60 * 24));
 				friInfo.setFriendTime(day);
-				friInfo.setUsername(name);
-				friInfo.setUPicture(uPicture);
+//				user_friList.setUPicture(uPicture);
+				friInfo.setUser_friList(user_friList);
 				friInfoList1.add(friInfo);
 			}
 		}

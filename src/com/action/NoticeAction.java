@@ -92,7 +92,6 @@ public class NoticeAction extends ActionSupport {
 	}
 
 	public String showNoticeDetail() {
-		System.out.println("込込込込賜");
 		notice = noticeDao.showNoticeDetail(noticeID);
 		return "detail";
 	}

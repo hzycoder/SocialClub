@@ -17,7 +17,7 @@ public class RefreshUC {
 	@Resource
 	LoginService logSrv;
 	@Resource
-	FriendService friednSrv;
+	FriendService friendSrv;
 	@Resource
 	BlogService blogSrv;
 	@Resource
@@ -29,7 +29,7 @@ public class RefreshUC {
 		ActionContext ac = ActionContext.getContext();
 		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
 			TUser friend = (TUser) ac.getSession().get("friend");
-			uc.setFriendCount(friednSrv.friendCount(friend.getUserId()));
+			uc.setFriendCount(friendSrv.friendCount(friend.getUserId()));
 			uc.setBlogCount(blogSrv.blogRows(friend.getUserId()));
 			uc.setMessageCount(boardSrv.gerRows());
 			uc.setActCount(0);
@@ -37,7 +37,9 @@ public class RefreshUC {
 			return uc;
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
-			uc.setFriendCount(friednSrv.friendCount(user.getUserId()));
+			System.out.println("ttttttt!!!!!!!!!!!!!!!!");
+			System.out.println(user.getUserId());
+			uc.setFriendCount(friendSrv.friendCount(user.getUserId()));
 			uc.setBlogCount(blogSrv.blogRows(user.getUserId()));
 			uc.setMessageCount(boardSrv.gerRows());
 			uc.setActCount(0);

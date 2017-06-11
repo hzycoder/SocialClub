@@ -106,11 +106,13 @@ ul.address-text li {
 </head>
 
 <body>
+<s:if test="#session.friend==null">
 	<div style="text-align: right">
 		<s:a action="recheckAction">
 			<button>修改个人信息</button>
 		</s:a>
 	</div>
+	</s:if>
 	<s:if test="userList.size()!=0">
 		<s:iterator value="userList" var="user">
 			<div class="show">
@@ -155,28 +157,33 @@ ul.address-text li {
 						</li>
 					</ul>
 				</div>
+			
 				<div class="col-md-2 header-left">
 					<s:if test="#user.UPicture==null">
 						<img alt="" src="upload/default.jpg">
+						<s:if test="#session.friend==null">
 						<s:form action="infoAction!modifyPhoto.action" method="post"
 							theme="simple" enctype="multipart/form-data">
 							<s:file name="upload"></s:file>
 							<s:submit></s:submit>
 						</s:form>
+						</s:if>
 					</s:if>
 					<s:else>
 						<img alt=""
 							src="upload/<s:property value="#user.username"/>/<s:property value="#user.UPicture"/>">
+						<s:if test="#session.friend==null">
 						<s:form action="infoAction!modifyPhoto.action" method="post"
 							theme="simple" enctype="multipart/form-data">
 							<s:file name="upload"></s:file>
 							<s:submit cssStyle="float:right"></s:submit>
 						</s:form>
+						</s:if>
 					</s:else>
 				</div>
+
 			</div>
 		</s:iterator>
-
 	</s:if>
 	<s:else>服务器正忙</s:else>
 </body>

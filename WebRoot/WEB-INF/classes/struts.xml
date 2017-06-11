@@ -73,11 +73,11 @@
 			<result name="photo">/jumpHome.jsp</result>
 		</action>
 		<action name="recheckAction" class="com.info.action.infoAction">
-			<result name="success">/jumpHome.jsp</result>
-			<result name="input">/jumpHome.jsp</result>
+			<result name="success">/modifyInfo.jsp</result>
+			<result name="input">/modifyInfo.jsp</result>
 		</action>
 
-		<!-- 朋友圈 -->
+		<!-- 朋友圈 --> 
 		<action name="subDailyAction" class="com.daily.action.SubmitDailyAction">
 			<result name="success">/daily.jsp</result>
 			<result name="input">/daily.jsp</result>

@@ -73,6 +73,8 @@ h3 {
 </style>
 </head>
 <body>
+<a href="showBlogAction"><input type="button"
+						value="《《返回博文列表"></a>
 	<div id="blogList">
 		<ul>
 			<s:iterator value="blogShowLists" var="blog">

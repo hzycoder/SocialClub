@@ -56,6 +56,15 @@ public class LoginAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String judgeLogin(){
+		System.out.println("judgeLoginjudgeLoginjudgeLogin");
+		ActionContext ac = ActionContext.getContext();
+		if(ac.getSession().get("user")!=null){
+			return SUCCESS;
+		}else {
+			return INPUT;
+		}
+	}
 	public String login() {
 		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();

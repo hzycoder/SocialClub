@@ -2,29 +2,26 @@ package com.friend.domain;
 
 import java.io.Serializable;
 
+import com.domain.TUser;
+
 public class FriendsInfo implements Serializable{	//用于显示好友列表
-	private String UPicture;
-	private String username;
+	private TUser user_friList;
 	private int friendTime;
 	
-	
-	public String getUPicture() {
-		return UPicture;
+	public TUser getUser_friList() {
+		return user_friList;
 	}
 
 
-	public void setUPicture(String uPicture) {
-		UPicture = uPicture;
+	public void setUser_friList(TUser user_friList) {
+		this.user_friList = user_friList;
 	}
 
 
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
+	public FriendsInfo(TUser user_friList, int friendTime) {
+		super();
+		this.user_friList = user_friList;
+		this.friendTime = friendTime;
 	}
 
 
@@ -44,18 +41,5 @@ public class FriendsInfo implements Serializable{	//用于显示好友列表
 	}
 
 
-	public FriendsInfo(String uPicture, String username, int friendTime) {
-		super();
-		UPicture = uPicture;
-		this.username = username;
-		this.friendTime = friendTime;
-	}
-
-
-	@Override
-	public String toString() {
-		return "FriendsList [UPicture=" + UPicture + ", username=" + username + ", friendTime=" + friendTime + "]";
-	}
-	
 	
 }
