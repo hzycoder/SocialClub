@@ -339,6 +339,8 @@ button {
 			document.getElementById("personA").click();
 		} else if (ref.indexOf("Blog") != -1) {
 			document.getElementById("blogA").click();
+		}else if (ref.indexOf("boardAction") != -1) {
+			document.getElementById("boardA").click();
 		}
 	}
 	function openShutManager(oSourceObj, oTargetObj, shutAble, oOpenTip, oShutTip) {
@@ -500,7 +502,7 @@ button {
 					<li><a id="blogA" href="clearFriAction?type=1"
 						target="middle_frame">博文</a></li>
 					<li><a id="daily" href="showDailyAction?type=1" target="middle_frame">个人动态</a></li>
-					<li><a href="clearFriAction?type=3" target="middle_frame">留言板</a>
+					<li><a id="boardA" href="clearFriAction?type=3" target="middle_frame">留言板</a>
 					</li>
 					<li><a id="friendA" href="friends.jsp" target="middle_frame">我的好友</a></li>
 					<li><s:a id="personA" action="infoAction"

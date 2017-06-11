@@ -62,8 +62,11 @@ public class BlogDaoImpl implements BlogDao {
 
 	@Override
 	public void deleteBlog(int blogId) {
+		sessionFactory.getCurrentSession().createQuery("delete from BlogComment where blogID=?").setParameter(0, blogId)
+				.executeUpdate();
 		sessionFactory.getCurrentSession().createQuery("delete from BlogList where blogID=?").setParameter(0, blogId)
 				.executeUpdate();
+
 	}
 
 	@Override
@@ -90,11 +93,11 @@ public class BlogDaoImpl implements BlogDao {
 			e.printStackTrace();
 		}
 		ActionContext ac = ActionContext.getContext();
-		if(ac.getSession().get("friend") != null){	//判断是否在评论他人博文
+		if (ac.getSession().get("friend") != null) { // 判断是否在评论他人博文
 			blogLists = this.research(blogComment.getBlogList().getBlogId());
 			noticeDao.blogCommentNotice(blogLists);
 		}
-		
+
 		return id;
 	}
 
@@ -108,8 +111,8 @@ public class BlogDaoImpl implements BlogDao {
 
 	@Override
 	public Integer getCommentCount(int blogID) {
-		long temp = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from  BlogComment where blogID=?")
-				.setParameter(0, blogID).uniqueResult();
+		long temp = (Long) sessionFactory.getCurrentSession()
+				.createQuery("select count(*) from  BlogComment where blogID=?").setParameter(0, blogID).uniqueResult();
 		int rows = (int) temp;
 		return rows;
 	}

@@ -100,7 +100,8 @@ h2 {
 	padding: 30px;
 	width: 90%;
 	height: 140px;
-	border: 1px black solid;
+	margin-bottom: -1px;
+	border-bottom: 1px black solid;
 	display: block;
 	position: relative;
 }
@@ -128,10 +129,10 @@ h2 {
 }
 
 #commentName {
-font-family:"黑体";
-color:gray;
+	font-family: "黑体";
+	color: gray;
 	top: 120px;
-	left:20px;
+	left: 20px;
 }
 
 #commentDetail {
@@ -143,10 +144,13 @@ color:gray;
 }
 
 #commentList {
-display:block;
-margin-bottom:30px;
+	border: 1px black solid;
+	display: block;
+	margin-bottom: 30px;
 	width: 100%;
-	height: 1080px;
+	min-height: 200px;
+	height: auto;
+	display: block;
 }
 
 #page {
@@ -154,6 +158,15 @@ margin-bottom:30px;
 	margin: 10px 0;
 	margin-right: 80px;
 	float: right;
+}
+
+#nothing {
+	width: 200px;
+	height: 39px;
+	padding-top: 30px;
+	margin: 0 auto;
+	font-size: 30px;
+	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
 </style>
 <script type="text/javascript">
@@ -196,6 +209,7 @@ margin-bottom:30px;
 		</div>
 		<div id="commentList">
 			<span>评论区域</span>
+			
 			<s:iterator value="blogCommentList" var="cList">
 				<div id="ul">
 					<div id="ul_left">
@@ -214,14 +228,15 @@ margin-bottom:30px;
 						</s:elseif>
 						<!-- TUser取消使用延迟加载 -->
 						<div id="commentName">
-							昵称：<s:property value="#cList.TUser.petname" />
+							昵称：
+							<s:property value="#cList.TUser.petname" />
 						</div>
 					</div>
 
 					<div id="ul_right">
-					<div id="reply"  >
-					<a>回复</a>
-					</div>
+						<div id="reply">
+							<a>回复</a>
+						</div>
 						<div id="commentDetail">
 							:
 							<s:property value="#cList.commentDetail" />
@@ -232,19 +247,20 @@ margin-bottom:30px;
 					</div>
 				</div>
 			</s:iterator>
+			<s:if test="blogCommentList.size()==0">
+				<div id="nothing">还没有人评论~</div>
+			</s:if>
+			<s:else>
 			<div id="page">
-				<a
-					href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=1">首页</a>
-				<a
-					href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-				<a
-					href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-				<a
-					href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageCount'/>">尾页</a>
+				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=1">首页</a>
+				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+				<a href="showBlogAction!showContent?blogId=<s:property value="#blog.blogId" />&pageIndex=<s:property value='pageCount'/>">尾页</a>
 				<s:property value="pageIndex" />
 				/
 				<s:property value="pageCount" />
 			</div>
+			</s:else>
 		</div>
 
 		<div id="commentArea">

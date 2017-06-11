@@ -116,7 +116,7 @@ h3 {
 		</span>
 		<s:if test="#session.friend!=null">
 			<!-- 判断是否浏览好友的页面 -->
-			<s:if test="#blogShowLists==null">
+			<s:if test="#session.uc.blogCount==0">
 				<!-- 判断好友的博文是否为空-->
 				<div id="nothing" style="width:430px;">这个人很懒，还没发表过博客~</div>
 			</s:if>
@@ -174,7 +174,7 @@ h3 {
 
 
 		<s:else>			<!-- 个人的博文主页 -->
-			<s:if test="blogShowLists==null">	<!-- 判断是否为空的博文主页 -->
+			<s:if test="#session.uc.blogCount==0">	<!-- 判断是否为空的博文主页 -->
 				<div id="nothing">这里空空如也~</div>
 			</s:if>
 			<s:else>

@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'homePage.jsp' starting page</title>
+<title>My JSP 'friendPage.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -22,8 +22,14 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	src="http://code.jquery.com/jquery-1.11.1.min.js">
+</script>
 <script type="text/javascript">
+	window.onload = function jump() {
+		var ref = document.referrer;
+		alert(ref);
+
+	}
 	$(document).ready(function() {
 		var speed = 200;
 		$("#show").click(function(event) {
@@ -301,13 +307,13 @@ ula {
 <script type="text/javascript">
 	window.onload = function jump() {
 		var ref = document.referrer;
-		if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
-			document.getElementById("personA").click();
-		} else if (ref.indexOf("Blog") != -1) {
-			document.getElementById("blogA").click();
-		} else if (ref.indexOf("friend") != -1 || ref.indexOf("Friend") != -1) {
-			document.getElementById("friendA").click();
-		}
+	/*if (ref == "http://localhost:8080/SocialClub/infoAction!modifyPhoto.action" || ref == "http://localhost:8080/SocialClub/infoAction!modify.action") {
+		document.getElementById("personA").click();
+	} else if (ref.indexOf("Blog") != -1) {
+		document.getElementById("blogA").click();
+	} else if (ref.indexOf("friend") != -1 || ref.indexOf("Friend") != -1) {
+		document.getElementById("friendA").click();
+	}*/
 	}
 </script>
 </head>
@@ -397,14 +403,14 @@ ula {
 			</div>
 			<!-- middle部分 -->
 			<div id="middle">
-				<iframe frameborder="0" id="middle_frame" name="middle_frame"
-					src=""></iframe>
+				<iframe frameborder="0" id="middle_frame" name="middle_frame" src=""></iframe>
 			</div>
 			<div id="menu">
 				<ul>
 					<li><a id="blogA" href="showBlogAction" target="middle_frame"><s:property
 								value="#session.friend.username" />的博文</a></li>
-					<li><a  href="showDailyAction?type=0" target="middle_frame"><s:property value="#session.friend.username" />的动态</a></li>
+					<li><a href="showDailyAction?type=0" target="middle_frame"><s:property
+								value="#session.friend.username" />的动态</a></li>
 					<li><a href="showBoardAction" target="middle_frame"><s:property
 								value="#session.friend.username" />的留言板</a></li>
 					<li><s:a id="personA" action="infoAction"

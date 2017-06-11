@@ -99,13 +99,12 @@ ul {
 }
 
 #nothing {
-	width:200px;
-	height:39px;
-	padding-top:30px;
-	margin:0 auto;
+	width: 200px;
+	height: 39px;
+	padding-top: 30px;
+	margin: 0 auto;
 	font-size: 30px;
-	font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
-	
+	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
 </style>
 </head>
@@ -117,7 +116,7 @@ ul {
 		<span style="color:gray;float:left:display:block;">所有留言(<s:property
 				value="#session.uc.messageCount" />)
 		</span>
-		<s:if test="%{boardList}==null">
+		<s:if test="#session.uc.messageCount==0">
 			<div id="nothing">这里空空如也~</div>
 		</s:if>
 		<s:else>

@@ -30,10 +30,10 @@ public class friendAction extends ActionSupport {// 访问其他用户主页添加friendse
 
 	public String execute() {
 		ActionContext ac = ActionContext.getContext();
-//		System.out.println("friendName:---" + friendName);
-		friend = (TUser) friendSrv.searchFriend(friendName).get(0);
-		ac.getSession().put("friend", friend);
-//		System.out.println("friID" + friend.getUserId());
+		if(ac.getSession().get("friend")==null){
+			friend = (TUser) friendSrv.searchFriend(friendName).get(0);
+			ac.getSession().put("friend", friend);
+		}
 		ruc.refreshUC();
 		return SUCCESS;
 	}

@@ -29,6 +29,6 @@
 	}
 </script>
 
-<body>modifySuccess
+<body>
 </body>
 </html>

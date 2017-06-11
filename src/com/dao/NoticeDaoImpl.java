@@ -61,7 +61,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		notice.setNoticeType(2);
 		notice.setTUserByRecipientId(friend);
 		notice.setTUserBySenderId(user);
-		
+		try {			
+			sessionFactory.getCurrentSession().save(notice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -80,8 +84,7 @@ public class NoticeDaoImpl implements NoticeDao {
 		TUser user = (TUser) ac.getSession().get("user");
 		noticeList = sessionFactory.getCurrentSession().createQuery("from Notice where recipientID=?")
 		.setParameter(0, user.getUserId()).list();
-		System.out.println("ff");
-		System.out.println(noticeList.get(0).toString());
+		
 		return noticeList;
 	}
 

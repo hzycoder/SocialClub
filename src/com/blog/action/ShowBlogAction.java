@@ -163,7 +163,7 @@ public class ShowBlogAction extends ActionSupport {
 	}
 
 	public String showContent() { // 跳转到内容
-		System.out.println("showConete");
+//		ActionContext ac = ActionContext.getContext();
 		int rows = blogSrv.getCommentCount(blogId);
 		if (rows % maxResult == 0) {// 算出总页数
 			pageCount = rows / maxResult;
@@ -177,7 +177,7 @@ public class ShowBlogAction extends ActionSupport {
 		}
 		System.out.println(blogId+"  "+maxResult+"  "+pageIndex+"  "+pageCount);
 		blogCommentList = blogSrv.commentList(blogId,maxResult, (pageIndex - 1) * maxResult);
-
+//		ac.getSession().put("blogCommentList", blogCommentList);
 		blogShowLists = blogSrv.research(blogId);
 		return "blogContent";
 	}
@@ -200,7 +200,6 @@ public class ShowBlogAction extends ActionSupport {
 		Integer id = blogSrv.insertBlog(blogList);
 		if (id > 0) {
 			ac.getSession().put("SUBSUCCESS", "提交博文成功");
-
 			return "submitSuccess";
 		} else
 			this.addFieldError(ERROR, "系统繁忙");

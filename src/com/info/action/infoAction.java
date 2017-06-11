@@ -125,26 +125,26 @@ public class infoAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public void validateModify() throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date date = new java.util.Date();
-		String birthday = sdf.format(user.getBirthday());
-		this.clearErrorsAndMessages();
-
-		Pattern numPatt = Pattern.compile("[0-9]*");
-		Pattern birthdayPatt = Pattern.compile(
-				"^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))");
-
-		byte[] bytes = user.getPetname().getBytes();
-		if (bytes.length > 0 && bytes.length <= 20) {
-			this.addFieldError("usernameError", "昵称长度非法");
-		}
-		if (!user.getPhone().equals("") && user.getPhone().length() != 11) {
-			this.addFieldError("phoneError", "请填写正确的联系电话");
-		}
-
-
-	}
+//	public void validateModify() throws ParseException {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		java.util.Date date = new java.util.Date();
+//		String birthday = sdf.format(user.getBirthday());
+//		this.clearErrorsAndMessages();
+//
+//		Pattern numPatt = Pattern.compile("[0-9]*");
+//		Pattern birthdayPatt = Pattern.compile(
+//				"^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))");
+//
+//		byte[] bytes = user.getPetname().getBytes();
+//		if (bytes.length > 0 && bytes.length <= 20) {
+//			this.addFieldError("usernameError", "昵称长度非法");
+//		}
+//		if (!user.getPhone().equals("") && user.getPhone().length() != 11) {
+//			this.addFieldError("phoneError", "请填写正确的联系电话");
+//		}
+//
+//
+//	}
 
 	public String modify() {
 		ActionContext ac = ActionContext.getContext();

@@ -81,6 +81,7 @@ content text,	--博文内容
 blogcommentID int,	--博文评论ID
 constraint cs_blog foreign key(userID) references t_user(userID),
 )
+delete from blog_list where userID=101
 
 --博文评论列表
 create table blog_comment(
@@ -92,7 +93,7 @@ comment_time datetime ,
 constraint cs_bloguser foreign key(userID) references t_user(userID),
 constraint cs_blogcomment foreign key(blogID) references blog_list(blogID)
 )
-
+delete from blog_comment where blogID=17
 select * from blog_comment
 
 
@@ -130,6 +131,9 @@ noticeTime datetime,	--通知时间
 constraint cs_noticeuserid foreign key(senderID) references t_user(userID),
 constraint cs_noticeuser foreign key(recipientID) references t_user(userID),
 )
+
+delete from blog_comment where blogID=17
+
 update notice set noticeState=0 where noticeID=2
 select * from notice
 
@@ -141,8 +145,8 @@ message_detail varchar(500),--留言内容
 message_time datetime,		--留言时间
 constraint cs_board foreign key(userID) references t_user(userID),
 )
-
-delete from board messageID=32
+select * from board
+delete from board where userID=101
 
 create table messageShow(
 messageID int primary key,--留言信息ID
@@ -155,7 +159,7 @@ constraint cs_message foreign key(speakID) references t_user(userID),
 )
 select * from messageShow 
 
-select * from board
+
 
 
 drop table t_user

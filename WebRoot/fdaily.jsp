@@ -27,24 +27,10 @@
 #page {
 	float: center;
 }
-
-#nothing {
-	width: 410px;
-	height: 39px;
-	padding-top: 30px;
-	margin: 0 auto;
-	font-size: 30px;
-	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
-}
 </style>
 </head>
 
 <body>
-	<s:if test="dailyLists==null">
-		<div id="nothing">这个人很懒，还没发表过动态~</div>
-		<div id="page"></div>
-	</s:if>
-	<s:else>
 		<div>
 			<a>动态列表</a>
 
@@ -76,6 +62,5 @@
 			</div>
 
 		</div>
-	</s:else>
 </body>
 </html>

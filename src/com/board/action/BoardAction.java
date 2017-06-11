@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import com.board.domain.Board;
 import com.board.service.BoardService;
+import com.domain.TUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -53,10 +54,12 @@ public class BoardAction extends ActionSupport {
 
 	public String execute() {
 		ActionContext ac = ActionContext.getContext();
-		
 		boardSrv.save(board);
-		System.out.println("boarddeatil:" + board.getMessageDetail());
 		ac.getSession().put("LEAVEMESSAGESUCCESS", "¡Ù—‘≥…π¶");
+		if(ac.getSession().get("friend")!=null){
+			
+			return "frileaveMessage";
+		}
 		return "leaveMessage";
 	}
 

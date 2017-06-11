@@ -90,40 +90,35 @@ h2 {
 </head>
 
 <body>
-
 	<div style="width:403px; margin: 0 auto;">
 		<div style="padding: 28px 47px 20px 47px;">
-			<s:iterator value="userList" var="user">
-				<s:form action="infoAction!modify.action" method="post"
-					theme="simple">
-					<h2>
-						昵&nbsp;&nbsp;称：
-						<s:property value="#user.petname" />
-					</h2>
-					<s:textfield name="user.petname" cssClass="input in"
-						value="%{#user.petname}">
-
-					</s:textfield>
-					</br>
-					<h2>生&nbsp;&nbsp;日：</h2>
-					<s:textfield name="user.birthday" cssClass="input in">
-						<s:param name="value">
-							<s:date name="%{#user.birthday}" format="yyyy-MM-dd" />
-						</s:param>
-					</s:textfield>
-					<br>
-
-					<h2>所在单位：</h2>
-					<s:textfield name="user.college" value="%{#user.college}"
-						cssClass="input in"></s:textfield>
-					</br>
-					<h2>电&nbsp;&nbsp;话：</h2>
-					<s:textfield name="user.phone" value="%{#user.phone}"
-						cssClass="input in"></s:textfield>
-					</br>
-					<s:submit cssClass="submit"></s:submit>
-				</s:form>
-			</s:iterator>
+			<s:form action="infoAction!modify.action" method="post"
+				theme="simple">
+				<h2>
+					昵&nbsp;&nbsp;称：
+					<s:property value="#user.petname" />
+				</h2>
+				<s:textfield name="user.petname" cssClass="input in"
+					value="%{#session.user.petname}">
+				</s:textfield>
+				</br>
+				<h2>生&nbsp;&nbsp;日：</h2>
+				<s:textfield name="user.birthday" cssClass="input in">
+					<s:param name="value">
+						<s:date name="%{#session.user.birthday}" format="yyyy-MM-dd" />
+					</s:param>
+				</s:textfield>
+				<br>
+				<h2>所在单位：</h2>
+				<s:textfield name="user.college" value="%{#session.user.college}"
+					cssClass="input in"></s:textfield>
+				</br>
+				<h2>电&nbsp;&nbsp;话：</h2>
+				<s:textfield name="user.phone" value="%{#session.user.phone}"
+					cssClass="input in"></s:textfield>
+				</br>
+				<s:submit cssClass="submit"></s:submit>
+			</s:form>
 		</div>
 	</div>
 </body>
