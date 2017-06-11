@@ -86,6 +86,7 @@
 		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
 			<result name="daily">/daily.jsp</result>
 			<result name="fdaily">/fdaily.jsp</result>
+			<result name="recent">/mainframe.jsp</result>
 		</action>
 
 		<action name="deleteDailyAction" class="com.daily.action.DeleteDailyAction">

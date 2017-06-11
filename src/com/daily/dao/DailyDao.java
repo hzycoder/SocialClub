@@ -10,4 +10,5 @@ public interface DailyDao {
 	public List showmessage(TUser tuser,int f,int m);
 	public void deletemessage(Integer dailyID);
 	public int dailyRows(int id);
+	public List<TDaily> showmessage_recent(int start,int size);
 }

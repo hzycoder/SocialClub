@@ -1,4 +1,5 @@
 package com.daily.dao;
+
 import com.util.*;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import com.daily.domain.TDaily;
 import com.domain.TUser;
 
 public class DailyDaoImpl implements DailyDao {
-	
+
 	@Resource
 	TDaily tdaily;
 	@Resource
@@ -24,75 +25,95 @@ public class DailyDaoImpl implements DailyDao {
 	private SessionFactory sessionFactory;
 	int rows;
 
+	public List<TDaily> showmessage_recent(int start, int size) {
+		List<TDaily> tdList = null;
+		try {
+			session = HibernateSessionFactory.getSession();
+			Query q = session.createQuery("from TDaily where dailyID=dailyID order by dailyID desc");
+			q.setFirstResult((start - 1) * size);
+			q.setMaxResults(size);
+			tdList = q.list();
+			System.out.println("tdList" + tdList);
+		} catch (Exception e) {
+			System.out.println("dodo~");
+		}
+
+		return tdList;
+
+	}
+
 	public Integer addmessage(TDaily tdaily) {
 		Integer id = null;
 		try {
-			session =  HibernateSessionFactory.getSession();
+			session = HibernateSessionFactory.getSession();
 			tx = session.beginTransaction();
 			id = (Integer) session.save(tdaily);
 			tx.commit();
-			System.out.println("id=="+id);
+			System.out.println("id==" + id);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			HibernateSessionFactory.closeSession(session);
 		}
 		return id;
 	}
-	
-	public List showmessage(TUser tuser,int f,int m){
-		try{
+
+	public List showmessage(TUser tuser, int f, int m) {
+		try {
 			String userid = tuser.getUserId().toString();
-			if(f==0&&m==0){
-				tdailys = sessionFactory.getCurrentSession().createQuery("from TDaily where UserID=?").setParameter(0, userid).list();
-			}else{
+			if (f == 0 && m == 0) {
+				tdailys = sessionFactory.getCurrentSession().createQuery("from TDaily where UserID=?")
+						.setParameter(0, userid).list();
+			} else {
 				session = HibernateSessionFactory.getSession();
-				String hql="from TDaily where UserID=?";
+				String hql = "from TDaily where UserID=?";
 				Query query = session.createQuery(hql);
-				query.setString(0,userid);
+				query.setString(0, userid);
 				query.setFirstResult(f);
 				query.setMaxResults(m);
 				tdailys = query.list();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			HibernateSessionFactory.closeSession(session);
 		}
 		return tdailys;
 	}
-	
-	public void deletemessage(Integer dailyID){
-		try{
+
+	public void deletemessage(Integer dailyID) {
+		try {
 			session = HibernateSessionFactory.getSession();
 			tx = session.beginTransaction();
-			String hql="Delete FROM TDaily Where id=?";
+			String hql = "Delete FROM TDaily Where id=?";
 			Query query = session.createQuery(hql);
-			query.setLong(0,dailyID);
+			query.setLong(0, dailyID);
 			query.executeUpdate();
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			HibernateSessionFactory.closeSession(session);
 		}
-		
-		System.out.println("delete ID:"+dailyID);
+
+		System.out.println("delete ID:" + dailyID);
 	}
-	
-	
+
 	public int dailyRows(int id) {
 		System.out.println("dailyRows------");
-//		long temp = (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from  TDaily where userID=?").setParameter(0, id)
-//				.uniqueResult();
-		try{
+		// long temp = (Long)
+		// sessionFactory.getCurrentSession().createQuery("select count(*) from
+		// TDaily where userID=?").setParameter(0, id)
+		// .uniqueResult();
+		try {
 			session = HibernateSessionFactory.getSession();
-			String hql="select count(*) from  TDaily where userID=?";
-			long temp=(Long) session.createQuery("select count(*) from  TDaily where userID=?").setParameter(0,id).uniqueResult();
-			rows=(int)temp;
-		}catch (Exception e) {
+			String hql = "select count(*) from  TDaily where userID=?";
+			long temp = (Long) session.createQuery("select count(*) from  TDaily where userID=?").setParameter(0, id)
+					.uniqueResult();
+			rows = (int) temp;
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			HibernateSessionFactory.closeSession(session);
 		}
 		return rows;
