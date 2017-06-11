@@ -80,7 +80,7 @@ form li{
 .lock{
 	background: url(../images/icons.png) no-repeat -22px 1px;
 }
-/*ÊäÈëÊ±ºòµÄÑÕÉ«*/
+/*ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½É«*/
 input[type="text"], input[type="password"] {
 	font-family: 'Droid Sans', sans-serif;
 	width:70%;
@@ -91,7 +91,7 @@ input[type="text"], input[type="password"] {
 	background: none;
 	border:none;
 }
-/*Ö¸¹ýÈ¥µÄÑÕÉ«*/
+/*Ö¸ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½É«*/
 input[type="text"]:hover, input[type="password"]:hover{
 	color:#9E61A3;
 	

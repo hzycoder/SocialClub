@@ -12,23 +12,23 @@ import com.opensymphony.xwork2.ActionSupport;
 public class DeleteDailyAction extends ActionSupport {
 	@Resource
 	private DailyService dailySrc;
-	Integer dailyID;
+	Integer dailyId;
 	
 	
 	public String execute(){
-		System.out.println("dailyID:"+dailyID);
-		dailySrc.deletemessage(dailyID);
+		System.out.println("dailyID:"+dailyId);
+		dailySrc.deletemessage(dailyId);
 		return "success";
 	}
 
 
-	public Integer getDailyID() {
-		return dailyID;
+	public Integer getDailyId() {
+		return dailyId;
 	}
 
 
-	public void setDailyID(Integer dailyID) {
-		this.dailyID = dailyID;
+	public void setDailyId(Integer dailyId) {
+		this.dailyId = dailyId;
 	}
 
 
