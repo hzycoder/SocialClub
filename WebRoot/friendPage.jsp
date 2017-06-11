@@ -404,7 +404,7 @@ ula {
 				<ul>
 					<li><a id="blogA" href="showBlogAction" target="middle_frame"><s:property
 								value="#session.friend.username" />的博文</a></li>
-					<li><a  href="fdaily.jsp" target="middle_frame"><s:property value="#session.friend.username" />的动态</a></li>
+					<li><a  href="showDailyAction?type=0" target="middle_frame"><s:property value="#session.friend.username" />的动态</a></li>
 					<li><a href="showBoardAction" target="middle_frame"><s:property
 								value="#session.friend.username" />的留言板</a></li>
 					<li><s:a id="personA" action="infoAction"

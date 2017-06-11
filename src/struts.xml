@@ -72,8 +72,8 @@
 		</action>
 		
 		<action name="showDailyAction" class="com.daily.action.ShowDailyAction">
-		<result name="success">/daily.jsp</result>
-		<result name="input">/daily.jsp</result>
+			<result name="daily">/daily.jsp</result>
+			<result name="fdaily">/fdaily.jsp</result>
 		</action>
 		
 		<action name="deleteDailyAction" class="com.daily.action.DeleteDailyAction">

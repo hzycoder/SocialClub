@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <div>
 	<a>动态列表</a>
-		<s:action name="showDailyAction" namespace="/" ></s:action>
+	<s:action name="showDailyAction?type=0&pageIndex=1"></s:action>
 		<ul>
 			<s:iterator value="#session.dailyLists">
 			<div>
@@ -50,10 +50,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</ul>
 		<br>
 		<div id="page">
-			<a href="showDailyAction?pageIndex=1">首页</a>
-			<a href="showDailyAction?pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
-			<a href="showDailyAction?pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
-			<a href="showDailyAction?pageIndex=<s:property value='pageCount'/>">尾页</a>
+			<a href="showDailyAction?type=0&pageIndex=1">首页</a>
+			<a href="showDailyAction?type=0&pageIndex=<s:property value='pageIndex-1'/>">上一页</a>
+			<a href="showDailyAction?type=0&pageIndex=<s:property value='pageIndex+1'/>">下一页</a>
+			<a href="showDailyAction?type=0&pageIndex=<s:property value='pageCount'/>">尾页</a>
 			<s:property value="pageIndex" />
 			/
 			<s:property value="pageCount" />

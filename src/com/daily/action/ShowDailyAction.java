@@ -22,6 +22,7 @@ public class ShowDailyAction {
 	private DailyService dailySrc;
 	@Resource
 	List<TDaily> tdailys1;
+	int type;
 	
 	private int pageIndex = 1;
 	private int pageCount;
@@ -33,12 +34,16 @@ public class ShowDailyAction {
 		
 		ActionContext ac = ActionContext.getContext();
 		
+		if(type==1){
+			ac.getSession().remove("friend");
+		}
+		
+		
 		int rows;
 		if (ac.getSession().get("friend") != null) {// 判断当前是否浏览其他用户主页
-//			TUser friend = (TUser) ac.getSession().get("friend");
+			TUser friend = (TUser) ac.getSession().get("friend");
 			System.out.println("showDailyAction好友浏览通道");
-			TUser user = (TUser) ac.getSession().get("user");
-			rows = dailySrc.dailyRows(user.getUserId());
+			rows = dailySrc.dailyRows(friend.getUserId());
 		} else {
 			TUser user = (TUser) ac.getSession().get("user");
 			rows = dailySrc.dailyRows(user.getUserId());
@@ -61,13 +66,41 @@ public class ShowDailyAction {
 		
 		if (ac.getSession().get("friend") != null){
 			System.out.println("showDailyAction好友浏览通道1");
+			TUser friend = (TUser) ac.getSession().get("friend");
+			tdailys = dailySrc.showmessage(friend,(pageIndex - 1) * maxResult,maxResult);
+			ac.getSession().put("dailyLists",tdailys);
+			return "fdaily";
 		}else{
 			System.out.println("maxResult:"+maxResult+"(pageIndex - 1) * maxResult:"+((pageIndex - 1) * maxResult));
-			tdailys = dailySrc.showmessage((pageIndex - 1) * maxResult,maxResult);
-		}
-		ac.getSession().put("dailyLists",tdailys);
-		
-		return "success";
+			TUser user = (TUser) ac.getSession().get("user");
+			tdailys = dailySrc.showmessage(user,(pageIndex - 1) * maxResult,maxResult);
+			ac.getSession().put("dailyLists",tdailys);
+			return "daily";
+		}	
+	}
+
+
+
+	public List<TDaily> getTdailys1() {
+		return tdailys1;
+	}
+
+
+
+	public void setTdailys1(List<TDaily> tdailys1) {
+		this.tdailys1 = tdailys1;
+	}
+
+
+
+	public int getType() {
+		return type;
+	}
+
+
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 
