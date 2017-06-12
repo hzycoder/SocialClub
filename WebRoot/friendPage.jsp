@@ -381,7 +381,7 @@ button {
 								<img src="upload/defalut.jpg" width="45px" height="45px" />
 						</s:if> 
 						<s:else>
-								<img src="upload/<s:property value="user_friList.username"/>/<s:property value="user_friList.UPicture"/>"
+								<img src="upload/<s:property value='user_friList.username'/>/<s:property value='user_friList.UPicture'/>"
 									width="45px" height="45px" />
 						</s:else>
 					</a> 
@@ -442,7 +442,7 @@ button {
 			<s:else>
 				<div id="head_pic">
 					<img
-						src="upload/<s:property value="#session.friend.username"/>/<s:property value="#session.user.UPicture"/>"
+						src="upload/<s:property value="#session.friend.username"/>/<s:property value="#session.friend.UPicture"/>"
 						width="140px" height="140px" />
 				</div>
 			</s:else>

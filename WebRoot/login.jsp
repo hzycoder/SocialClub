@@ -35,6 +35,7 @@
 </head>
 
 <body>
+<span style="font-size:12px; color：red;"><s:fielderror/></span>
 <s:action name="logAction!judgeLogin" ></s:action>
 	<div id="index1">
 		<div class="inset">

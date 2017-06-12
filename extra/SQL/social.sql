@@ -146,7 +146,7 @@ message_time datetime,		--留言时间
 constraint cs_board foreign key(userID) references t_user(userID),
 )
 select * from board
-delete from board where userID=101
+delete from board where userID=100
 
 create table messageShow(
 messageID int primary key,--留言信息ID

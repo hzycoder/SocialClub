@@ -105,7 +105,6 @@ public class RegisterAction extends ActionSupport {
 		if (!phone.equals("")&&!numPatt.matcher(phone).matches()) {
 			this.addFieldError("phoneError", "请填写正确的联系电话");
 		}
-
 	}
 
 	public String add() throws Exception {

@@ -505,6 +505,7 @@ button {
 			</div>
 			<div id="menu">
 				<ul>
+					<li><a id="dailyrecent" href="showDailyAction!showrecent.action" target="middle_frame">大世界</a></li>
 					<li><a id="blogA" href="clearFriAction?type=1"
 						target="middle_frame">博文</a></li>
 					<li><a id="daily" href="showDailyAction?type=1"

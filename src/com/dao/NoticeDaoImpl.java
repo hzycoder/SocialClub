@@ -82,7 +82,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	public List noticeList(int maxResult, int firstResult) {
 		ActionContext ac = ActionContext.getContext();
 		TUser user = (TUser) ac.getSession().get("user");
-		noticeList = sessionFactory.getCurrentSession().createQuery("from Notice where recipientID=?")
+		noticeList = sessionFactory.getCurrentSession().createQuery("from Notice where recipientID=? order by noticeID DESC")
 		.setParameter(0, user.getUserId()).list();
 		
 		return noticeList;

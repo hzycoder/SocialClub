@@ -1,6 +1,7 @@
 package com.action;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
@@ -57,7 +58,7 @@ public class LoginAction extends ActionSupport {
 	}
 
 	public String judgeLogin(){
-		System.out.println("judgeLoginjudgeLoginjudgeLogin");
+		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
 		if(ac.getSession().get("user")!=null){
 			return SUCCESS;
@@ -65,6 +66,7 @@ public class LoginAction extends ActionSupport {
 			return INPUT;
 		}
 	}
+	
 	public String login() {
 		this.clearErrorsAndMessages();
 		ActionContext ac = ActionContext.getContext();
